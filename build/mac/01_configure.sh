@@ -115,7 +115,10 @@ configure-prism() {
 		 -DPRISM_BUNDLE_CODESIGN_IDENTITY="${CODESIGN_IDENT:--}" \
 		 -DPRISM_BUNDLE_CODESIGN_TEAM="${PRISM_CODESIGN_TEAM:--}" \
 		 -DPRISM_VERSION_SHORT="${short_version}" \
-		 -DPRISM_VERSION_BUILD="${build_version}"
+		 -DPRISM_VERSION_BUILD="${build_version}" \
+		 -DAJA_LIBRARIES_INCLUDE_DIR="/Users/mcduck/Works/SPECTRUM/ntv2sdkmac_17.1.0.900/includes" \
+		 -DAJA_LIBRARIES_DIR="/Users/mcduck/Works/SPECTRUM/ntv2sdkmac_17.1.0.900/lib" \
+		 -DCMAKE_PREFIX_PATH="/opt/homebrew/opt/nlohmann-json"
 
 # --log-level=DEBUG \
 	cmake -Wno-dev \
