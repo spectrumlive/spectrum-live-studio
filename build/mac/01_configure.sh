@@ -70,9 +70,9 @@ export ALL_DEPS="${PRISM_QT_DIR}"
 MACOS_DEPLOYMENT_TARGET=12.3
 
 # bundle name
-export PRISM_BUNDLE_NAME="PRISMLiveStudio"
-export PRISM_PRODUCT_IDENTIFIER="com.prismlive.prismlivestudio"
-export PRISM_PRODUCT_IDENTIFIER_PRESUFF="com.prismlive"
+export PRISM_BUNDLE_NAME="SPECTRUMLiveStudio"
+export PRISM_PRODUCT_IDENTIFIER="xyz.spectrumlive.spectrumlivestudio"
+export PRISM_PRODUCT_IDENTIFIER_PRESUFF="xyz.spectrumlive"
 
 export OUTPUT_DIR=${BIN_DIR}/prism/mac/${BUILD_TYPE}
 
