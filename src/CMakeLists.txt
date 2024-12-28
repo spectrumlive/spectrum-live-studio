@@ -9,6 +9,9 @@ list(APPEND CMAKE_MODULE_PATH "$ENV{OBS_SRC_DIR}/cmake/Modules")
 
 project(prism-live-studio VERSION $ENV{VERSION})
 
+# Add the option to enable or disable KSCrash
+option(ENABLE_KSCRASH "Enable KSCrash" ON)
+
 set(PRISM_VERSION ${CMAKE_PROJECT_VERSION})
 set(PRISM_VERSION_MAJOR ${CMAKE_PROJECT_VERSION_MAJOR})
 set(PRISM_VERSION_MINOR ${CMAKE_PROJECT_VERSION_MINOR})
