@@ -58,3 +58,45 @@ which is the bundle file of SPECTRUM Live Studio
 
 [Github issues](https://github.com/spectrumlive/spectrum-live-studio/issues)  
 If you have any question, please contact us by [mail:spectrumlive@spectrumlive.xyz](mailto://spectrumlive@spectrumlive.xyz)
+
+Environment Note:
+- MacOS
+  - Required
+    ```aiignore
+    $ brew install qt
+    ```
+    Create Update.sh in src/obs-studio directory
+    ```aiignore
+      #!/bin/bash    
+      $ git submodule add https://github.com/obsproject/libdshowcapture.git plugins/win-dshow/libdshowcapture
+      $ git submodule add https://github.com/palana/Syphon-Framework.git plugins/mac-syphon/syphon-framework
+      $ git submodule add https://github.com/obsproject/obs-amd-encoder.git plugins/enc-amf
+      $ git submodule add https://github.com/naver/obs-browser.git plugins/obs-browser
+      $ git submodule add https://github.com/Mixer/ftl-sdk.git plugins/obs-outputs/ftl-sdk
+      $ git submodule add https://github.com/obsproject/obs-websocket.git plugins/obs-websocket
+    ```
+    In obs-studio directory run, (note: we may need to check out the buildspec.json from the original repo)
+   ```aiignore
+     $ cmake --list-presets
+     $ cmake --preset macos
+   ```
+   ```
+      $ cd src
+      $ git submodule init
+      $ git submodule update
+      $ cd obs-studio
+      $ ./update.sh
+    ```
+    ```----- McDuck for Spectrum ----
+        export CMAKE_HOST_SYSTEM_NAME="Darwin"
+        export CMAKE_SYSTEM_NAME="Darwin"
+        export PATH="~/Works/SPECTRUM/spectrum-live-studio/src/obs-studio/.deps/obs-deps-2024-03-19-universal/bin:$PATH"
+        export QTDIR="/opt/homebrew"
+        export CMAKE_PREFIX_PATH="~/Works/SPECTRUM/spectrum-live-studio/src/obs-studio/.deps/obs-deps-2024-03-19-universal:$CMAKE_PREFIX_PATH"
+        export INCLUDE="$INCLUDE:~/Works/SPECTRUM/spectrum-live-studio/src/obs-studio/.deps/obs-deps-2024-03-19-universal/include"
+        export LIB="$LIB:~/Works/SPECTRUM/spectrum-live-studio/src/obs-studio/.deps/obs-deps-2024-03-19-universal/lib"
+        export PATH=$PATH:~/Works/SPECTRUM/spectrum-live-studio/src/obs-studio/.deps/obs-deps-2024-03-19-universal/bin
+    ```
+- Windows
+
+
