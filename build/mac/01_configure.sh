@@ -2,6 +2,8 @@
 
 # BUILD_TYPE=Debug, Release, RelWithDebInfo and MinSizeRel,
 
+export BUILD_TYPE=Debug
+
 buildTypes=(
 Debug
 Release

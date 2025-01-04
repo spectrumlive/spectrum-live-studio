@@ -2,6 +2,7 @@
 /bin
 /test-bin
 /src/build
+.idea
 .DS_Store
 */.DS_Store
 */**/.DS_Store
