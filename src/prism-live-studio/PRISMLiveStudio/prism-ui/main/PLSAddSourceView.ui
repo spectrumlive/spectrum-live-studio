@@ -261,7 +261,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>PRISM DESC</string>
+             <string>SPECTRUM DESC</string>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -283,7 +283,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>PRISM CONTENT</string>
+             <string>SPECTRUM CONTENT</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignHCenter|Qt::AlignTop</set>

@@ -15,7 +15,7 @@ namespace common {
 
 /*************** prism ****************/
 constexpr auto PLS_PRISM = "Prism";
-constexpr auto PLS_LIVE_STUDIO = "PRISM Live Studio";
+constexpr auto PLS_LIVE_STUDIO = "SPECTRUM Live Studio";
 constexpr auto PLS_ARCHITECTURE = " Architecture ";
 constexpr auto PLS_BUILD = " Build ";
 constexpr auto PLS_LANGUAGE = " Language ";

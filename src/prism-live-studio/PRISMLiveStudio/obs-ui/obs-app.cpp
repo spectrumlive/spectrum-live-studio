@@ -1353,13 +1353,15 @@ bool OBSApp::InitTheme()
 	string searchDir;
 	if (GetDataFilePath("themes", searchDir)) {
 		auto installSearchDir = filesystem::u8path(searchDir);
-		QDir::addSearchPath("theme", absolute(installSearchDir));
+        QDir::addSearchPath("theme", QDir(QString::fromStdString(installSearchDir.string())).absolutePath());
+
 	}
 
 	char userDir[512];
 	if (GetConfigPath(userDir, sizeof(userDir), "obs-studio/themes")) {
 		auto configSearchDir = filesystem::u8path(userDir);
-		QDir::addSearchPath("theme", absolute(configSearchDir));
+        QDir::addSearchPath("theme", QDir(QString::fromStdString(configSearchDir.string())).absolutePath());
+
 	}
 
 	const char *themeName =
