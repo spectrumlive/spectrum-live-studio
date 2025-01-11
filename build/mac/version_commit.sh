@@ -2,7 +2,7 @@
 
 set -eE
 
-export _RUN_PRISM_BUILD_SCRIPT=TRUE
+export _RUN_SPECTRUM_BUILD_SCRIPT=TRUE
 
 SCRIPT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd);
 source "${SCRIPT_PATH}/prism_build_support_macos.sh"

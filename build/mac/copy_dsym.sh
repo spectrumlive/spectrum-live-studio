@@ -20,9 +20,9 @@ copy_mac_dsym() {
 
 copy_mac_dsym_standalone() {
 
-	status "_RUN_PRISM_BUILD_SCRIPT=${_RUN_PRISM_BUILD_SCRIPT}"
+	status "_RUN_SPECTRUM_BUILD_SCRIPT=${_RUN_SPECTRUM_BUILD_SCRIPT}"
 
-    if [ -z "${_RUN_PRISM_BUILD_SCRIPT}" ]; then
+    if [ -z "${_RUN_SPECTRUM_BUILD_SCRIPT}" ]; then
     	SCRIPT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd);
     	PROJECT_DIR=${SCRIPT_PATH}/../../
     	BUILD_TYPE=Debug
