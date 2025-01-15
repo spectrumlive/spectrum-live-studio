@@ -13,7 +13,7 @@ using namespace common;
 
 PLSLoginUserInfo::PLSLoginUserInfo()
 {
-	auto prePath = pls_get_user_path("PRISMLiveStudio/user/config.ini");
+	auto prePath = pls_get_user_path("SPECTRUMLiveStudio/user/config.ini");
 
 	if (!QFile::exists(prePath)) {
 		PLS_INFO("UserInfo", "old version have not login prism");

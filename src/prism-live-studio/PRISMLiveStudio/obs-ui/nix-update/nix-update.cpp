@@ -98,8 +98,8 @@ try {
 	for (;;) {
 		file.read(buf, HASH_READ_BUF_SIZE);
 		size_t read = file.gcount();
-		if (blake2b_update(&blake2, &buf, read) != 0)
-			return false;
+//		if (blake2b_update(&blake2, &buf, read) != 0)
+//			return false;
 		if (file.eof())
 			break;
 	}

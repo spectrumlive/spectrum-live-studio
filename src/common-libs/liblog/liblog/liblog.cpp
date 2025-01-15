@@ -585,9 +585,9 @@ static void init_log_file(const char *session)
 		std::lock_guard guard(pls_global_mutex());
 		if (!LocalGlobalVars::log_file) {
 #if defined(Q_OS_WIN)
-			QDir dir(QString("%1/PRISMLiveStudio/log/%2").arg(qEnvironmentVariable("APPDATA"), session));
+ 			QDir dir(QString("%1/SPECTRUMLiveStudio/log/%2").arg(qEnvironmentVariable("APPDATA"), session));
 #elif defined(Q_OS_MACOS)
-			QDir dir(QString("%1/PRISMLiveStudio/log/%2").arg(pls_get_mac_app_data_dir(), session));
+			QDir dir(QString("%1/SPECTRUMLiveStudio/log/%2").arg(pls_get_mac_app_data_dir(), session));
 #endif
 			if (!dir.exists()) {
 				dir.mkpath(dir.absolutePath());

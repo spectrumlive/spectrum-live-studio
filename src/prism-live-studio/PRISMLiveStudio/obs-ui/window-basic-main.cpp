@@ -588,7 +588,7 @@ OBSBasic::OBSBasic(PLSMainView *mainView_)
 	SETUP_DOCK(ui->scenesDock);
 	SETUP_DOCK(ui->sourcesDock);
 	SETUP_DOCK(ui->mixerDock);
-	SETUP_DOCK(ui->chatDock);
+//	SETUP_DOCK(ui->chatDock);
 
 #undef SETUP_DOCK
 

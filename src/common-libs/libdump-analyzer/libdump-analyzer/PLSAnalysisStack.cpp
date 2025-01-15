@@ -36,7 +36,7 @@ const static QString PRISM_CRASH_CONFIG_PATH = "PRISMLiveStudio\\crashDump\\cras
 #if _WIN32
 const static QString PROCESS_CRASH_FILE = "PRISMLiveStudio\\crashDump\\process.json";
 #else
-const static QString PROCESS_CRASH_FILE = "PRISMLiveStudio/crashDump/process.json";
+const static QString PROCESS_CRASH_FILE = "SPECTRUMLiveStudio/crashDump/process.json";
 #endif
 const static QString MODULES_FILE = "\\PRISMLiveStudio\\crashDump\\modules.json";
 const static QString GPOP_FILE = "\\user\\gpop.json";
@@ -411,7 +411,7 @@ static QJsonObject get_blacklist()
 	QString syncName = "PRISMLiveStudio\\library\\library_Policy_PC\\BlackList.json";
 	QString localName = "..\\..\\data\\prism-studio\\user\\BlackList.json";
 #else
-	QString syncName = "PRISMLiveStudio/library/library_Policy_PC/BlackList.json";
+	QString syncName = "SPECTRUMLiveStudio/library/library_Policy_PC/BlackList.json";
 	QString localName = "data/prism-studio/user/BlackList.json";
 #endif
 

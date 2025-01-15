@@ -577,12 +577,12 @@ static bool MakeUserDirs()
 {
 	char path[512];
 
-	if (GetConfigPath(path, sizeof(path), "PRISMLiveStudio/basic") <= 0)
+	if (GetConfigPath(path, sizeof(path), "SPECTRUMLiveStudio/basic") <= 0)
 		return false;
 	if (!do_mkdir(path))
 		return false;
 
-	if (GetConfigPath(path, sizeof(path), "PRISMLiveStudio/logs") <= 0)
+	if (GetConfigPath(path, sizeof(path), "SPECTRUMLiveStudio/logs") <= 0)
 		return false;
 	if (!do_mkdir(path))
 		return false;
@@ -597,7 +597,7 @@ static bool MakeUserDirs()
 			"");
 	}
 	if (GetConfigPath(path, sizeof(path),
-			  "PRISMLiveStudio/profiler_data") <= 0)
+			  "SPECTRUMLiveStudio/profiler_data") <= 0)
 		return false;
 	if (!do_mkdir(path))
 		return false;
@@ -609,43 +609,43 @@ static bool MakeUserDirs()
 		return false;
 #endif
 
-	if (GetConfigPath(path, sizeof(path), "PRISMLiveStudio/user") <= 0)
+	if (GetConfigPath(path, sizeof(path), "SPECTRUMLiveStudio/user") <= 0)
 		return false;
 	if (!do_mkdir(path))
 		return false;
-	if (GetConfigPath(path, sizeof(path), "PRISMLiveStudio/textmotion") <=
+	if (GetConfigPath(path, sizeof(path), "SPECTRUMLiveStudio/textmotion") <=
 	    0)
 		return false;
 	if (!do_mkdir(path))
 		return false;
-	if (GetConfigPath(path, sizeof(path), "PRISMLiveStudio/updates") <= 0)
+	if (GetConfigPath(path, sizeof(path), "SPECTRUMLiveStudio/updates") <= 0)
 		return false;
 	if (!do_mkdir(path))
 		return false;
 
 	if (GetConfigPath(path, sizeof(path),
-			  "PRISMLiveStudio/plugin_config") <= 0)
+			  "SPECTRUMLiveStudio/plugin_config") <= 0)
 		return false;
 	if (!do_mkdir(path))
 		return false;
 
-	if (GetConfigPath(path, sizeof(path), "PRISMLiveStudio/Cache") <= 0)
+	if (GetConfigPath(path, sizeof(path), "SPECTRUMLiveStudio/Cache") <= 0)
 		return false;
 	if (!do_mkdir(path))
 		return false;
 
 	if (GetConfigPath(path, sizeof(path),
-			  "PRISMLiveStudio/naver_shopping") <= 0)
+			  "SPECTRUMLiveStudio/naver_shopping") <= 0)
 		return false;
 	if (!do_mkdir(path))
 		return false;
 
-	if (GetConfigPath(path, sizeof(path), "PRISMLiveStudio/crashDump") <= 0)
+	if (GetConfigPath(path, sizeof(path), "SPECTRUMLiveStudio/crashDump") <= 0)
 		return false;
 	if (!do_mkdir(path))
 		return false;
 
-	if (GetConfigPath(path, sizeof(path), "PRISMLiveStudio/laboratory") <=
+	if (GetConfigPath(path, sizeof(path), "SPECTRUMLiveStudio/laboratory") <=
 	    0)
 		return false;
 	if (!do_mkdir(path))
@@ -659,12 +659,12 @@ static bool MakeUserProfileDirs()
 	char path[512];
 
 	if (GetConfigPath(path, sizeof(path),
-			  "PRISMLiveStudio/basic/profiles") <= 0)
+			  "SPECTRUMLiveStudio/basic/profiles") <= 0)
 		return false;
 	if (!do_mkdir(path))
 		return false;
 
-	if (GetConfigPath(path, sizeof(path), "PRISMLiveStudio/basic/scenes") <=
+	if (GetConfigPath(path, sizeof(path), "SPECTRUMLiveStudio/basic/scenes") <=
 	    0)
 		return false;
 	if (!do_mkdir(path))
@@ -680,7 +680,7 @@ static string GetProfileDirFromName(const char *name)
 	char path[512];
 
 	if (GetConfigPath(path, sizeof(path),
-			  "PRISMLiveStudio/basic/profiles") <= 0)
+			  "SPECTRUMLiveStudio/basic/profiles") <= 0)
 		return outputPath;
 
 	strcat(path, "/*");
@@ -726,7 +726,7 @@ static string GetSceneCollectionFileFromName(const char *name)
 	os_glob_t *glob;
 	char path[512];
 
-	if (GetConfigPath(path, sizeof(path), "PRISMLiveStudio/basic/scenes") <=
+	if (GetConfigPath(path, sizeof(path), "SPECTRUMLiveStudio/basic/scenes") <=
 	    0)
 		return outputPath;
 
@@ -812,7 +812,7 @@ bool OBSApp::InitGlobalConfig()
 	bool changed = false;
 
 	int len =
-		GetConfigPath(path, sizeof(path), "PRISMLiveStudio/global.ini");
+		GetConfigPath(path, sizeof(path), "SPECTRUMLiveStudio/global.ini");
 	if (len <= 0) {
 		return false;
 	}
@@ -1272,7 +1272,7 @@ std::string OBSApp::GetTheme(std::string name, std::string path)
 	if (path == "") {
 		char userDir[512];
 		name = "themes/" + name + ".qss";
-		string temp = "PRISMLiveStudio/" + name;
+		string temp = "SPECTRUMLiveStudio/" + name;
 		int ret = GetConfigPath(userDir, sizeof(userDir), temp.c_str());
 
 		if (ret > 0 && QFile::exists(userDir)) {
@@ -1418,7 +1418,7 @@ bool LoadBranchesFile(vector<UpdateBranch> &out)
 	string branchesText;
 
 	BPtr<char> branchesFilePath =
-		GetConfigPathPtr("PRISMLiveStudio/updates/branches.json");
+		GetConfigPathPtr("SPECTRUMLiveStudio/updates/branches.json");
 
 	QFile branchesFile(branchesFilePath.Get());
 	if (!branchesFile.open(QIODevice::ReadOnly)) {
@@ -1569,13 +1569,13 @@ static void move_basic_to_profiles(void)
 	os_glob_t *glob;
 
 	/* if not first time use */
-	if (GetConfigPath(path, 512, "PRISMLiveStudio/basic") <= 0)
+	if (GetConfigPath(path, 512, "SPECTRUMLiveStudio/basic") <= 0)
 		return;
 	if (!os_file_exists(path))
 		return;
 
 	/* if the profiles directory doesn't already exist */
-	if (GetConfigPath(new_path, 512, "PRISMLiveStudio/basic/profiles") <= 0)
+	if (GetConfigPath(new_path, 512, "SPECTRUMLiveStudio/basic/profiles") <= 0)
 		return;
 	if (os_file_exists(new_path))
 		return;
@@ -1622,12 +1622,12 @@ static void move_basic_to_scene_collections(void)
 	char path[512];
 	char new_path[512];
 
-	if (GetConfigPath(path, 512, "PRISMLiveStudio/basic") <= 0)
+	if (GetConfigPath(path, 512, "SPECTRUMLiveStudio/basic") <= 0)
 		return;
 	if (!os_file_exists(path))
 		return;
 
-	if (GetConfigPath(new_path, 512, "PRISMLiveStudio/basic/scenes") <= 0)
+	if (GetConfigPath(new_path, 512, "SPECTRUMLiveStudio/basic/scenes") <= 0)
 		return;
 	if (os_file_exists(new_path))
 		return;
@@ -1717,7 +1717,7 @@ static bool StartupOBS(const char *locale, profiler_name_store_t *store)
 	char path[512];
 
 	if (GetConfigPath(path, sizeof(path),
-			  "PRISMLiveStudio/plugin_config") <= 0)
+			  "SPECTRUMLiveStudio/plugin_config") <= 0)
 		return false;
 
 	return obs_startup(locale, path, store);
@@ -2392,15 +2392,15 @@ static void create_log_file(fstream &logFile)
 {
 	stringstream dst;
 
-	get_last_log(false, "PRISMLiveStudio/logs",
+	get_last_log(false, "SPECTRUMLiveStudio/logs",
 		     LocalGlobalVars::lastLogFile);
 #ifdef _WIN32
-	get_last_log(true, "PRISMLiveStudio/crashes",
+	get_last_log(true, "SPECTRUMLiveStudio/crashes",
 		     LocalGlobalVars::lastCrashLogFile);
 #endif
 
 	LocalGlobalVars::currentLogFile = GenerateTimeDateFilename("txt");
-	dst << "PRISMLiveStudio/logs/"
+	dst << "SPECTRUMLiveStudio/logs/"
 	    << LocalGlobalVars::currentLogFile.c_str();
 
 	BPtr<char> path(GetConfigPathPtr(dst.str().c_str()));
@@ -2414,7 +2414,7 @@ static void create_log_file(fstream &logFile)
 #endif
 
 	if (logFile.is_open()) {
-		delete_oldest_file(false, "PRISMLiveStudio/logs");
+		delete_oldest_file(false, "SPECTRUMLiveStudio/logs");
 		//base_set_log_handler(do_log, &logFile);
 	} else {
 		blog(LOG_ERROR, "Failed to open log file");
@@ -2457,7 +2457,7 @@ static void SaveProfilerData(const ProfilerSnapshot &snap)
 
 #define LITERAL_SIZE(x) x, (sizeof(x) - 1)
 	ostringstream dst;
-	dst.write(LITERAL_SIZE("PRISMLiveStudio/profiler_data/"));
+	dst.write(LITERAL_SIZE("SPECTRUMLiveStudio/profiler_data/"));
 	dst.write(LocalGlobalVars::currentLogFile.c_str(), pos);
 	dst.write(LITERAL_SIZE(".csv.gz"));
 #undef LITERAL_SIZE
@@ -2667,7 +2667,7 @@ static void main_crash_handler(const char *format, va_list args,
 	vsnprintf(text, MAX_CRASH_REPORT_SIZE, format, args);
 	text[MAX_CRASH_REPORT_SIZE - 1] = 0;
 
-	string crashFilePath = "PRISMLiveStudio/crashes";
+	string crashFilePath = "SPECTRUMLiveStudio/crashes";
 
 	delete_oldest_file(true, crashFilePath.c_str());
 
@@ -2896,7 +2896,7 @@ bool GetUnusedSceneCollectionFile(std::string &name, std::string &file)
 	}
 
 	ret = GetConfigPath(path, sizeof(path),
-			    "PRISMLiveStudio/basic/scenes/");
+			    "SPECTRUMLiveStudio/basic/scenes/");
 	if (ret <= 0) {
 		blog(LOG_WARNING, "Failed to get scene collection config path");
 		return false;
@@ -3196,7 +3196,7 @@ static void upgrade_settings(void)
 {
 	char path[512];
 	int pathlen =
-		GetConfigPath(path, 512, "PRISMLiveStudio/basic/profiles");
+		GetConfigPath(path, 512, "SPECTRUMLiveStudio/basic/profiles");
 
 	if (pathlen <= 0)
 		return;
