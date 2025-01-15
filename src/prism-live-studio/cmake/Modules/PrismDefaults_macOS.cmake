@@ -96,8 +96,8 @@ macro(setup_prism_project)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror=return-type")
 
   # Set bundle parameters for cmake's automatic plist generation
-  set(MACOSX_BUNDLE_EXECUTABLE_NAME "PRISMLiveStudio")
-  set(MACOSX_BUNDLE_BUNDLE_NAME "PRISMLiveStudio")
+  set(MACOSX_BUNDLE_EXECUTABLE_NAME "SPECTRUMLiveStudio")
+  set(MACOSX_BUNDLE_BUNDLE_NAME "SPECTRUMLiveStudio")
   set(MACOSX_BUNDLE_BUNDLE_VERSION "${PRISM_VERSION_BUILD}")
   set(MACOSX_BUNDLE_GUI_IDENTIFIER $ENV{PRISM_PRODUCT_IDENTIFIER})
   set(MACOSX_BUNDLE_ICON_FILE "AppIcon")
@@ -105,7 +105,7 @@ macro(setup_prism_project)
   string(TIMESTAMP CURRENT_YEAR "%Y")
 
   # Set paths for distribution bundling
-  set(OBS_BUNDLE_NAME "PRISMLiveStudio")
+  set(OBS_BUNDLE_NAME "SPECTRUMLiveStudio")
   set(OBS_EXECUTABLE_DESTINATION "${CMAKE_INSTALL_BINDIR}")
   set(OBS_INCLUDE_DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/prism")
   set(OBS_LIBRARY_DESTINATION "${CMAKE_INSTALL_LIBDIR}")
@@ -118,7 +118,7 @@ macro(setup_prism_project)
     set(CPACK_PACKAGE_VERSION "${PRISM_VERSION_SHORT}.${PRISM_VERSION_BUILD}")
   endif()
 
-  set(CPACK_PACKAGE_NAME "PRISMLiveStudio")
+  set(CPACK_PACKAGE_NAME "SPECTRUMLiveStudio")
   # set(CPACK_PACKAGE_VENDOR "${OBS_WEBSITE}")
   set(CPACK_PACKAGE_VENDOR "https://prismlive.com/en_us/pcapp/")
   set(CPACK_GENERATOR "DragNDrop")
@@ -135,7 +135,7 @@ macro(setup_prism_project)
   # set(CPACK_PACKAGE_FILE_NAME
   #     "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-macOS-${CPACK_ARCH_SUFFIX}"
   # )
-  set(CPACK_PACKAGE_FILE_NAME "PRISMLiveStudio_${CPACK_PACKAGE_VERSION}")
+  set(CPACK_PACKAGE_FILE_NAME "SPECTRUMLiveStudio_${CPACK_PACKAGE_VERSION}")
 
   set(CPACK_COMPONENTS_ALL prism_app prism_plugins prism_frameworks 
                            prism_libraries prism_lancher prism_bundles)
@@ -176,7 +176,7 @@ macro(setup_prism_project)
 
   install(
     CODE "
-    set(_BUNDLENAME \"$<TARGET_FILE_BASE_NAME:PRISMLiveStudio>.app\")
+    set(_BUNDLENAME \"$<TARGET_FILE_BASE_NAME:SPECTRUMLiveStudio>.app\")
     set(_OBSAPPPATH \"\$ENV{OBS_BUILD_DIR}/install\")
     if(EXISTS \"\${CMAKE_INSTALL_PREFIX}/\${_BUNDLENAME}\")
       file(REMOVE_RECURSE \"\${CMAKE_INSTALL_PREFIX}/\${_BUNDLENAME}\")
