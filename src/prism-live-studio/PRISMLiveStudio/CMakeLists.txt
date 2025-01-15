@@ -1,4 +1,4 @@
-project(PRISMLiveStudio)
+project(SPECTRUMLiveStudio)
 
 add_subdirectory(frontend-api)
 add_subdirectory(plugins)
@@ -61,7 +61,7 @@ find_package(FFmpeg REQUIRED COMPONENTS avcodec avutil avformat)
 find_package(CURL REQUIRED)
 
 # add_subdirectory(frontend-plugins)
-add_executable(PRISMLiveStudio)
+add_executable(SPECTRUMLiveStudio)
 
 add_subdirectory(prism-ui/channels)
 add_subdirectory(prism-ui/PLSPlatformApi)
@@ -73,17 +73,17 @@ add_subdirectory(prism-ui/prism-login)
 
 find_package(Qt6 COMPONENTS Widgets Network Svg Xml Gui NetworkAuth WebSockets Multimedia OpenGLWidgets)
 find_package(nlohmann_json REQUIRED)
-target_link_libraries(PRISMLiveStudio PRIVATE Qt6::Widgets Qt6::Svg Qt6::Xml Qt6::Network Qt6::WebSockets nlohmann_json::nlohmann_json Qt6::Multimedia Qt6::OpenGLWidgets)
+target_link_libraries(SPECTRUMLiveStudio PRIVATE Qt6::Widgets Qt6::Svg Qt6::Xml Qt6::Network Qt6::WebSockets nlohmann_json::nlohmann_json Qt6::Multimedia Qt6::OpenGLWidgets)
 
 set_target_properties(
-  PRISMLiveStudio
+  SPECTRUMLiveStudio
   PROPERTIES AUTOMOC ON
   AUTOUIC ON
   AUTORCC ON
   AUTOUIC_SEARCH_PATHS "obs-ui/forms;obs-ui/forms/source-toolbar;prism-ui/forms")
 
 target_include_directories(
-  PRISMLiveStudio
+  SPECTRUMLiveStudio
   PRIVATE "$ENV{OBS_SRC_DIR}/UI/obs-frontend-api"
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR}/obs-ui
@@ -129,7 +129,7 @@ target_include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/prism-ui/scene-templates
 )
 
-target_sources(PRISMLiveStudio PRIVATE obs-ui/forms/obs.qrc
+target_sources(SPECTRUMLiveStudio PRIVATE obs-ui/forms/obs.qrc
   prism-ui/prism.qrc
   prism-ui/prism-css.qrc
   prism-ui/prism-images-1.qrc
@@ -147,7 +147,7 @@ target_sources(PRISMLiveStudio PRIVATE obs-ui/forms/obs.qrc
 )
 
 target_sources(
-  PRISMLiveStudio
+  SPECTRUMLiveStudio
   PRIVATE obs-ui/forms/AutoConfigFinishPage.ui
   obs-ui/forms/AutoConfigStartPage.ui
   obs-ui/forms/AutoConfigStartPage.ui
@@ -182,7 +182,7 @@ target_sources(
 )
 
 target_sources(
-  PRISMLiveStudio
+  SPECTRUMLiveStudio
   PRIVATE obs-ui/auth-oauth.cpp
   obs-ui/auth-oauth.hpp
   obs-ui/auth-listener.cpp
@@ -216,7 +216,7 @@ target_sources(
   ${CMAKE_CURRENT_BINARY_DIR}/ui-config.h)
 
 target_sources(
-  PRISMLiveStudio
+  SPECTRUMLiveStudio
   PRIVATE obs-ui/adv-audio-control.cpp
   obs-ui/adv-audio-control.hpp
   obs-ui/audio-encoders.cpp
@@ -280,7 +280,7 @@ target_sources(
   obs-ui/visibility-item-widget.hpp)
 
 target_sources(
-  PRISMLiveStudio
+  SPECTRUMLiveStudio
   PRIVATE obs-ui/window-basic-about.cpp
   obs-ui/window-basic-about.hpp
   obs-ui/window-basic-auto-config.cpp
@@ -341,7 +341,7 @@ target_sources(
   obs-ui/window-remux.hpp)
 
 target_sources(
-  PRISMLiveStudio
+  SPECTRUMLiveStudio
   PRIVATE obs-ui/importers/importers.cpp
   obs-ui/importers/importers.hpp
   obs-ui/importers/classic.cpp
@@ -350,7 +350,7 @@ target_sources(
   obs-ui/importers/xsplit.cpp)
 
 target_sources(
-  PRISMLiveStudio
+  SPECTRUMLiveStudio
   PRIVATE prism-ui/common/PLSMessageBox.cpp
   prism-ui/common/PLSMessageBox.h
   prism-ui/common/PLSNameDialog.cpp
@@ -365,14 +365,14 @@ target_sources(
   prism-ui/common/bubbletips.cpp)
 
 target_sources(
-  PRISMLiveStudio
+  SPECTRUMLiveStudio
   PRIVATE prism-ui/forms/PLSGiphyStickerView.ui
   PRIVATE prism-ui/forms/PLSSearchPopupMenu.ui
   PRIVATE prism-ui/forms/PLSPrismSticker.ui
   PRIVATE prism-ui/forms/PLSVstFilterView.ui)
 
 target_sources(
-  PRISMLiveStudio
+  SPECTRUMLiveStudio
   PRIVATE prism-ui/main/PLSMainView.cpp
   prism-ui/main/PLSMainView.hpp
   prism-ui/main/PLSMainView.ui
@@ -423,7 +423,7 @@ target_sources(
   prism-ui/main/PLSCompleter.hpp
 )
 target_sources(
-  PRISMLiveStudio
+  SPECTRUMLiveStudio
   PRIVATE prism-ui/scene/PLSSceneItemView.cpp
   prism-ui/scene/PLSSceneItemView.h
   prism-ui/scene/PLSSceneListView.cpp
@@ -565,7 +565,7 @@ target_sources(
 )
 
 target_sources(
-  PRISMLiveStudio
+  SPECTRUMLiveStudio
   PRIVATE prism-ui/virtual-template/PLSMotionImageListView.h
   prism-ui/virtual-template/PLSMotionImageListView.cpp
   prism-ui/virtual-template/PLSMotionImageListView.ui
@@ -631,21 +631,21 @@ target_sources(
 )
 
 target_sources(
-  PRISMLiveStudio
+  SPECTRUMLiveStudio
   PRIVATE prism-ui/main/PLSInfoCollector.cpp
   prism-ui/main/PLSInfoCollector.h)
 
 target_sources(
-  PRISMLiveStudio
+  SPECTRUMLiveStudio
   PRIVATE prism-ui/main/MutiLanguageTestView.h
   prism-ui/main/MutiLanguageTestView.cpp
   prism-ui/main/MutiLanguageTestView.ui
 )
 #scene template
 add_subdirectory(prism-ui/scene-templates)
-target_sources(PRISMLiveStudio PRIVATE ${SCENE-TEMPLATE_HDR_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${SCENE-TEMPLATE_SRC_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${SCENE-TEMPLATE_UI_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${SCENE-TEMPLATE_HDR_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${SCENE-TEMPLATE_SRC_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${SCENE-TEMPLATE_UI_FILES})
 
 # group platformapi group all files
 set(SceneTemplateALllFiles ${SCENE-TEMPLATE_HDR_FILES} ${SCENE-TEMPLATE_SRC_FILES} ${SCENE-TEMPLATE_UI_FILES})
@@ -674,12 +674,12 @@ endforeach()
 # watermark
 file(GLOB_RECURSE watermark_source prism-ui/watermark/**)
 target_sources(
-  PRISMLiveStudio
+  SPECTRUMLiveStudio
   PRIVATE ${watermark_source})
 
 if(OS_WINDOWS)
   target_sources(
-    PRISMLiveStudio
+    SPECTRUMLiveStudio
     PRIVATE prism-ui/main/PLSDrawPen/windows/PLSD2DGeometry.h
     prism-ui/main/PLSDrawPen/windows/PLSD2DGeometry.cpp
     prism-ui/main/PLSDrawPen/windows/PLSD2DRenderTarget.h
@@ -709,7 +709,7 @@ if(OS_WINDOWS)
     obs-ui/win-dll-blocklist.c)
 elseif(OS_MACOS)
   target_sources(
-    PRISMLiveStudio
+    SPECTRUMLiveStudio
     PRIVATE prism-ui/main/PLSDrawPen/mac/PLSDrawPenMac.cpp
     prism-ui/main/PLSDrawPen/mac/PLSDrawPenMac.h
     prism-ui/main/PLSDrawPen/mac/PLSStrokable.hpp
@@ -736,55 +736,55 @@ endif()
 file(GLOB PLSOutro_FILES prism-ui/outro/*)
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/prism-ui/outro/ PREFIX outro FILES ${PLSOutro_FILES})
 
-target_sources(PRISMLiveStudio PRIVATE ${PLSOutro_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${PLSOutro_FILES})
 
 # audio mixer files
 file(GLOB PLSAudioMixer_FILES prism-ui/audio-mixer/*)
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/prism-ui/audio-mixer/ PREFIX audio-mixer FILES ${PLSAudioMixer_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${PLSAudioMixer_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${PLSAudioMixer_FILES})
 
 # platform api
-target_sources(PRISMLiveStudio PRIVATE ${PLSPlatformApi-HDR_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${PLSPlatformApi-SRC_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${PLSPlatformApi-UI_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${PLSPlatformApi-HDR_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${PLSPlatformApi-SRC_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${PLSPlatformApi-UI_FILES})
 
 # channel source
-target_sources(PRISMLiveStudio PRIVATE ${channels-SRC_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${channels-HDR_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${channels-UI_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${channels-RCC_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${channels-SRC_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${channels-HDR_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${channels-UI_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${channels-RCC_FILES})
 
 # resotulion
-target_sources(PRISMLiveStudio PRIVATE ${PLSResolution-SRC_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${PLSResolution-HDR_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${PLSResolution-UI_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${PLSResolution-RCC_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${PLSResolution-SRC_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${PLSResolution-HDR_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${PLSResolution-UI_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${PLSResolution-RCC_FILES})
 
 # wizaard source
-target_sources(PRISMLiveStudio PRIVATE ${WizardView-SRC_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${WizardView-HDR_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${WizardView-UI_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${WizardView-RCC_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${WizardView-SRC_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${WizardView-HDR_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${WizardView-UI_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${WizardView-RCC_FILES})
 
 # GuideTips
-target_sources(PRISMLiveStudio PRIVATE ${GuideTips-SRC_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${GuideTips-HDR_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${GuideTips-UI_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${GuideTips-RCC_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${GuideTips-SRC_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${GuideTips-HDR_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${GuideTips-UI_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${GuideTips-RCC_FILES})
 
 # lab
-target_sources(PRISMLiveStudio PRIVATE ${laboratory-SRC_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${laboratory-HDR_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${laboratory-UI_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${laboratory-SRC_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${laboratory-HDR_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${laboratory-UI_FILES})
 
 # login
-target_sources(PRISMLiveStudio PRIVATE ${PRISMLogin-SRC1_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${PRISMLogin-SRC2_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${PRISMLogin-HDR_FILES})
-target_sources(PRISMLiveStudio PRIVATE ${PRISMLogin-UI_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${PRISMLogin-SRC1_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${PRISMLogin-SRC2_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${PRISMLogin-HDR_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${PRISMLogin-UI_FILES})
 
 if(OS_WINDOWS)
-  target_sources(PRISMLiveStudio PRIVATE prism-ui/main/unzip.h)
+  target_sources(SPECTRUMLiveStudio PRIVATE prism-ui/main/unzip.h)
 endif()
 
 # PLSPerformance
@@ -796,22 +796,22 @@ elseif(OS_MACOS)
   source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/prism-ui/PLSPerformance/macos/ PREFIX PLSPerformance FILES ${PLSPerformance_FILES})
 endif()
 
-target_sources(PRISMLiveStudio PRIVATE ${PLSPerformance_FILES})
+target_sources(SPECTRUMLiveStudio PRIVATE ${PLSPerformance_FILES})
 
-target_compile_features(PRISMLiveStudio PRIVATE cxx_std_17)
+target_compile_features(SPECTRUMLiveStudio PRIVATE cxx_std_17)
 
 file(GLOB_RECURSE css_files prism-ui/*.css prism-ui/*.qss)
-target_sources(PRISMLiveStudio PRIVATE ${css_files})
+target_sources(SPECTRUMLiveStudio PRIVATE ${css_files})
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" PREFIX "Css Files" FILES ${css_files})
 
 target_include_directories(
-  PRISMLiveStudio
+  SPECTRUMLiveStudio
   PRIVATE $ENV{OBS_SRC_DIR}/deps/json11
   $ENV{OBS_SRC_DIR}/deps/libff)
 
 if(OS_WINDOWS)
   target_link_libraries(
-    PRISMLiveStudio
+    SPECTRUMLiveStudio
     PRIVATE CURL::libcurl
     FFmpeg::avcodec
     FFmpeg::avutil
@@ -831,7 +831,7 @@ if(OS_WINDOWS)
     Qt6::NetworkAuth)
 elseif(OS_MACOS)
   target_link_libraries(
-    PRISMLiveStudio
+    SPECTRUMLiveStudio
     PRIVATE CURL::libcurl
     FFmpeg::avcodec
     FFmpeg::avutil
@@ -851,28 +851,28 @@ elseif(OS_MACOS)
   )
 endif()
 
-set_target_properties(PRISMLiveStudio PROPERTIES FOLDER "prism/frontend")
+set_target_properties(SPECTRUMLiveStudio PROPERTIES FOLDER "prism/frontend")
 
 if(TARGET OBS::browser-panels)
   get_target_property(_PANEL_INCLUDE_DIRECTORY OBS::browser-panels
     INTERFACE_INCLUDE_DIRECTORIES)
-  target_include_directories(PRISMLiveStudio PRIVATE ${_PANEL_INCLUDE_DIRECTORY})
+  target_include_directories(SPECTRUMLiveStudio PRIVATE ${_PANEL_INCLUDE_DIRECTORY})
 
-  target_compile_definitions(PRISMLiveStudio PRIVATE BROWSER_AVAILABLE)
+  target_compile_definitions(SPECTRUMLiveStudio PRIVATE BROWSER_AVAILABLE)
 
   target_sources(
-    PRISMLiveStudio
+    SPECTRUMLiveStudio
     PRIVATE obs-ui/window-dock-browser.cpp
     obs-ui/window-dock-browser.hpp
     obs-ui/window-extra-browsers.cpp
     obs-ui/window-extra-browsers.hpp)
 
   if(TWITCH_ENABLED)
-    target_sources(PRISMLiveStudio PRIVATE auth-twitch.cpp auth-twitch.hpp)
+    target_sources(SPECTRUMLiveStudio PRIVATE auth-twitch.cpp auth-twitch.hpp)
   endif()
 
   if(RESTREAM_ENABLED)
-    target_sources(PRISMLiveStudio PRIVATE auth-restream.cpp auth-restream.hpp)
+    target_sources(SPECTRUMLiveStudio PRIVATE auth-restream.cpp auth-restream.hpp)
   endif()
 
   if(OS_WINDOWS OR OS_MACOS)
@@ -884,27 +884,27 @@ if(TARGET OBS::browser-panels)
   endif()
 
   if(ENABLE_WHATSNEW)
-    target_compile_definitions(PRISMLiveStudio PRIVATE WHATSNEW_ENABLED)
+    target_compile_definitions(SPECTRUMLiveStudio PRIVATE WHATSNEW_ENABLED)
   endif()
 endif()
 
 if(YOUTUBE_ENABLED)
   target_sources(
-    PRISMLiveStudio
+    SPECTRUMLiveStudio
     PRIVATE auth-youtube.cpp auth-youtube.hpp youtube-api-wrappers.cpp
     youtube-api-wrappers.hpp window-youtube-actions.cpp
     window-youtube-actions.hpp)
 endif()
 
-prism_exe(PRISMLiveStudio "PRISM Live Studio")
+prism_exe(SPECTRUMLiveStudio "PRISM Live Studio")
 
 if(OS_WINDOWS)
-  set_target_properties(PRISMLiveStudio PROPERTIES WIN32_EXECUTABLE ON OUTPUT_NAME PRISMLiveStudio)
+  set_target_properties(SPECTRUMLiveStudio PROPERTIES WIN32_EXECUTABLE ON OUTPUT_NAME SPECTRUMLiveStudio)
 
   find_package(Detours REQUIRED)
 
   target_sources(
-    PRISMLiveStudio
+    SPECTRUMLiveStudio
     PRIVATE obs-ui/obs.manifest
     obs-ui/platform-windows.cpp
     #obs-ui/win-update/update-window.cpp
@@ -918,18 +918,18 @@ if(OS_WINDOWS)
 
   if(_QT_VERSION EQUAL 5)
     find_qt(COMPONENTS WinExtras)
-    target_link_libraries(PRISMLiveStudio PRIVATE Qt::WinExtras)
+    target_link_libraries(SPECTRUMLiveStudio PRIVATE Qt::WinExtras)
   endif()
 
-  target_link_libraries(PRISMLiveStudio PRIVATE crypt32 OBS::blake2 Detours::Detours)
+  target_link_libraries(SPECTRUMLiveStudio PRIVATE crypt32 OBS::blake2 Detours::Detours)
 
   target_compile_definitions(
-    PRISMLiveStudio PRIVATE UNICODE _UNICODE _CRT_SECURE_NO_WARNINGS
+    SPECTRUMLiveStudio PRIVATE UNICODE _UNICODE _CRT_SECURE_NO_WARNINGS
     _CRT_NONSTDC_NO_WARNINGS PSAPI_VERSION=2)
 
   if(MSVC)
-    target_link_options(PRISMLiveStudio PRIVATE "LINKER:/IGNORE:4098" "LINKER:/IGNORE:4099")
-    target_link_libraries(PRISMLiveStudio PRIVATE OBS::w32-pthreads)
+    target_link_options(SPECTRUMLiveStudio PRIVATE "LINKER:/IGNORE:4098" "LINKER:/IGNORE:4099")
+    target_link_libraries(SPECTRUMLiveStudio PRIVATE OBS::w32-pthreads)
 
     set_source_files_properties(
       $ENV{OBS_SRC_DIR}/deps/libff/libff/ff-util.c
@@ -937,33 +937,33 @@ if(OS_WINDOWS)
   endif()
 
   if(CMAKE_SIZEOF_VOID_P EQUAL 4)
-    target_link_options(PRISMLiveStudio PRIVATE /LARGEADDRESSAWARE)
+    target_link_options(SPECTRUMLiveStudio PRIVATE /LARGEADDRESSAWARE)
   endif()
 
   #add_subdirectory(obs-ui/win-update/updater)
 elseif(OS_MACOS)
   set_target_properties(
-    PRISMLiveStudio
+    SPECTRUMLiveStudio
 
     # PROPERTIES OUTPUT_NAME ${OBS_BUNDLE_NAME}
-    PROPERTIES OUTPUT_NAME "PRISMLiveStudio"
+    PROPERTIES OUTPUT_NAME "SPECTRUMLiveStudio"
     MACOSX_BUNDLE ON
     MACOSX_BUNDLE_INFO_PLIST $ENV{PRISM_SRC_DIR}/cmake/bundle/macOS/Info.plist.in
   )
 
   if(XCODE)
     set_target_properties(
-      PRISMLiveStudio
+      SPECTRUMLiveStudio
       PROPERTIES XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "${MACOSX_BUNDLE_GUI_IDENTIFIER}"
       XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME AppIcon
-      XCODE_ATTRIBUTE_PRODUCT_NAME "PRISMLiveStudio"
+      XCODE_ATTRIBUTE_PRODUCT_NAME "SPECTRUMLiveStudio"
       XCODE_ATTRIBUTE_CURRENT_PROJECT_VERSION ${PRISM_VERSION_BUILD}
       XCODE_ATTRIBUTE_MARKETING_VERSION ${PRISM_VERSION_SHORT}
       XCODE_ATTRIBUTE_GENERATE_INFOPLIST_FILE YES)
 
     set(APP_ICON_TARGET $ENV{PRISM_SRC_DIR}/cmake/bundle/macOS/Assets.xcassets)
 
-    target_sources(PRISMLiveStudio PRIVATE ${APP_ICON_TARGET})
+    target_sources(SPECTRUMLiveStudio PRIVATE ${APP_ICON_TARGET})
     set_source_files_properties(${APP_ICON_TARGET}
       PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
 
@@ -973,7 +973,7 @@ elseif(OS_MACOS)
       message("XCODE_ATTRIBUTE_DEVELOPMENT_TEAM: ${PRISM_BUNDLE_CODESIGN_TEAM}")
       message("XCODE_ATTRIBUTE_PROVISIONING_PROFILE_SPECIFIER: $ENV{PRISM_BUNDLE_PP}")
       set_target_properties(
-        PRISMLiveStudio
+        SPECTRUMLiveStudio
         PROPERTIES XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "${PRISM_BUNDLE_CODESIGN_IDENTITY}"
         XCODE_ATTRIBUTE_DEVELOPMENT_TEAM "${PRISM_BUNDLE_CODESIGN_TEAM}"
         XCODE_ATTRIBUTE_PROVISIONING_PROFILE_SPECIFIER $ENV{PRISM_BUNDLE_PP})
@@ -988,14 +988,14 @@ elseif(OS_MACOS)
       -o "${APP_ICON_OUTPUT}")
 
     set(MACOSX_BUNDLE_ICON_FILE AppIcon.icns)
-    target_sources(PRISMLiveStudio PRIVATE ${APP_ICON_OUTPUT}
+    target_sources(SPECTRUMLiveStudio PRIVATE ${APP_ICON_OUTPUT}
       $ENV{OBS_SRC_DIR}/AUTHORS)
 
     set_source_files_properties(${APP_ICON_OUTPUT}
       PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
   endif()
 
-  target_link_libraries(PRISMLiveStudio PRIVATE 
+  target_link_libraries(SPECTRUMLiveStudio PRIVATE 
     "$<LINK_LIBRARY:FRAMEWORK,Appkit.framework>"
     "$<LINK_LIBRARY:FRAMEWORK,AVFoundation.framework>"
     "$<LINK_LIBRARY:FRAMEWORK,ApplicationServices.framework>")
@@ -1004,24 +1004,24 @@ elseif(OS_MACOS)
     find_library(SPARKLE Sparkle)
     mark_as_advanced(SPARKLE)
 
-    target_sources(PRISMLiveStudio PRIVATE obs-ui/sparkle-updater.mm)
-    target_compile_definitions(PRISMLiveStudio PRIVATE ENABLE_SPARKLE_UPDATER)
+    target_sources(SPECTRUMLiveStudio PRIVATE obs-ui/sparkle-updater.mm)
+    target_compile_definitions(SPECTRUMLiveStudio PRIVATE ENABLE_SPARKLE_UPDATER)
 
-    target_link_libraries(PRISMLiveStudio PRIVATE ${SPARKLE})
+    target_link_libraries(SPECTRUMLiveStudio PRIVATE ${SPARKLE})
   endif()
 
-  target_sources(PRISMLiveStudio PRIVATE obs-ui/platform-osx.mm)
-  target_sources(PRISMLiveStudio PRIVATE obs-ui/forms/OBSPermissions.ui
+  target_sources(SPECTRUMLiveStudio PRIVATE obs-ui/platform-osx.mm)
+  target_sources(SPECTRUMLiveStudio PRIVATE obs-ui/forms/OBSPermissions.ui
     obs-ui/window-permissions.cpp
     obs-ui/window-permissions.hpp)
 
   if(ENABLE_WHATSNEW)
     find_library(SECURITY Security)
     mark_as_advanced(SECURITY)
-    target_link_libraries(PRISMLiveStudio PRIVATE ${SECURITY} OBS::blake2)
+    target_link_libraries(SPECTRUMLiveStudio PRIVATE ${SECURITY} OBS::blake2)
 
     target_sources(
-      PRISMLiveStudio
+      SPECTRUMLiveStudio
       PRIVATE obs-ui/nix-update/crypto-helpers.hpp
       obs-ui/nix-update/crypto-helpers-mac.mm
       obs-ui/nix-update/nix-update.cpp
@@ -1034,13 +1034,13 @@ elseif(OS_MACOS)
     -fobjc-arc)
 
 elseif(OS_POSIX)
-  target_sources(PRISMLiveStudio PRIVATE platform-x11.cpp)
-  target_link_libraries(PRISMLiveStudio PRIVATE Qt::GuiPrivate)
+  target_sources(SPECTRUMLiveStudio PRIVATE platform-x11.cpp)
+  target_link_libraries(SPECTRUMLiveStudio PRIVATE Qt::GuiPrivate)
 
   if(TARGET obspython)
     find_package(Python REQUIRED COMPONENTS Interpreter Development)
-    target_link_libraries(PRISMLiveStudio PRIVATE Python::Python)
-    target_link_options(PRISMLiveStudio PRIVATE "LINKER:-no-as-needed")
+    target_link_libraries(SPECTRUMLiveStudio PRIVATE Python::Python)
+    target_link_options(SPECTRUMLiveStudio PRIVATE "LINKER:-no-as-needed")
   endif()
 
   if(NOT LINUX_PORTABLE)
@@ -1048,7 +1048,7 @@ elseif(OS_POSIX)
   endif()
 
   if(OS_FREEBSD)
-    target_link_libraries(PRISMLiveStudio PRIVATE procstat)
+    target_link_libraries(SPECTRUMLiveStudio PRIVATE procstat)
   endif()
 
   if(OS_LINUX AND ENABLE_WHATSNEW)
@@ -1061,21 +1061,21 @@ elseif(OS_POSIX)
     endif()
 
     target_sources(
-      PRISMLiveStudio
+      SPECTRUMLiveStudio
       PRIVATE obs-ui/nix-update/crypto-helpers.hpp
       obs-ui/nix-update/crypto-helpers-mbedtls.cpp
       obs-ui/nix-update/nix-update.cpp
       obs-ui/nix-update/nix-update.hpp
       obs-ui/nix-update/nix-update-helpers.cpp
       obs-ui/nix-update/nix-update-helpers.hpp)
-    target_link_libraries(PRISMLiveStudio PRIVATE Mbedtls::Mbedtls OBS::blake2)
+    target_link_libraries(SPECTRUMLiveStudio PRIVATE Mbedtls::Mbedtls OBS::blake2)
   endif()
 endif()
 
-target_link_libraries(PRISMLiveStudio PRIVATE prism::frontend-api)
-add_dependencies(PRISMLiveStudio obs-build obs-copy libbrowser)
+target_link_libraries(SPECTRUMLiveStudio PRIVATE prism::frontend-api)
+add_dependencies(SPECTRUMLiveStudio obs-build obs-copy libbrowser)
 
-get_target_property(_SOURCES PRISMLiveStudio SOURCES)
+get_target_property(_SOURCES SPECTRUMLiveStudio SOURCES)
 set(_UI ${_SOURCES})
 list(FILTER _UI INCLUDE REGEX ".*\\.ui?")
 
@@ -1112,14 +1112,14 @@ endforeach()
 
 if(OS_WINDOWS)
   target_compile_definitions(
-    PRISMLiveStudio PRIVATE
+    SPECTRUMLiveStudio PRIVATE
     DL_METAL=""
     DL_D3D11="libobs-d3d11.dll"
     DL_OPENGL="libobs-opengl.dll"
     DL_D3D9="")
 elseif(OS_MACOS)
   target_compile_definitions(
-    PRISMLiveStudio PRIVATE
+    SPECTRUMLiveStudio PRIVATE
     DL_METAL=""
     DL_D3D11="libobs-d3d11.dll"
     DL_OPENGL="libobs-opengl.dylib"
@@ -1129,26 +1129,26 @@ endif()
 
 get_property(obs_module_list GLOBAL PROPERTY OBS_MODULES_ENABLED)
 list(JOIN obs_module_list "|" SAFE_MODULES)
-target_compile_definitions(PRISMLiveStudio PRIVATE "SAFE_MODULES=\"${SAFE_MODULES}\"")
+target_compile_definitions(SPECTRUMLiveStudio PRIVATE "SAFE_MODULES=\"${SAFE_MODULES}\"")
 
-# define_graphic_modules(PRISMLiveStudio)
-# setup_obs_app(PRISMLiveStudio)
-# setup_target_resources(PRISMLiveStudio obs-studio)
-# add_target_resource(PRISMLiveStudio $ENV{OBS_SRC_DIR}/AUTHORS
+# define_graphic_modules(SPECTRUMLiveStudio)
+# setup_obs_app(SPECTRUMLiveStudio)
+# setup_target_resources(SPECTRUMLiveStudio obs-studio)
+# add_target_resource(SPECTRUMLiveStudio $ENV{OBS_SRC_DIR}/AUTHORS
 # obs-studio/authors)
 if(OS_MACOS)
-  copy_common_libs_data(PRISMLiveStudio data data/prism-studio)
-  copy_common_libs_data(PRISMLiveStudio prism-ui/main/PLSDrawPen/data data/libobs)
-  setup_prism_app(PRISMLiveStudio)
+  copy_common_libs_data(SPECTRUMLiveStudio data data/prism-studio)
+  copy_common_libs_data(SPECTRUMLiveStudio prism-ui/main/PLSDrawPen/data data/libobs)
+  setup_prism_app(SPECTRUMLiveStudio)
 elseif(OS_WINDOWS)
-  copy_prism_binary(PRISMLiveStudio)
-  copy_prism_data(PRISMLiveStudio)
-  copy_data(PRISMLiveStudio PRISMLiveStudio prism-ui/resource/LUTs data/obs-plugins/obs-filters/LUTs)
-  copy_data(PRISMLiveStudio PRISMLiveStudio prism-ui/main/PLSDrawPen/data data/libobs)
-  copy_third_party_mqtt(PRISMLiveStudio)
-  deploy_qt(PRISMLiveStudio)
+  copy_prism_binary(SPECTRUMLiveStudio)
+  copy_prism_data(SPECTRUMLiveStudio)
+  copy_data(SPECTRUMLiveStudio SPECTRUMLiveStudio prism-ui/resource/LUTs data/obs-plugins/obs-filters/LUTs)
+  copy_data(SPECTRUMLiveStudio SPECTRUMLiveStudio prism-ui/main/PLSDrawPen/data data/libobs)
+  copy_third_party_mqtt(SPECTRUMLiveStudio)
+  deploy_qt(SPECTRUMLiveStudio)
 endif()
 
 if(OS_WINDOWS)
-  copy_third_party_apng(PRISMLiveStudio)
+  copy_third_party_apng(SPECTRUMLiveStudio)
 endif()
