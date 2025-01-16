@@ -20,7 +20,7 @@
 #include <QPainter>
 #include <QPainterPath>
 
-constexpr const char *NAVER_SHOPPING_DATA_DIR = "PRISMLiveStudio/naver_shopping/";
+constexpr const char *NAVER_SHOPPING_DATA_DIR = "SPECTRUMLiveStudio/naver_shopping/";
 constexpr const char *SEARCH_KEYWORDS_FILE_NAME = "search_keywords.json";
 constexpr const char *DOWNLOAD_IMAGE_CACHE_FILE_NAME = "download_image_cache.json";
 constexpr const char *RECENT_PRODUCTS_FILE_NAME = "recent_products.json";

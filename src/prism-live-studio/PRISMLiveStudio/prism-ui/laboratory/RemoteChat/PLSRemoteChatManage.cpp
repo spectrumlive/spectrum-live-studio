@@ -410,7 +410,7 @@ bool PLSRemoteChatManage::checkCommonTersmJsonValid(const QString &destPath) con
 
 QString PLSRemoteChatManage::getDownloadRemoteChatCommonTermJsonPath() const
 {
-	return pls_get_user_path(QString("PRISMLiveStudio/laboratory/%1").arg(COMMON_TERMS_JSON_NAME));
+	return pls_get_user_path(QString("SPECTRUMLiveStudio/laboratory/%1").arg(COMMON_TERMS_JSON_NAME));
 }
 
 void PLSRemoteChatManage::receiveWebServerNewConnection(QTcpSocket *tcpClient) const

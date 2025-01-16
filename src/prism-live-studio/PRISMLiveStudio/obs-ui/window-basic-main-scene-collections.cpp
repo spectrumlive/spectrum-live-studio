@@ -39,7 +39,7 @@ void EnumSceneCollections(std::function<bool(const char *, const char *)> &&cb)
 	os_glob_t *glob;
 
 	int ret = GetConfigPath(path, sizeof(path),
-				"PRISMLiveStudio/basic/scenes/*.json");
+				"SPECTRUMLiveStudio/basic/scenes/*.json");
 	if (ret <= 0) {
 		blog(LOG_WARNING, "Failed to get config path for scene "
 				  "collections");
@@ -124,11 +124,11 @@ void duplicateScene(bool &duplicateCurrentFlag, const std::string &name,
 		duplicateCurrentFlag = true;
 	} else {
 		QString dupPath =
-			pls_get_user_path("PRISMLiveStudio/basic/scenes/")
+			pls_get_user_path("SPECTRUMLiveStudio/basic/scenes/")
 				.append(dupFile.toStdString().c_str())
 				.append(".json");
 		QString newPath =
-			pls_get_user_path("PRISMLiveStudio/basic/scenes/")
+			pls_get_user_path("SPECTRUMLiveStudio/basic/scenes/")
 				.append(file.c_str())
 				.append(".json");
 		int res = os_copyfile(dupPath.toStdString().c_str(),
@@ -200,7 +200,7 @@ bool OBSBasic::AddSceneCollection(bool create_new, QWidget *parent,
 
 		SaveProjectNow();
 		QString path =
-			pls_get_user_path("PRISMLiveStudio/basic/scenes/")
+			pls_get_user_path("SPECTRUMLiveStudio/basic/scenes/")
 				.append(file.c_str())
 				.append(".json");
 		sceneCollectionView->AddSceneCollectionItem(name.c_str(), path);
@@ -337,7 +337,7 @@ void OBSBasic::on_actionRenameSceneCollection_triggered()
 	SaveProjectNow();
 
 	char path[512];
-	int ret = GetConfigPath(path, 512, "PRISMLiveStudio/basic/scenes/");
+	int ret = GetConfigPath(path, 512, "SPECTRUMLiveStudio/basic/scenes/");
 	if (ret <= 0) {
 		blog(LOG_WARNING, "Failed to get scene collection config path");
 		return;
@@ -398,7 +398,7 @@ void OBSBasic::on_actionRemoveSceneCollection_triggered()
 		return;
 
 	char path[512];
-	int ret = GetConfigPath(path, 512, "PRISMLiveStudio/basic/scenes/");
+	int ret = GetConfigPath(path, 512, "SPECTRUMLiveStudio/basic/scenes/");
 	if (ret <= 0) {
 		blog(LOG_WARNING, "Failed to get scene collection config path");
 		return;

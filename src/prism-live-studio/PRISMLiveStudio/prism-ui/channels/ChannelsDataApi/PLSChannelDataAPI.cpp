@@ -337,7 +337,7 @@ QPixmap PLSChannelDataAPI::updateImage(const QString &srcPath, const QSize &size
 
 	//don't remove this folder
 	bool bRemove = true;
-	QString tmpPath = QString("PRISMLiveStudio/library/library_Policy_PC/images");
+	QString tmpPath = QString("SPECTRUMLiveStudio/library/library_Policy_PC/images");
 	tmpPath = pls_get_user_path(tmpPath);
 	if (srcPath.contains(tmpPath, Qt::CaseInsensitive)) {
 		bRemove = false;

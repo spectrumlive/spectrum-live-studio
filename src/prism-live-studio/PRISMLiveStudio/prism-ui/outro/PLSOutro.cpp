@@ -530,7 +530,7 @@ private:
 		
 		painter.drawText(pixmap.rect(), flags, text);
 
-		auto savedFileName = pls_get_app_data_dir(QStringLiteral("PRISMLiveStudio/library/Library_Policy_PC/")) + QStringLiteral("outro_text.png");
+		auto savedFileName = pls_get_app_data_dir(QStringLiteral("SPECTRUMLiveStudio/library/Library_Policy_PC/")) + QStringLiteral("outro_text.png");
 		bool resut = pixmap.save(savedFileName);
 		return resut ? savedFileName : QString();
 	}

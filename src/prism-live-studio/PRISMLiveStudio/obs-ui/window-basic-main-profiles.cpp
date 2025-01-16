@@ -38,7 +38,7 @@ extern void DeleteCookies();
 static int GetProfilesCount()
 {
 	int profileCount = 0;
-	QDir sourceDir(pls_get_user_path("PRISMLiveStudio/basic/profiles/"));
+	QDir sourceDir(pls_get_user_path("SPECTRUMLiveStudio/basic/profiles/"));
 	QFileInfoList fileInfoList = sourceDir.entryInfoList(
 		QDir::Dirs | QDir::NoDotAndDotDot, QDir::Time);
 	for (const auto &fileInfo : fileInfoList) {
@@ -95,7 +95,7 @@ void EnumProfiles(std::function<bool(const char *, const char *)> &&cb)
 {
 	pls::chars<512> path;
 	int ret = GetConfigPath(path, sizeof(path),
-				"PRISMLiveStudio/basic/profiles/");
+				"SPECTRUMLiveStudio/basic/profiles/");
 	if (ret <= 0) {
 		PLS_WARN(MAINMENU_MODULE, "Failed to get profiles config path");
 		return;
@@ -132,7 +132,7 @@ void EnumProfiles(std::function<bool(const char *, const char *)> &&cb)
 	os_glob_t *glob;
 
 	int ret = GetConfigPath(path, sizeof(path),
-				"PRISMLiveStudio/basic/profiles/*");
+				"SPECTRUMLiveStudio/basic/profiles/*");
 	if (ret <= 0) {
 		blog(LOG_WARNING, "Failed to get profiles config path");
 		return;
@@ -212,7 +212,7 @@ static bool FindSafeProfileDirName(const std::string &profileName,
 	}
 
 	ret = GetConfigPath(path, sizeof(path),
-			    "PRISMLiveStudio/basic/profiles/");
+			    "SPECTRUMLiveStudio/basic/profiles/");
 	if (ret <= 0) {
 		blog(LOG_WARNING, "Failed to get profiles config path");
 		return false;
@@ -269,7 +269,7 @@ static bool CopyProfile(const char *fromPartial, const char *to)
 	int ret;
 
 	ret = GetConfigPath(dir, sizeof(dir),
-			    "PRISMLiveStudio/basic/profiles/");
+			    "SPECTRUMLiveStudio/basic/profiles/");
 	if (ret <= 0) {
 		blog(LOG_WARNING, "Failed to get profiles config path");
 		return false;
@@ -370,7 +370,7 @@ bool OBSBasic::CreateProfile(const std::string &newName,
 	}
 	char baseDir[512];
 	int ret = GetConfigPath(baseDir, sizeof(baseDir),
-				"PRISMLiveStudio/basic/profiles/");
+				"SPECTRUMLiveStudio/basic/profiles/");
 	if (ret <= 0) {
 		blog(LOG_WARNING, "Failed to get profiles config path");
 		return false;
@@ -479,7 +479,7 @@ void OBSBasic::DeleteProfile(const char *profileName, const char *profileDir)
 	char basePath[512];
 
 	int ret = GetConfigPath(basePath, sizeof(basePath),
-				"PRISMLiveStudio/basic/profiles");
+				"SPECTRUMLiveStudio/basic/profiles");
 	if (ret <= 0) {
 		blog(LOG_WARNING, "Failed to get profiles config path");
 		return;
@@ -563,7 +563,7 @@ void OBSBasic::RefreshProfiles()
 	}
 
 	int count = 0;
-	QDir sourceDir(pls_get_user_path("PRISMLiveStudio/basic/profiles/"));
+	QDir sourceDir(pls_get_user_path("SPECTRUMLiveStudio/basic/profiles/"));
 	EnumProfiles([this, &count](const char *name, const char *path) {
 		return addProfile(count, name, path);
 	});
@@ -649,7 +649,7 @@ bool OBSBasic::RenameProfile(const char *title, const char *text,
 
 	std::array<char, 512> baseDir;
 	int ret = GetConfigPath(baseDir.data(), baseDir.size(),
-				"PRISMLiveStudio/basic/profiles/");
+				"SPECTRUMLiveStudio/basic/profiles/");
 	if (ret <= 0) {
 		PLS_WARN(MAINMENU_MODULE, "Failed to get profiles config path");
 		return false;
@@ -709,7 +709,7 @@ bool OBSBasic::ExportProfile(QString &exportDir)
 	QString currentProfile = QString::fromUtf8(config_get_string(
 		App()->GlobalConfig(), "Basic", "ProfileDir"));
 
-	int ret = GetConfigPath(path, 512, "PRISMLiveStudio/basic/profiles/");
+	int ret = GetConfigPath(path, 512, "SPECTRUMLiveStudio/basic/profiles/");
 	if (ret <= 0) {
 		PLS_WARN(MAINMENU_MODULE, "Failed to get profile config path");
 		return false;
@@ -780,7 +780,7 @@ bool OBSBasic::ExportProfile(QString &exportDir)
 void OBSBasic::ImportProfile(const QString &importDir)
 {
 	QString inputPath =
-		pls_get_user_path("PRISMLiveStudio/basic/profiles/");
+		pls_get_user_path("SPECTRUMLiveStudio/basic/profiles/");
 	QFileInfo finfo(importDir);
 	QString directory = finfo.fileName();
 	QString profileDir = inputPath + directory;

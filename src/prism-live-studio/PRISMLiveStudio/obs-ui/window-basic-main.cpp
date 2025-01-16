@@ -2347,7 +2347,7 @@ bool OBSBasic::OBSInit()
 		throw "Failed to get scene collection name";
 
 	ret = snprintf(fileName, sizeof(fileName),
-		       "PRISMLiveStudio/basic/scenes/%s.json", sceneCollection);
+		       "SPECTRUMLiveStudio/basic/scenes/%s.json", sceneCollection);
 	if (ret <= 0)
 		throw "Failed to create scene collection file name";
 
@@ -3560,7 +3560,7 @@ void OBSBasic::SaveProjectDeferred()
 		return;
 
 	ret = snprintf(fileName, sizeof(fileName),
-		       "PRISMLiveStudio/basic/scenes/%s.json", sceneCollection);
+		       "SPECTRUMLiveStudio/basic/scenes/%s.json", sceneCollection);
 	if (ret <= 0)
 		return;
 
@@ -7700,7 +7700,7 @@ void OBSBasic::UploadLog(const char *subdir, const char *file, const bool crash)
 void OBSBasic::on_actionShowLogs_triggered()
 {
 	char logDir[512];
-	if (GetConfigPath(logDir, sizeof(logDir), "PRISMLiveStudio/logs") <= 0)
+	if (GetConfigPath(logDir, sizeof(logDir), "SPECTRUMLiveStudio/logs") <= 0)
 		return;
 
 	QUrl url = QUrl::fromLocalFile(QT_UTF8(logDir));
@@ -7709,12 +7709,12 @@ void OBSBasic::on_actionShowLogs_triggered()
 
 void OBSBasic::on_actionUploadCurrentLog_triggered()
 {
-	UploadLog("PRISMLiveStudio/logs", App()->GetCurrentLog(), false);
+	UploadLog("SPECTRUMLiveStudio/logs", App()->GetCurrentLog(), false);
 }
 
 void OBSBasic::on_actionUploadLastLog_triggered()
 {
-	UploadLog("PRISMLiveStudio/logs", App()->GetLastLog(), false);
+	UploadLog("SPECTRUMLiveStudio/logs", App()->GetLastLog(), false);
 }
 
 void OBSBasic::on_actionViewCurrentLog_triggered()
@@ -7733,7 +7733,7 @@ void OBSBasic::on_actionViewCurrentLog_triggered()
 void OBSBasic::on_actionShowCrashLogs_triggered()
 {
 	char logDir[512];
-	if (GetConfigPath(logDir, sizeof(logDir), "PRISMLiveStudio/crashes") <=
+	if (GetConfigPath(logDir, sizeof(logDir), "SPECTRUMLiveStudio/crashes") <=
 	    0)
 		return;
 
@@ -7743,7 +7743,7 @@ void OBSBasic::on_actionShowCrashLogs_triggered()
 
 void OBSBasic::on_actionUploadLastCrashLog_triggered()
 {
-	UploadLog("PRISMLiveStudio/crashes", App()->GetLastCrashLog(), true);
+	UploadLog("SPECTRUMLiveStudio/crashes", App()->GetLastCrashLog(), true);
 }
 
 void OBSBasic::on_actionCheckForUpdates_triggered()
@@ -9981,7 +9981,7 @@ void OBSBasic::on_actionShowProfileFolder_triggered()
 	if (oldFile.isEmpty())
 		return;
 	QString fileName = strrchr(oldFile.toStdString().c_str(), '/') + 1;
-	QString path = pls_get_user_path("PRISMLiveStudio/basic/profiles/");
+	QString path = pls_get_user_path("SPECTRUMLiveStudio/basic/profiles/");
 
 	QDesktopServices::openUrl(QUrl::fromLocalFile(path + fileName));
 }
@@ -11253,7 +11253,7 @@ int OBSBasic::GetProfilePath(char *path, size_t size, const char *file) const
 		file = "";
 
 	ret = GetConfigPath(profiles_path, 512,
-			    "PRISMLiveStudio/basic/profiles");
+			    "SPECTRUMLiveStudio/basic/profiles");
 	if (ret <= 0)
 		return ret;
 

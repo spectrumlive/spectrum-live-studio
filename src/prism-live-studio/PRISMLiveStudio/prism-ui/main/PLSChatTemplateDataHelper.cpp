@@ -38,7 +38,7 @@ void PLSChatTemplateDataHelper::initPLSChatTemplateData()
 			chatTemplate.id = templateData.toObject().value("itemId").toInt();
 			chatTemplate.name = templateData.toObject().value("title").toObject().value(lang).toString();
 			QString iconName = QString("%1_%2.png").arg(lang).arg(chatTemplate.id);
-			chatTemplate.resourcePath = pls_get_app_data_dir(QStringLiteral("PRISMLiveStudio/library/Library_Policy_PC/")) + QString("images/chat_source/%1").arg(iconName);
+			chatTemplate.resourcePath = pls_get_app_data_dir(QStringLiteral("SPECTRUMLiveStudio/library/Library_Policy_PC/")) + QString("images/chat_source/%1").arg(iconName);
 			chatTemplate.resourceBackupPath = ":/resource/images/chat-template-source/" + iconName;
 			datas.append(chatTemplate);
 			m_chatTemplateObjs.insert(chatTemplate.id, templateData.toObject());
@@ -46,7 +46,7 @@ void PLSChatTemplateDataHelper::initPLSChatTemplateData()
 		}
 		m_templateInfos.insert(groupId, datas);
 	};
-	QString chatSourceJsonPath = pls_get_app_data_dir(QStringLiteral("PRISMLiveStudio/library/Library_Policy_PC/chatv2source/")) + QStringLiteral("chatv2source.json");
+	QString chatSourceJsonPath = pls_get_app_data_dir(QStringLiteral("SPECTRUMLiveStudio/library/Library_Policy_PC/chatv2source/")) + QStringLiteral("chatv2source.json");
 	QString chatSourceLocalJsonPath = ":/Configs/resource/DefaultResources/chatv2source.json";
 	QJsonObject chatSourceObj, chatSourceLocalObj;
 	pls_read_json(chatSourceObj, chatSourceJsonPath);
@@ -227,7 +227,7 @@ void PLSChatTemplateDataHelper::readCutsomPLSChatTemplateData()
 		chatTemplate.name = templateData.toObject().value("title").toString();
 		chatTemplate.backgroundColor = templateData.toObject().value("backgroundColor").toString();
 		QString iconName = QString("ic_chat_mytheme_%1.svg").arg(chatTemplate.id % 10 + 1);
-		chatTemplate.resourcePath = pls_get_app_data_dir(QStringLiteral("PRISMLiveStudio/library/Library_Policy_PC/")) + QString("images/chat_source/%1").arg(iconName);
+		chatTemplate.resourcePath = pls_get_app_data_dir(QStringLiteral("SPECTRUMLiveStudio/library/Library_Policy_PC/")) + QString("images/chat_source/%1").arg(iconName);
 		chatTemplate.resourceBackupPath = ":/resource/images/chat-template-source/" + iconName;
 		datas.append(chatTemplate);
 		m_chatTemplateObjs.insert(chatTemplate.id, templateData.toObject());

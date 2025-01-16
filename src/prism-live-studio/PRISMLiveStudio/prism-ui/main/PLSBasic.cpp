@@ -764,7 +764,7 @@ void PLSBasic::removeConfig(const char *config)
 }
 void PLSBasic::backupSceneCollection(QString &secneCollectionName, QString &sceneCollectionFile)
 {
-	QString path = pls_get_app_data_dir() + "/" + QString::fromUtf8("PRISMLiveStudio/global.ini");
+	QString path = pls_get_app_data_dir() + "/" + QString::fromUtf8("SPECTRUMLiveStudio/global.ini");
 	QFile file(path);
 	if (!file.exists()) {
 		PLS_INFO(LAUNCHER_LOGIN, "Failed to backup scene collection file: 'global.ini' does not exsit.");
@@ -783,7 +783,7 @@ static void createSceneCollectionConfigFile(const QString &secneCollectionName, 
 	if (secneCollectionName.isEmpty() || sceneCollectionFile.isEmpty())
 		return;
 
-	QString path = pls_get_app_data_dir() + "/" + QString::fromUtf8("PRISMLiveStudio/global.ini");
+	QString path = pls_get_app_data_dir() + "/" + QString::fromUtf8("SPECTRUMLiveStudio/global.ini");
 	QSettings settings(path, QSettings::IniFormat);
 	settings.beginGroup("Basic");
 	settings.setValue("SceneCollection", secneCollectionName);
@@ -794,16 +794,16 @@ void PLSBasic::clearPrismConfigInfo()
 {
 	PLS_INFO(LAUNCHER_LOGIN, "user info expired, clear user configs");
 
-	removeConfig("PRISMLiveStudio/user/cache");
-	removeConfig("PRISMLiveStudio/Cache");
-	removeConfig("PRISMLiveStudio/plugin_config");
-	removeConfig("PRISMLiveStudio/user/gcc.json");
-	removeConfig("PRISMLiveStudio/user/config.ini");
-	removeConfig("PRISMLiveStudio/global.ini");
-	removeConfig("PRISMLiveStudio/naver_shopping");
+	removeConfig("SPECTRUMLiveStudio/user/cache");
+	removeConfig("SPECTRUMLiveStudio/Cache");
+	removeConfig("SPECTRUMLiveStudio/plugin_config");
+	removeConfig("SPECTRUMLiveStudio/user/gcc.json");
+	removeConfig("SPECTRUMLiveStudio/user/config.ini");
+	removeConfig("SPECTRUMLiveStudio/global.ini");
+	removeConfig("SPECTRUMLiveStudio/naver_shopping");
 
 	// Do not clear scene collection info when logout
-	QFile::rename(pls_get_app_data_dir() + "/" + "PRISMLiveStudio/global.bak", pls_get_app_data_dir() + "/" + "PRISMLiveStudio/global.ini");
+	QFile::rename(pls_get_app_data_dir() + "/" + "SPECTRUMLiveStudio/global.bak", pls_get_app_data_dir() + "/" + "SPECTRUMLiveStudio/global.ini");
 }
 
 void OBSBasic::setDocksVisible(bool visible)
@@ -992,8 +992,8 @@ void PLSBasic::PLSInit()
 
 	initConnect();
 
-	PLSMotionNetwork::instance()->downloadResource(pls_get_app_data_dir(QStringLiteral("PRISMLiveStudio/resources")) + "/category.json");
-	PLSSceneTemplateResourceMgr::instance().downloadList(pls_get_app_data_dir(QStringLiteral("PRISMLiveStudio/resources")) + "/category.json");
+	PLSMotionNetwork::instance()->downloadResource(pls_get_app_data_dir(QStringLiteral("SPECTRUMLiveStudio/resources")) + "/category.json");
+	PLSSceneTemplateResourceMgr::instance().downloadList(pls_get_app_data_dir(QStringLiteral("SPECTRUMLiveStudio/resources")) + "/category.json");
 	QString udpateUrl(config_get_string(App()->GlobalConfig(), "AppUpdate", "updateUrl"));
 	QString updateGcc(config_get_string(App()->GlobalConfig(), "AppUpdate", "updateGcc"));
 	//start resource download

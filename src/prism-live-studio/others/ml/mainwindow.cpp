@@ -477,7 +477,7 @@ void MainWindow::startImportIniToApp()
 	if(ui->prism_setup->isChecked())
 		importPrismSetupIni(iniSrcDirPath + ui->prism_setup->text(),absoluteDirPath("PRISMSetup"));
 	if(ui->prism_plugins->isChecked())
-		importPrismPluginsIni(iniSrcDirPath + ui->prism_plugins->text(),absoluteDirPath("PRISMLiveStudio/plugins"));
+		importPrismPluginsIni(iniSrcDirPath + ui->prism_plugins->text(),absoluteDirPath("SPECTRUMLiveStudio/plugins"));
 	if(ui->checkBox->isChecked())
 	{
 		auto dstDirPath = absoluteDirPath(QString("../../bin/prism/windows/%1/data/").arg(ui->debug_radio->isChecked()?"Debug":"Release"));

@@ -112,7 +112,7 @@ void PLSBlockDump::initSavePath() {
         return;
     }
     
-    NSString *dumpDirectory = [cachePath stringByAppendingPathComponent:@"PRISMLiveStudio/BlockDump"];
+    NSString *dumpDirectory = [cachePath stringByAppendingPathComponent:@"SPECTRUMLiveStudio/BlockDump"];
     this->dumpDirectory = dumpDirectory.UTF8String;
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:dumpDirectory]) {

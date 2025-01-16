@@ -511,7 +511,7 @@ int PLSSceneCollectionView::GetCollectionItemRow(const QString &name, const QStr
 
 void PLSSceneCollectionView::InitSceneCollectionConfig(QVector<PLSSceneCollectionData> &datas) const
 {
-	auto collectionConfigFile = pls_get_user_path("PRISMLiveStudio/basic/scenes/") + SCENE_COLLECTION_CONFIG;
+	auto collectionConfigFile = pls_get_user_path("SPECTRUMLiveStudio/basic/scenes/") + SCENE_COLLECTION_CONFIG;
 	if (!QFile::exists(collectionConfigFile))
 		return;
 
@@ -579,7 +579,7 @@ void PLSSceneCollectionView::WriteSceneCollectionConfig() const
 	}
 	QJsonObject rootObject;
 	rootObject["order"] = array;
-	PLSJsonDataHandler::saveJsonFile(QJsonDocument(rootObject).toJson(), pls_get_user_path("PRISMLiveStudio/basic/scenes/").append(SCENE_COLLECTION_CONFIG));
+	PLSJsonDataHandler::saveJsonFile(QJsonDocument(rootObject).toJson(), pls_get_user_path("SPECTRUMLiveStudio/basic/scenes/").append(SCENE_COLLECTION_CONFIG));
 }
 
 void PLSSceneCollectionView::UpdateListViewDelBtnStatus(PLSSceneCollectionListView *view, const QVector<PLSSceneCollectionData> &datas) const

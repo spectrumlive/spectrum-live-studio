@@ -603,7 +603,7 @@ static bool MakeUserDirs()
 		return false;
 
 #ifdef _WIN32
-	if (GetConfigPath(path, sizeof(path), "PRISMLiveStudio/crashes") <= 0)
+	if (GetConfigPath(path, sizeof(path), "SPECTRUMLiveStudio/crashes") <= 0)
 		return false;
 	if (!do_mkdir(path))
 		return false;

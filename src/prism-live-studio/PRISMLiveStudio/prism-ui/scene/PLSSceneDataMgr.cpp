@@ -346,7 +346,7 @@ QString PLSSceneDataMgr::GetCurrentSceneCollectionName() const
 QString PLSSceneDataMgr::GetCurrentSceneCollectionAbsName() const
 {
 	std::array<char, 512> path;
-	if (GetConfigPath(path.data(), path.size(), "PRISMLiveStudio/basic/scenes") <= 0)
+	if (GetConfigPath(path.data(), path.size(), "SPECTRUMLiveStudio/basic/scenes") <= 0)
 		return "";
 
 	return QString(path.data()).append("/").append(GetCurrentSceneCollectionName());

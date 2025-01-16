@@ -724,7 +724,7 @@ struct OBSStudioAPI : pls_frontend_callbacks {
 
 	void pls_prism_change_over_login_view() override
 	{
-		QFile::remove(pls_get_user_path(QString("PRISMLiveStudio/user/%1").arg(PLSLoginUserInfo::getInstance()->getAuthType())));
+		QFile::remove(pls_get_user_path(QString("SPECTRUMLiveStudio/user/%1").arg(PLSLoginUserInfo::getInstance()->getAuthType())));
 		bool isSuccess = QFile::remove(pls_get_user_path(QString(CONFIGS_USER_THUMBNAIL_PATH)));
 		PLS_INFO("logout", "del user thumbnnail file is %s", isSuccess ? "success" : "failed");
 		QDir dir(pls_get_user_path(QString(GIPHY_STICKERS_USER_PATH)));
@@ -821,7 +821,7 @@ struct OBSStudioAPI : pls_frontend_callbacks {
 	void on_event(pls_frontend_event event, const QVariantList &params) override { eventCallbacks.trigger(event, params); }
 
 	QString pls_get_theme_dir_path() override { return "data/prism-studio/themes/Dark/"; }
-	QString pls_get_color_filter_dir_path() override { return pls_get_user_path("PRISMLiveStudio/color_filter/"); }
+	QString pls_get_color_filter_dir_path() override { return pls_get_user_path("SPECTRUMLiveStudio/color_filter/"); }
 
 	void pls_toast_message(pls_toast_info_type type, const QString &message, int auto_close) override
 	{

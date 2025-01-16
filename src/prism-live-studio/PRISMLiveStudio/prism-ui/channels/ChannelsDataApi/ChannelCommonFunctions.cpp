@@ -175,7 +175,7 @@ QString createUUID()
 QString getDynamicChannelIcon(QString &imagePath)
 {
 	if (!imagePath.isEmpty()) {
-		QString tmpPath = QString("PRISMLiveStudio/library/library_Policy_PC/%1").arg(imagePath);
+		QString tmpPath = QString("SPECTRUMLiveStudio/library/library_Policy_PC/%1").arg(imagePath);
 		tmpPath = pls_get_user_path(tmpPath);
 		if (QFile::exists(tmpPath)) {
 			return tmpPath;

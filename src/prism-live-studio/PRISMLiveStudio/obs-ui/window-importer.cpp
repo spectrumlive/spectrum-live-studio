@@ -559,7 +559,7 @@ void OBSImporter::importCollections()
 	setEnabled(false);
 
 	char dst[512];
-	GetConfigPath(dst, 512, "PRISMLiveStudio/basic/scenes/");
+	GetConfigPath(dst, 512, "SPECTRUMLiveStudio/basic/scenes/");
 
 	for (int i = 0; i < optionsModel->rowCount() - 1; i++) {
 		int selected = optionsModel->index(i, ImporterColumn::Selected)

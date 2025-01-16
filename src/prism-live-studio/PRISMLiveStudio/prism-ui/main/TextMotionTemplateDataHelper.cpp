@@ -15,7 +15,7 @@
 #include "PLSApp.h"
 
 using namespace common;
-#define PRISM_TM_TEMPLATE_PATH QStringLiteral("PRISMLiveStudio/textmotion/textmotion.json")
+#define PRISM_TM_TEMPLATE_PATH QStringLiteral("SPECTRUMLiveStudio/textmotion/textmotion.json")
 
 constexpr auto PRISM_TEXT_TEMPLATE = "text-template";
 

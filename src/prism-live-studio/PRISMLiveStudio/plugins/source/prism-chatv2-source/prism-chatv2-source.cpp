@@ -262,7 +262,7 @@ static void getDefaultChatSourceAttrs()
 	if (!s_ChatSourceAttrs.isEmpty())
 		return;
 
-	QString chatSourceJsonPath = pls_get_app_data_dir(QStringLiteral("PRISMLiveStudio/library/Library_Policy_PC/chatv2source/")) + QStringLiteral("chatv2source.json");
+	QString chatSourceJsonPath = pls_get_app_data_dir(QStringLiteral("SPECTRUMLiveStudio/library/Library_Policy_PC/chatv2source/")) + QStringLiteral("chatv2source.json");
 	QString chatSourceLocalJsonPath = ":/Configs/resource/DefaultResources/chatv2source.json";
 	QJsonObject chatSourceObj, chatSourceLocalObj;
 	pls_read_json(chatSourceObj, chatSourceJsonPath);

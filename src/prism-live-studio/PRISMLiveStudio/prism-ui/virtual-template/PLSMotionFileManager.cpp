@@ -28,10 +28,10 @@
 #include <map>
 using namespace common;
 constexpr const char *MOTION_FILE_MANAGER = "MotionFileManager";
-constexpr const char *VIRTUAL_SYNC_JSON_FILE = "PRISMLiveStudio/virtual/virtual_bg.json";
-constexpr const char *VIRTUAL_USER_PATH = "PRISMLiveStudio/virtual/";
-constexpr const char *VIRTUAL_USER_CACHE_JSON_FILE = "PRISMLiveStudio/virtual/cache.json";
-constexpr const char *CATEGORY_INDEX_FILE = "PRISMLiveStudio/virtual/categoryIndex.ini";
+constexpr const char *VIRTUAL_SYNC_JSON_FILE = "SPECTRUMLiveStudio/virtual/virtual_bg.json";
+constexpr const char *VIRTUAL_USER_PATH = "SPECTRUMLiveStudio/virtual/";
+constexpr const char *VIRTUAL_USER_CACHE_JSON_FILE = "SPECTRUMLiveStudio/virtual/cache.json";
+constexpr const char *CATEGORY_INDEX_FILE = "SPECTRUMLiveStudio/virtual/categoryIndex.ini";
 
 #define MOTION_ID_KEY QStringLiteral("motionID")
 #define MOTION_TYPE_KEY QStringLiteral("motionType")

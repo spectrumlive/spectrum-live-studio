@@ -71,7 +71,7 @@ constexpr const char *IS_CHAT_IS_HIDDEN_FIRST_SETTED = "isChatIsHiddenFirstSette
 constexpr const char *PLS_PROJECT_NAME = "P8e4826_PRISMLiveStudio-ZT";
 constexpr const char *PLS_PROJECT_NAME_KR = "P8e4826_PRISMLiveStudio-KR";
 constexpr auto DEFAULT_LANG = "en-US";
-constexpr auto PRISM_TM_TEMPLATE_WEB_PATH = "PRISMLiveStudio/textmotion/web/index.html";
+constexpr auto PRISM_TM_TEMPLATE_WEB_PATH = "SPECTRUMLiveStudio/textmotion/web/index.html";
 
 using namespace std;
 using namespace common;
@@ -505,12 +505,12 @@ void PLSApp::AppInit()
 {
 	OBSApp::AppInit();
 	//create the navershopping global init
-	if (!openConfig(naverShoppingConfig, "PRISMLiveStudio/naver_shopping/naver_shopping.ini")) {
+	if (!openConfig(naverShoppingConfig, "SPECTRUMLiveStudio/naver_shopping/naver_shopping.ini")) {
 		PLS_ERROR(MAINFRAME_MODULE, "navershopppingcofig  init error");
 	}
 
 	//open the cookie init file
-	if (!openConfig(cookieConfig, "PRISMLiveStudio/Cache/cookies.ini")) {
+	if (!openConfig(cookieConfig, "SPECTRUMLiveStudio/Cache/cookies.ini")) {
 		PLS_ERROR(MAINFRAME_MODULE, "cookies  init error");
 	}
 
@@ -578,10 +578,10 @@ bool PLSApp::PLSInit()
 }
 void PLSApp::clearNaverShoppingConfig()
 {
-	removeConfig("PRISMLiveStudio/naver_shopping/naver_shopping.ini");
+	removeConfig("SPECTRUMLiveStudio/naver_shopping/naver_shopping.ini");
 	//create the navershopping global init
 	pls::chars<512> path;
-	int len = GetConfigPath(path, sizeof(path), "PRISMLiveStudio/naver_shopping/naver_shopping.ini");
+	int len = GetConfigPath(path, sizeof(path), "SPECTRUMLiveStudio/naver_shopping/naver_shopping.ini");
 	if (len <= 0) {
 		return;
 	}
@@ -676,7 +676,7 @@ void PLSApp::uploadAnalogInfo(const QString &apiPath, const QVariantMap &paramIn
 void PLSApp::backupGolbalConfig() const
 {
 	ConfigFile backupGlobalConfig;
-	if (!openConfig(backupGlobalConfig, "PRISMLiveStudio/global.bak")) {
+	if (!openConfig(backupGlobalConfig, "SPECTRUMLiveStudio/global.bak")) {
 		PLS_WARN(MAINFRAME_MODULE, "open global.bak config failed.");
 		return;
 	}
@@ -786,7 +786,7 @@ int PLSApp::runProgram(PLSApp &program, int argc, char *argv[], ScopeProfiler &p
 			PLSBasic::clearPrismConfigInfo();
 		}
 		program.AppInit();
-		OBSApp::deleteOldestFile(false, "PRISMLiveStudio/profiler_data");
+		OBSApp::deleteOldestFile(false, "SPECTRUMLiveStudio/profiler_data");
 		const wchar_t *eventName = L"PRISMLiveStudio";
 #if defined(Q_OS_WIN)
 		HANDLE hEvent = OpenEventW(EVENT_ALL_ACCESS, false, eventName);
@@ -824,7 +824,7 @@ int PLSApp::runProgram(PLSApp &program, int argc, char *argv[], ScopeProfiler &p
 		PLS_INIT_INFO(MAINFRAME_MODULE, obsVersion.isEmpty() ? "The installed obs studio app not founded%s" : "The installed obs studio app version is %s", obsVersion.toUtf8().constData());
 #endif
 
-		removeConfig(QString("PRISMLiveStudio/user/%1.png").arg(PLSLoginUserInfo::getInstance()->getAuthType()).toUtf8().constData());
+		removeConfig(QString("SPECTRUMLiveStudio/user/%1.png").arg(PLSLoginUserInfo::getInstance()->getAuthType()).toUtf8().constData());
 
 		PLS_INIT_INFO(MAINFRAME_MODULE, "app configuration information initialization completed.");
 

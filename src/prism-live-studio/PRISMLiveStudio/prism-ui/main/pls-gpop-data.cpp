@@ -10,7 +10,7 @@
 
 using namespace std;
 using namespace common;
-constexpr auto PRISM_GPOP_PATH = "PRISMLiveStudio/user/gpop.json";
+constexpr auto PRISM_GPOP_PATH = "SPECTRUMLiveStudio/user/gpop.json";
 PLSGpopData *PLSGpopData::instance()
 {
 	static PLSGpopData gpopdata;

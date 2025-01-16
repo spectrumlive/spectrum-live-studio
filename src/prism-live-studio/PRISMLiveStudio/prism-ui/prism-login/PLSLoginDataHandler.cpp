@@ -221,7 +221,7 @@ void PLSLoginDataHandler::getAppInitDataFromRemote(const std::function<void()> &
 						      localGpopVersion, version);
 				     } else {
 					     bool isSuccess =
-						     pls_write_json(pls_get_app_data_dir(QStringLiteral("PRISMLiveStudio/user/")) + QString("gpop_%1.json").arg(PLSLoginFunc::getPrismVersion()), doc);
+						     pls_write_json(pls_get_app_data_dir(QStringLiteral("SPECTRUMLiveStudio/user/")) + QString("gpop_%1.json").arg(PLSLoginFunc::getPrismVersion()), doc);
 					     PLS_INFO("PLSGpopData", "GPOP DATA STATUS: gpop data read from remote api, localGpopVersion = %d, version = %d. save is %s", localGpopVersion, version,
 						      isSuccess ? "success" : "failed");
 				     }
@@ -318,13 +318,13 @@ void PLSLoginDataHandler::getAppInitDataFromRemote(const std::function<void()> &
 			     .timeout(PRISM_NET_REQUEST_TIMEOUT)
 			     .objectOkResult([this](const pls::http::Reply &reply, const QJsonObject &jsonObject) {
 				     m_twitchServiceListObj = jsonObject;
-				     auto servicePath = pls_get_user_path("PRISMLiveStudio/plugin_config/rtmp-services/twitch_ingests.json");
+				     auto servicePath = pls_get_user_path("SPECTRUMLiveStudio/plugin_config/rtmp-services/twitch_ingests.json");
 				     pls_write_json(servicePath, jsonObject);
 			     })
 			     .failResult([this](const pls::http::Reply &reply) {
 				     auto statusCode = reply.statusCode();
 				     auto errorData = reply.data();
-				     auto servicePath = pls_get_user_path("PRISMLiveStudio/plugin_config/rtmp-services/twitch_ingests.json");
+				     auto servicePath = pls_get_user_path("SPECTRUMLiveStudio/plugin_config/rtmp-services/twitch_ingests.json");
 				     bool isSuccess = pls_read_json(m_twitchServiceListObj, servicePath);
 				     PLS_ERROR(PLS_LOGIN_MODULE, "get twitch service info failed.statusCode = %d, errorData = %s; read local twitch service json is %s", statusCode,
 					       errorData.constData(), isSuccess ? "success" : "falied");

@@ -105,7 +105,7 @@ void PLSBlockDump::SignExitEvent()
 
 void PLSBlockDump::InitSavePath()
 {
-	QString temp = pls_get_user_path("PRISMLiveStudio/blockDump/");
+	QString temp = pls_get_user_path("SPECTRUMLiveStudio/blockDump/");
 	dumpDirectory = temp.toStdWString();
 
 	int err = SHCreateDirectoryEx(nullptr, dumpDirectory.c_str(), nullptr);

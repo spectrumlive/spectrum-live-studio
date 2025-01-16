@@ -17,7 +17,7 @@
 #include "pls/pls-obs-api.h"
 #include "ChannelCommonFunctions.h"
 
-constexpr auto LABORATORY_DIR = "PRISMLiveStudio/laboratory/";
+constexpr auto LABORATORY_DIR = "SPECTRUMLiveStudio/laboratory/";
 constexpr auto LAB_JSON_NAME = "Laboratory.json";
 constexpr auto DOWNLOAD_LAB_JSON_NAME = "downloadLab.json";
 

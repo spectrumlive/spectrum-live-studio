@@ -708,7 +708,7 @@ static bool loadObsBrwoser(CreateQCef &create_qcef, const QString &locale)
 	base_set_log_handler(defObsLogHandler, nullptr);
 	base_set_log_handler_ex(defObsLogHandler, nullptr);
 
-	QString pluginConfigDir = pls_get_app_data_dir("PRISMLiveStudio/plugin_config");
+	QString pluginConfigDir = pls_get_app_data_dir("SPECTRUMLiveStudio/plugin_config");
 	if (!obs_startup(locale.toUtf8().constData(), pluginConfigDir.toUtf8().constData(), nullptr)) {
 		return false;
 	}

@@ -11,7 +11,7 @@
 #include "liblog.h"
 #include "PLSCommonConst.h"
 
-constexpr auto PLS_NOTICE_PATH = "PRISMLiveStudio/user";
+constexpr auto PLS_NOTICE_PATH = "SPECTRUMLiveStudio/user";
 constexpr auto NOTICE_NOTICE_SEQ = "noticeSeq";
 constexpr auto TIMEOUT = 15000;
 constexpr auto NOTICE_VAILD_UNTIL_AT = "validUntilAt";

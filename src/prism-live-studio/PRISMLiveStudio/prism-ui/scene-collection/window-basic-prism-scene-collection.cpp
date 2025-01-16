@@ -26,7 +26,7 @@ static constexpr const char *SCENE_COLLECTION_COMBOBOX_MANAGEMENT = "Scene Colle
 void EnumSceneCollections(const std::function<bool(const char *, const char *)> &cb)
 {
 	pls::chars<512> path;
-	if (int ret = GetConfigPath(path, sizeof(path), "PRISMLiveStudio/basic/scenes/"); ret <= 0) {
+	if (int ret = GetConfigPath(path, sizeof(path), "SPECTRUMLiveStudio/basic/scenes/"); ret <= 0) {
 		PLS_WARN(MAINMENU_MODULE, "Failed to get config path for scene "
 					  "collections");
 		return;
@@ -105,7 +105,7 @@ void OBSBasic::on_actionRenameSceneCollection_triggered(const QString &name, con
 	}
 	PLSSceneDataMgr::Instance()->MoveSrcToDest(QString::fromStdString(fileName.toStdString().c_str()), QString::fromStdString(file));
 
-	QString newPath = (file.insert(0, pls_get_user_path("PRISMLiveStudio/basic/scenes/").toStdString()) + ".json").c_str();
+	QString newPath = (file.insert(0, pls_get_user_path("SPECTRUMLiveStudio/basic/scenes/").toStdString()) + ".json").c_str();
 	if (int res = os_rename(oldFile.toStdString().c_str(), newPath.toStdString().c_str()); 0 == res) {
 		OBSData scenedata = obs_data_create_from_json_file(newPath.toStdString().c_str());
 		obs_data_release(scenedata);
@@ -197,8 +197,8 @@ void OBSBasic::on_actionRemoveSceneCollection_triggered(const QString &name, con
 	newName = config_get_string(App()->GlobalConfig(), "Basic", "SceneCollection");
 
 	sceneCollectionManageTitle->SetText(newName.c_str());
-	sceneCollectionManageView->SetCurrentText(newName.c_str(), pls_get_user_path("PRISMLiveStudio/basic/scenes/").append(newFile).append(".json"));
-	sceneCollectionView->SetCurrentText(newName.c_str(), pls_get_user_path("PRISMLiveStudio/basic/scenes/").append(newFile).append(".json"));
+	sceneCollectionManageView->SetCurrentText(newName.c_str(), pls_get_user_path("SPECTRUMLiveStudio/basic/scenes/").append(newFile).append(".json"));
+	sceneCollectionView->SetCurrentText(newName.c_str(), pls_get_user_path("SPECTRUMLiveStudio/basic/scenes/").append(newFile).append(".json"));
 
 	PLS_INFO(MAINMENU_MODULE,
 		 "Removed scene collection '%s' (%s.json), "
@@ -276,7 +276,7 @@ void OBSBasic::InitSceneCollections()
 	const char *cur_name = config_get_string(App()->GlobalConfig(), "Basic", "SceneCollection");
 	const char *cur_file = config_get_string(App()->GlobalConfig(), "Basic", "SceneCollectionFile");
 
-	QDir sourceDir(pls_get_user_path("PRISMLiveStudio/basic/scenes/"));
+	QDir sourceDir(pls_get_user_path("SPECTRUMLiveStudio/basic/scenes/"));
 	QStringList supportList;
 	auto supportFunc = [&supportList](const QString &supportSuffix) { supportList << "*" + supportSuffix; };
 	std::for_each(appSupportSuffix.begin(), appSupportSuffix.end(), supportFunc);
@@ -410,7 +410,7 @@ bool OBSBasic::RenamePscToJsonFile(const char *path, QString &destName, QString 
 
 bool OBSBasic::CheckPscFileInPrismUserPath(QString &pscPath)
 {
-	QString configPath = pls_get_user_path("PRISMLiveStudio/basic/scenes/");
+	QString configPath = pls_get_user_path("SPECTRUMLiveStudio/basic/scenes/");
 	configPath.replace("\\", "/");
 	if (pscPath.contains(configPath)) {
 		QString destName;
@@ -657,7 +657,7 @@ void OBSBasic::on_actionImportSceneCollection_triggered_with_parent(QWidget *par
 QString OBSBasic::ImportSceneCollection(QWidget *parent, const QString &importFile, LoadSceneCollectionWay way, bool fromExport)
 {
 	pls::chars<512> path;
-	if (int ret = GetConfigPath(path, 512, "PRISMLiveStudio/basic/scenes/"); ret <= 0) {
+	if (int ret = GetConfigPath(path, 512, "SPECTRUMLiveStudio/basic/scenes/"); ret <= 0) {
 		PLS_WARN(MAINFRAME_MODULE, "Failed to get scene collection config path");
 		return QString();
 	}
@@ -903,7 +903,7 @@ void OBSBasic::ExportSceneCollection(const QString &name, const QString &fileNam
 	SaveProjectNow();
 
 	pls::chars<512> scenePath;
-	if (int ret = GetConfigPath(scenePath.data(), scenePath.size(), "PRISMLiveStudio/basic/scenes/"); ret <= 0) {
+	if (int ret = GetConfigPath(scenePath.data(), scenePath.size(), "SPECTRUMLiveStudio/basic/scenes/"); ret <= 0) {
 		PLS_WARN(MAINMENU_MODULE, "Failed to get scene collection config path");
 		return;
 	}
@@ -1001,10 +1001,10 @@ void OBSBasic::RunPrismByPscPath()
 	App()->setAppRunningPath(pscStr);
 	const char *cur_name = config_get_string(App()->GlobalConfig(), "Basic", "SceneCollection");
 	const char *cur_file = config_get_string(App()->GlobalConfig(), "Basic", "SceneCollectionFile");
-	loadProfile(pls_get_user_path("PRISMLiveStudio/basic/scenes/").append(cur_file).toUtf8().constData(), cur_file, LoadSceneCollectionWay::RunPscWhenPrismExisted);
+	loadProfile(pls_get_user_path("SPECTRUMLiveStudio/basic/scenes/").append(cur_file).toUtf8().constData(), cur_file, LoadSceneCollectionWay::RunPscWhenPrismExisted);
 
 	if (bool fromUserPath = CheckPscFileInPrismUserPath(pscStr); fromUserPath) {
-		QString path = pls_get_user_path("PRISMLiveStudio/basic/scenes/").append(cur_file).append(".json");
+		QString path = pls_get_user_path("SPECTRUMLiveStudio/basic/scenes/").append(cur_file).append(".json");
 		sceneCollectionView->AddSceneCollectionItem(cur_name, path);
 		sceneCollectionManageView->AddSceneCollection(cur_name, path);
 		sceneCollectionView->SetCurrentText(cur_name, path);

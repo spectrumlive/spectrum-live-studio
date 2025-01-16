@@ -24,8 +24,8 @@ using namespace common;
 constexpr auto MODULE_MOTION_SERVICE = "MotionService";
 constexpr auto PRISM_GROUP_ID = "PRISM";
 constexpr auto FREE_GROUP_ID = "FREE";
-constexpr auto VIRTUAL_BG_JSON = "PRISMLiveStudio/virtual/virtual_bg.json";
-constexpr auto DOWNLOAD_CACHE_JSON = "PRISMLiveStudio/virtual/download_cache.json";
+constexpr auto VIRTUAL_BG_JSON = "SPECTRUMLiveStudio/virtual/virtual_bg.json";
+constexpr auto DOWNLOAD_CACHE_JSON = "SPECTRUMLiveStudio/virtual/download_cache.json";
 
 const int DOWNLOAD_VIRTUAL_BACKGROUND_TIMEOUT_MS = 180000;
 
