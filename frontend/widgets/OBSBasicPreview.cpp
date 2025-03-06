@@ -1713,7 +1713,12 @@ static void DrawStripedLine(float x1, float y1, float x2, float y2, float thickn
 	float offX = (x2 - x1) / dist;
 	float offY = (y2 - y1) / dist;
 
-	for (int i = 0, l = ceil(dist / 15); i < l; i++) {
+	int stripe_count = (int)ceil(dist / 15);
+	if (stripe_count > 1000) {
+		stripe_count = 1000;
+	}
+
+	for (int i = 0; i < stripe_count; i++) {
 		gs_render_start(true);
 
 		float xx1 = x1 + i * 15 * offX;
