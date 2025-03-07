@@ -22,6 +22,7 @@
 #include "graphics.h"
 #include "matrix3.h"
 #include "matrix4.h"
+#include "vec2.h"
 
 /* ========================================================================= *
  * Exports                                                                   *
@@ -281,6 +282,36 @@ struct gs_exports {
 };
 
 /* ========================================================================= *
+ * Vertex Buffer Cache                                                       *
+ * ========================================================================= */
+
+struct vertex_buffer_cache_ref {
+	gs_vertbuffer_t *vb;
+	struct vertex_buffer_cache_ref **p_prev;
+	struct vertex_buffer_cache_ref *next;
+};
+
+#define MAX_CACHABLE_VERTS 16
+
+struct cached_verts {
+	size_t size;
+	bool has_uvs;
+
+	struct vec3 verts[MAX_CACHABLE_VERTS];
+	struct vec2 uvs[MAX_CACHABLE_VERTS];
+};
+
+struct gs_vertex_buffer_cache_item {
+	gs_vertbuffer_t *vb;
+	uint64_t last_used_ts;
+	struct cached_verts data;
+};
+
+struct gs_vertex_buffer_cache {
+	DARRAY(struct gs_vertex_buffer_cache_item) items;
+};
+
+/* ========================================================================= *
  * Graphics Subsystem Data                                                   *
  * ========================================================================= */
 
@@ -327,3 +358,8 @@ struct graphics_subsystem {
 
 	bool linear_srgb;
 };
+
+extern THREAD_LOCAL graphics_t *thread_graphics;
+
+extern bool try_cache_verts(graphics_t *graphics, struct gs_vertex_buffer_cache *cache, size_t size);
+extern void gs_render_stop_internal(gs_vertexbuffer_cache_t *cache, enum gs_draw_mode mode);

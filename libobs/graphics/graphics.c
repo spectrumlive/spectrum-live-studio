@@ -35,7 +35,7 @@
 #undef far
 #endif
 
-static THREAD_LOCAL graphics_t *thread_graphics = NULL;
+THREAD_LOCAL graphics_t *thread_graphics = NULL;
 
 static inline bool gs_obj_valid(const void *obj, const char *f, const char *name)
 {
@@ -528,7 +528,7 @@ static inline size_t min_size(const size_t a, const size_t b)
 	return (a < b) ? a : b;
 }
 
-void gs_render_stop(enum gs_draw_mode mode)
+void gs_render_stop_internal(gs_vertexbuffer_cache_t *cache, enum gs_draw_mode mode)
 {
 	graphics_t *graphics = thread_graphics;
 	size_t i, num;
@@ -569,9 +569,11 @@ void gs_render_stop(enum gs_draw_mode mode)
 	}
 
 	if (graphics->using_immediate) {
-		gs_vertexbuffer_flush(graphics->immediate_vertbuffer);
+		if (cache && !try_cache_verts(graphics, cache, num)) {
+			gs_vertexbuffer_flush(graphics->immediate_vertbuffer);
+			gs_load_vertexbuffer(graphics->immediate_vertbuffer);
+		}
 
-		gs_load_vertexbuffer(graphics->immediate_vertbuffer);
 		gs_load_indexbuffer(NULL);
 		gs_draw(mode, 0, (uint32_t)num);
 
@@ -587,6 +589,11 @@ void gs_render_stop(enum gs_draw_mode mode)
 	}
 
 	graphics->vbd = NULL;
+}
+
+void gs_render_stop(enum gs_draw_mode mode)
+{
+	gs_render_stop_internal(NULL, mode);
 }
 
 gs_vertbuffer_t *gs_render_save(void)
