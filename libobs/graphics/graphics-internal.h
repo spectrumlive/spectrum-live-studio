@@ -337,8 +337,6 @@ struct graphics_subsystem {
 	struct matrix4 projection;
 	struct gs_effect *cur_effect;
 
-	gs_vertbuffer_t *sprite_buffer;
-
 	bool using_immediate;
 	struct gs_vb_data *vbd;
 	gs_vertbuffer_t *immediate_vertbuffer;
@@ -346,6 +344,8 @@ struct graphics_subsystem {
 	DARRAY(struct vec3) norms;
 	DARRAY(uint32_t) colors;
 	DARRAY(struct vec2) texverts[16];
+
+	gs_vertexbuffer_cache_t *sprite_vb_cache;
 
 	pthread_mutex_t effect_mutex;
 	struct gs_effect *first_effect;
