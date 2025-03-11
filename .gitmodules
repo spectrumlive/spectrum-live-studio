@@ -8,5 +8,5 @@
 	path = plugins/obs-websocket
 	url = https://github.com/obsproject/obs-websocket.git
 [submodule "plugins/spt-notification"]
-  path = plugins/spt-notification
-  url = https://github.com/spectrumlive/spt-notification.git
+	path = plugins/spt-notification
+	url = git@github.com:spectrumlive/spt-notification.git
