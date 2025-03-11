@@ -1,7 +1,7 @@
 include(cmake/feature-sparkle.cmake)
 
 target_sources(
-  obs-studio
+  spectrum-studio
   PRIVATE
     dialogs/OBSPermissions.cpp
     dialogs/OBSPermissions.hpp
@@ -9,16 +9,16 @@ target_sources(
     utility/platform-osx.mm
     utility/system-info-macos.mm
 )
-target_compile_options(obs-studio PRIVATE -Wno-quoted-include-in-framework-header -Wno-comma)
+target_compile_options(spectrum-studio PRIVATE -Wno-quoted-include-in-framework-header -Wno-comma)
 
 set_source_files_properties(platform-osx.mm PROPERTIES COMPILE_OPTIONS -fobjc-arc)
 
 if(CMAKE_C_COMPILER_VERSION VERSION_GREATER_EQUAL 14.0.3)
-  target_compile_options(obs-studio PRIVATE -Wno-error=unqualified-std-cast-call)
+  target_compile_options(spectrum-studio PRIVATE -Wno-error=unqualified-std-cast-call)
 endif()
 
 target_link_libraries(
-  obs-studio
+  spectrum-studio
   PRIVATE
     "$<LINK_LIBRARY:FRAMEWORK,AppKit.framework>"
     "$<LINK_LIBRARY:FRAMEWORK,ApplicationServices.framework>"

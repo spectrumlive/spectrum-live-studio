@@ -9,19 +9,19 @@ if(NOT TARGET OBS::qt-wrappers)
 endif()
 
 target_link_libraries(
-  obs-studio
+  spectrum-studio
   PRIVATE Qt::Widgets Qt::Svg Qt::Xml Qt::Network OBS::qt-wrappers
 )
 
 set_target_properties(
-  obs-studio
+  spectrum-studio
   PROPERTIES AUTOMOC TRUE AUTOUIC TRUE AUTORCC TRUE AUTOGEN_PARALLEL AUTO
 )
 
-set_property(TARGET obs-studio APPEND PROPERTY AUTOUIC_SEARCH_PATHS forms forms/source-toolbar)
+set_property(TARGET spectrum-studio APPEND PROPERTY AUTOUIC_SEARCH_PATHS forms forms/source-toolbar)
 
 target_sources(
-  obs-studio
+  spectrum-studio
   PRIVATE
     forms/AutoConfigFinishPage.ui
     forms/AutoConfigStartPage.ui

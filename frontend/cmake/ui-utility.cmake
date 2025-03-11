@@ -1,5 +1,5 @@
 target_sources(
-  obs-studio
+  spectrum-studio
   PRIVATE
     utility/AdvancedOutput.cpp
     utility/AdvancedOutput.hpp

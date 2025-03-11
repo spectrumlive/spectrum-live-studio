@@ -26,11 +26,11 @@ if(NOT TARGET OBS::bpm)
   add_subdirectory("${CMAKE_SOURCE_DIR}/shared/bpm" bpm)
 endif()
 
-add_executable(obs-studio)
-add_executable(OBS::studio ALIAS obs-studio)
+add_executable(spectrum-studio)
+add_executable(OBS::studio ALIAS spectrum-studio)
 
 target_link_libraries(
-  obs-studio
+  spectrum-studio
   PRIVATE
     CURL::libcurl
     FFmpeg::avcodec
@@ -68,7 +68,7 @@ add_subdirectory(plugins)
 configure_file(cmake/templates/ui-config.h.in ui-config.h)
 
 target_sources(
-  obs-studio
+  spectrum-studio
   PRIVATE obs-main.cpp OBSStudioAPI.cpp OBSStudioAPI.hpp OBSApp.cpp OBSApp.hpp OBSApp_Themes.cpp ui-config.h
 )
 
@@ -86,20 +86,20 @@ foreach(graphics_library IN ITEMS opengl metal d3d11)
   string(TOUPPER ${graphics_library} graphics_library_U)
   if(TARGET OBS::libobs-${graphics_library})
     target_compile_definitions(
-      obs-studio
+      spectrum-studio
       PRIVATE
         DL_${graphics_library_U}="$<$<IF:$<PLATFORM_ID:Windows>,TARGET_FILE_NAME,TARGET_SONAME_FILE_NAME>:OBS::libobs-${graphics_library}>"
     )
   else()
-    target_compile_definitions(obs-studio PRIVATE DL_${graphics_library_U}="")
+    target_compile_definitions(spectrum-studio PRIVATE DL_${graphics_library_U}="")
   endif()
 endforeach()
 
 get_property(obs_module_list GLOBAL PROPERTY OBS_MODULES_ENABLED)
 list(JOIN obs_module_list "|" SAFE_MODULES)
-target_compile_definitions(obs-studio PRIVATE "SAFE_MODULES=\"${SAFE_MODULES}\"")
+target_compile_definitions(spectrum-studio PRIVATE "SAFE_MODULES=\"${SAFE_MODULES}\"")
 
-get_target_property(target_sources obs-studio SOURCES)
+get_target_property(target_sources spectrum-studio SOURCES)
 set(target_cpp_sources ${target_sources})
 set(target_hpp_sources ${target_sources})
 set(target_qt_sources ${target_sources})
@@ -113,4 +113,4 @@ source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" PREFIX "Source Files" FILES ${ta
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" PREFIX "Header Files" FILES ${target_hpp_sources})
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" PREFIX "Qt Files" FILES ${target_qt_sources})
 
-set_target_properties_obs(obs-studio PROPERTIES FOLDER frontend OUTPUT_NAME "$<IF:$<PLATFORM_ID:Windows>,obs64,obs>")
+set_target_properties_obs(spectrum-studio PROPERTIES FOLDER frontend OUTPUT_NAME "$<IF:$<PLATFORM_ID:Windows>,obs64,obs>")

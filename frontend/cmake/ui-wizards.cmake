@@ -1,5 +1,5 @@
 target_sources(
-  obs-studio
+  spectrum-studio
   PRIVATE
     wizards/AutoConfig.cpp
     wizards/AutoConfig.hpp

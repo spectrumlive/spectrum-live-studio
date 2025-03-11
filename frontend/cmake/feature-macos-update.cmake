@@ -7,7 +7,7 @@ if(NOT TARGET OBS::blake2)
 endif()
 
 target_sources(
-  obs-studio
+  spectrum-studio
   PRIVATE
     utility/crypto-helpers-mac.mm
     utility/crypto-helpers.hpp
@@ -22,6 +22,6 @@ target_sources(
 )
 
 target_link_libraries(
-  obs-studio
+  spectrum-studio
   PRIVATE "$<LINK_LIBRARY:FRAMEWORK,Security.framework>" nlohmann_json::nlohmann_json OBS::blake2
 )

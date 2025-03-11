@@ -2,10 +2,10 @@ if(NOT TARGET OBS::properties-view)
   add_subdirectory("${CMAKE_SOURCE_DIR}/shared/properties-view" "${CMAKE_BINARY_DIR}/shared/properties-view")
 endif()
 
-target_link_libraries(obs-studio PRIVATE OBS::properties-view)
+target_link_libraries(spectrum-studio PRIVATE OBS::properties-view)
 
 target_sources(
-  obs-studio
+  spectrum-studio
   PRIVATE
     dialogs/NameDialog.cpp
     dialogs/NameDialog.hpp
