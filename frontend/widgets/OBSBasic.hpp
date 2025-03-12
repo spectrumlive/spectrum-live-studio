@@ -326,6 +326,8 @@ public:
 	void SetDisplayAffinity(QWindow *window);
 
 	inline bool Closing() { return closing; }
+   
+   void updateLogoutStatus();
 
 protected:
 	virtual void closeEvent(QCloseEvent *event) override;

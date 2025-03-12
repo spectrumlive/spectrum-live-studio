@@ -53,6 +53,8 @@ public:
 	OBSBasicControls(OBSBasic *main);
 	inline ~OBSBasicControls() {}
 
+	void EnableLogoutButton(bool enabled);
+
 signals:
 	void StreamButtonClicked();
 	void BroadcastButtonClicked();

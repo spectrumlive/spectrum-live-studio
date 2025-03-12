@@ -15,6 +15,7 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
+#include "widgets/OBSBasic.hpp"
 #include "SPTAuthenticate.hpp"
 #include "auth/OAuthManager.hpp"
 #include "auth/SPTAPIServices.hpp"
@@ -36,6 +37,11 @@ SPTAuthenticate::SPTAuthenticate(QWidget *parent) : QWidget(parent), ui(new Ui::
    QObject::connect(mpAuthManager, &OAuthManager::loginSuccess, [this](const QString &token) {
       SPTAPIServices services(token);
       QJsonObject result = services.getUserInfo();
+
+     OBSBasic *main = OBSBasic::Get();
+     if (main) {
+        main->updateLogoutStatus();
+     }
       
       // Save incoming user's slug
       this->mpAuthManager->saveUserInfo(token, result["donationSlug"].toString(),

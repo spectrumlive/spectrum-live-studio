@@ -136,7 +136,8 @@ static void AddExtraModulePaths()
 #if defined(_WIN32)
 	int ret = GetProgramDataPath(base_module_dir, sizeof(base_module_dir), "SPECTRUMLiveStudio/plugins/%module%");
 #elif defined(__APPLE__)
-	int ret = GetAppConfigPath(base_module_dir, sizeof(base_module_dir), "SPECTRUMLiveStudio/plugins/%module%.plugin");
+	int ret = GetAppConfigPath(base_module_dir, sizeof(base_module_dir),
+				   "SPECTRUMLiveStudio/plugins/%module%.plugin");
 #else
 	int ret = GetAppConfigPath(base_module_dir, sizeof(base_module_dir), "SPECTRUMLiveStudio/plugins/%module%");
 #endif
@@ -152,7 +153,8 @@ static void AddExtraModulePaths()
 #ifndef __aarch64__
 	/* Legacy System Library Search Path */
 	char system_legacy_module_dir[PATH_MAX];
-	GetProgramDataPath(system_legacy_module_dir, sizeof(system_legacy_module_dir), "SPECTRUMLiveStudio/plugins/%module%");
+	GetProgramDataPath(system_legacy_module_dir, sizeof(system_legacy_module_dir),
+			   "SPECTRUMLiveStudio/plugins/%module%");
 	std::string path_system_legacy = system_legacy_module_dir;
 	obs_add_module_path((path_system_legacy + "/bin").c_str(), (path_system_legacy + "/data").c_str());
 
@@ -263,6 +265,8 @@ OBSBasic::OBSBasic(QWidget *parent) : OBSMainWindow(parent), undo_s(ui), ui(new 
 	/* Parenting is done there so controls will be deleted alongside controlsDock */
 	controlsDock->setWidget(controls);
 	addDockWidget(Qt::BottomDockWidgetArea, controlsDock);
+   
+	controls->EnableLogoutButton(false);
 
 	connect(controls, &OBSBasicControls::StreamButtonClicked, this, &OBSBasic::StreamActionTriggered);
 
@@ -286,8 +290,8 @@ OBSBasic::OBSBasic(QWidget *parent) : OBSMainWindow(parent), undo_s(ui), ui(new 
 	connect(controls, &OBSBasicControls::SettingsButtonClicked, this, &OBSBasic::on_action_Settings_triggered);
 
 	connect(controls, &OBSBasicControls::ExitButtonClicked, this, &QMainWindow::close);
-   
-   connect(controls, &OBSBasicControls::LogoutButtonClicked, this, &OBSBasic::ProcessLogout);
+
+	connect(controls, &OBSBasicControls::LogoutButtonClicked, this, &OBSBasic::ProcessLogout);
 
 	startingDockLayout = saveState();
 
@@ -1884,16 +1888,16 @@ void OBSBasic::UpdateEditMenu()
 
 void OBSBasic::UpdateTitleBar()
 {
-   stringstream name;
-   
-   const char *profile = config_get_string(App()->GetUserConfig(), "Basic", "Profile");
-   const char *sceneCollection = config_get_string(App()->GetUserConfig(), "Basic", "SceneCollection");
-   
-   name << "SPECTRUM Live Studio";
-   name << " - " << Str("TitleBar.Profile") << ": " << profile;
-   name << " - " << Str("TitleBar.Scenes") << ": " << sceneCollection;
-   
-   setWindowTitle(QT_UTF8(name.str().c_str()));
+	stringstream name;
+
+	const char *profile = config_get_string(App()->GetUserConfig(), "Basic", "Profile");
+	const char *sceneCollection = config_get_string(App()->GetUserConfig(), "Basic", "SceneCollection");
+
+	name << "SPECTRUM Live Studio";
+	name << " - " << Str("TitleBar.Profile") << ": " << profile;
+	name << " - " << Str("TitleBar.Scenes") << ": " << sceneCollection;
+
+	setWindowTitle(QT_UTF8(name.str().c_str()));
 }
 
 OBSBasic *OBSBasic::Get()
@@ -1983,4 +1987,15 @@ OBSPromptResult OBSBasic::PromptForName(const OBSPromptRequest &request, const O
 	}
 
 	return result;
+}
+
+void OBSBasic::updateLogoutStatus()
+{
+	if (config_get_int(App()->GetAppConfig(), "UserInfo", "timeout") < QDateTime::currentSecsSinceEpoch()) {
+      QList<QPushButton*> buttons = controlsDock->widget()->findChildren<QPushButton*>("logoutButton");
+      if (!buttons.isEmpty()) {
+         QPushButton* logoutButton = buttons.first();
+         logoutButton->setDisabled(false);
+      }
+	}
 }
