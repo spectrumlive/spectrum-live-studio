@@ -9,6 +9,19 @@ endif()
 
 set_property(GLOBAL APPEND PROPERTY OBS_FEATURES_ENABLED "Plugin Support")
 
+macro(check_spt_notification)
+  if((OS_WINDOWS AND CMAKE_VS_PLATFORM_NAME MATCHES "(Win32|x64)") OR OS_MACOS OR OS_LINUX)
+    if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/spt-notification/CMakeLists.txt")
+      message(FATAL_ERROR "Required submodule 'spt-notification' not available.")
+    else()
+      add_subdirectory(spt-notification)
+    endif()
+  else()
+    add_custom_target(spt-notification)
+    target_disable(spt-notification)
+  endif()
+endmacro()
+
 macro(check_obs_browser)
   if((OS_WINDOWS AND CMAKE_VS_PLATFORM_NAME MATCHES "(Win32|x64)") OR OS_MACOS OR OS_LINUX)
     if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/obs-browser/CMakeLists.txt")
@@ -56,6 +69,7 @@ add_obs_plugin(mac-videotoolbox PLATFORMS MACOS)
 add_obs_plugin(mac-virtualcam PLATFORMS MACOS)
 add_obs_plugin(nv-filters PLATFORMS WINDOWS)
 
+check_spt_notification()
 check_obs_browser()
 
 add_obs_plugin(obs-ffmpeg)
