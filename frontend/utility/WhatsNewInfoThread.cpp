@@ -267,7 +267,7 @@ void WhatsNewInfoThread::run()
 try {
 	std::string text;
 
-	if (FetchAndVerifyFile("whatsnew", "obs-studio/updates/whatsnew.json", WHATSNEW_URL, &text)) {
+	if (FetchAndVerifyFile("whatsnew", "SPECTRUMLiveStudio/updates/whatsnew.json", WHATSNEW_URL, &text)) {
 		emit Result(QString::fromStdString(text));
 	}
 } catch (std::string &text) {

@@ -188,7 +188,7 @@ static inline bool check_path(const char *data, const char *path, string &output
 	return (access(output.c_str(), R_OK) == 0);
 }
 
-#define INSTALL_DATA_PATH OBS_INSTALL_PREFIX "/" OBS_DATA_PATH "/obs-studio/"
+#define INSTALL_DATA_PATH OBS_INSTALL_PREFIX "/" OBS_DATA_PATH "/SPECTRUMLiveStudio/"
 
 bool GetDataFilePath(const char *data, string &output)
 {
@@ -198,7 +198,7 @@ bool GetDataFilePath(const char *data, string &output)
 			return true;
 	}
 
-	char *relative_data_path = os_get_executable_path_ptr("../" OBS_DATA_PATH "/obs-studio/");
+	char *relative_data_path = os_get_executable_path_ptr("../" OBS_DATA_PATH "/SPECTRUMLiveStudio/");
 
 	if (relative_data_path) {
 		bool result = check_path(data, relative_data_path, output);
@@ -209,7 +209,7 @@ bool GetDataFilePath(const char *data, string &output)
 		}
 	}
 
-	if (check_path(data, OBS_DATA_PATH "/obs-studio/", output))
+	if (check_path(data, OBS_DATA_PATH "/SPECTRUMLiveStudio/", output))
 		return true;
 
 	if (check_path(data, INSTALL_DATA_PATH, output))

@@ -38,7 +38,7 @@ extern std::string opt_starting_scene;
 
 // MARK: Constant Expressions
 
-constexpr std::string_view OBSSceneCollectionPath = "/obs-studio/basic/scenes/";
+constexpr std::string_view OBSSceneCollectionPath = "/SPECTRUMLiveStudio/basic/scenes/";
 
 // MARK: - Anonymous Namespace
 namespace {
