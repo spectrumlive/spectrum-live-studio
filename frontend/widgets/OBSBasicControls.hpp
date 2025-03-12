@@ -65,6 +65,7 @@ signals:
 	void StudioModeButtonClicked();
 	void SettingsButtonClicked();
 	void ExitButtonClicked();
+	void LogoutButtonClicked();
 
 	void StartStreamMenuActionClicked();
 	void StopStreamMenuActionClicked();

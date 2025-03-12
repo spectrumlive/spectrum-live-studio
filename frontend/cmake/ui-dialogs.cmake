@@ -37,4 +37,8 @@ target_sources(
     dialogs/OBSRemux.hpp
     dialogs/OBSWhatsNew.cpp
     dialogs/OBSWhatsNew.hpp
+    dialogs/SPTAbout.cpp
+    dialogs/SPTAbout.hpp
+    dialogs/SPTAuthenticate.cpp
+    dialogs/SPTAuthenticate.hpp
 )
