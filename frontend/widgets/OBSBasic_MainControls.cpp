@@ -33,6 +33,7 @@
 #include <dialogs/OBSPermissions.hpp>
 #endif
 #include <dialogs/OBSRemux.hpp>
+#include <dialogs/SPTAbout.hpp>
 #include <settings/OBSBasicSettings.hpp>
 #ifdef _WIN32
 #include <utility/AutoUpdateThread.hpp>
@@ -661,13 +662,18 @@ void OBSBasic::on_stats_triggered()
 
 void OBSBasic::on_actionShowAbout_triggered()
 {
-	if (about)
-		about->close();
-
-	about = new OBSAbout(this);
-	about->show();
-
-	about->setAttribute(Qt::WA_DeleteOnClose, true);
+	// if (about)
+	// 	about->close();
+	//
+	// about = new OBSAbout(this);
+	// about->show();
+	//
+	// about->setAttribute(Qt::WA_DeleteOnClose, true);
+	if (spectrumAbout)
+		spectrumAbout->close();
+	spectrumAbout = new SPTAbout(this);
+	spectrumAbout->show();
+	spectrumAbout->setAttribute(Qt::WA_DeleteOnClose, true);
 }
 
 void OBSBasic::on_OBSBasic_customContextMenuRequested(const QPoint &pos)
