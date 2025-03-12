@@ -266,7 +266,9 @@ OBSBasic::OBSBasic(QWidget *parent) : OBSMainWindow(parent), undo_s(ui), ui(new 
 	controlsDock->setWidget(controls);
 	addDockWidget(Qt::BottomDockWidgetArea, controlsDock);
    
-	controls->EnableLogoutButton(false);
+   if (config_get_int(App()->GetUserConfig(), "UserInfo", "timeout") < QDateTime::currentSecsSinceEpoch()) {
+      controls->EnableLogoutButton(false);
+   }
 
 	connect(controls, &OBSBasicControls::StreamButtonClicked, this, &OBSBasic::StreamActionTriggered);
 
