@@ -75,7 +75,7 @@
     <file>images/network-inactive.svg</file>
     <file>images/spectrum.png</file>
     <file>images/spt_macos.png</file>
-    <file>images/spt_macos.svg </file>
+    <file>images/spt_macos.svg</file>
   </qresource>
   <qresource prefix="/settings">
     <file>images/settings/output.svg</file>
