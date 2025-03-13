@@ -522,36 +522,36 @@ static bool MakeUserDirs()
 {
 	char path[512];
 
-	if (GetAppConfigPath(path, sizeof(path), "obs-studio/basic") <= 0)
+	if (GetAppConfigPath(path, sizeof(path), "spectrum-studio/basic") <= 0)
 		return false;
 	if (!do_mkdir(path))
 		return false;
 
-	if (GetAppConfigPath(path, sizeof(path), "obs-studio/logs") <= 0)
+	if (GetAppConfigPath(path, sizeof(path), "spectrum-studio/logs") <= 0)
 		return false;
 	if (!do_mkdir(path))
 		return false;
 
-	if (GetAppConfigPath(path, sizeof(path), "obs-studio/profiler_data") <= 0)
+	if (GetAppConfigPath(path, sizeof(path), "spectrum-studio/profiler_data") <= 0)
 		return false;
 	if (!do_mkdir(path))
 		return false;
 
 #ifdef _WIN32
-	if (GetAppConfigPath(path, sizeof(path), "obs-studio/crashes") <= 0)
+	if (GetAppConfigPath(path, sizeof(path), "spectrum-studio/crashes") <= 0)
 		return false;
 	if (!do_mkdir(path))
 		return false;
 #endif
 
 #ifdef WHATSNEW_ENABLED
-	if (GetAppConfigPath(path, sizeof(path), "obs-studio/updates") <= 0)
+	if (GetAppConfigPath(path, sizeof(path), "spectrum-studio/updates") <= 0)
 		return false;
 	if (!do_mkdir(path))
 		return false;
 #endif
 
-	if (GetAppConfigPath(path, sizeof(path), "obs-studio/plugin_config") <= 0)
+	if (GetAppConfigPath(path, sizeof(path), "spectrum-studio/plugin_config") <= 0)
 		return false;
 	if (!do_mkdir(path))
 		return false;
@@ -559,8 +559,8 @@ static bool MakeUserDirs()
 	return true;
 }
 
-constexpr std::string_view OBSProfileSubDirectory = "obs-studio/basic/profiles";
-constexpr std::string_view OBSScenesSubDirectory = "obs-studio/basic/scenes";
+constexpr std::string_view OBSProfileSubDirectory = "spectrum-studio/basic/profiles";
+constexpr std::string_view OBSScenesSubDirectory = "spectrum-studio/basic/scenes";
 
 static bool MakeUserProfileDirs()
 {
@@ -628,7 +628,7 @@ bool OBSApp::InitGlobalConfig()
 {
 	char path[512];
 
-	int len = GetAppConfigPath(path, sizeof(path), "obs-studio/global.ini");
+	int len = GetAppConfigPath(path, sizeof(path), "spectrum-studio/global.ini");
 	if (len <= 0) {
 		return false;
 	}
@@ -677,7 +677,7 @@ bool OBSApp::InitGlobalConfig()
 
 bool OBSApp::InitUserConfig(std::filesystem::path &userConfigLocation, uint32_t lastVersion)
 {
-	const std::string userConfigFile = userConfigLocation.u8string() + "/obs-studio/user.ini";
+	const std::string userConfigFile = userConfigLocation.u8string() + "/spectrum-studio/user.ini";
 
 	int errorCode = userConfig.Open(userConfigFile.c_str(), CONFIG_OPEN_ALWAYS);
 
@@ -737,8 +737,8 @@ void OBSApp::MigrateLegacySettings(const uint32_t lastVersion)
 	}
 }
 
-static constexpr string_view OBSGlobalIniPath = "/obs-studio/global.ini";
-static constexpr string_view OBSUserIniPath = "/obs-studio/user.ini";
+static constexpr string_view OBSGlobalIniPath = "/spectrum-studio/global.ini";
+static constexpr string_view OBSUserIniPath = "/spectrum-studio/user.ini";
 
 bool OBSApp::MigrateGlobalSettings()
 {
@@ -890,7 +890,7 @@ bool LoadBranchesFile(vector<UpdateBranch> &out)
 	string error;
 	string branchesText;
 
-	BPtr<char> branchesFilePath = GetAppConfigPathPtr("obs-studio/updates/branches.json");
+	BPtr<char> branchesFilePath = GetAppConfigPathPtr("spectrum-studio/updates/branches.json");
 
 	QFile branchesFile(branchesFilePath.Get());
 	if (!branchesFile.open(QIODevice::ReadOnly)) {
@@ -1017,7 +1017,7 @@ static void move_basic_to_profiles(void)
 {
 	char path[512];
 
-	if (GetAppConfigPath(path, 512, "obs-studio/basic") <= 0) {
+	if (GetAppConfigPath(path, 512, "spectrum-studio/basic") <= 0) {
 		return;
 	}
 
@@ -1028,7 +1028,7 @@ static void move_basic_to_profiles(void)
 	}
 
 	const std::filesystem::path profilesPath =
-		App()->userProfilesLocation / std::filesystem::u8path("obs-studio/basic/profiles");
+		App()->userProfilesLocation / std::filesystem::u8path("spectrum-studio/basic/profiles");
 
 	if (std::filesystem::exists(profilesPath)) {
 		return;
@@ -1081,7 +1081,7 @@ static void move_basic_to_scene_collections(void)
 {
 	char path[512];
 
-	if (GetAppConfigPath(path, 512, "obs-studio/basic") <= 0) {
+	if (GetAppConfigPath(path, 512, "spectrum-studio/basic") <= 0) {
 		return;
 	}
 
@@ -1092,7 +1092,7 @@ static void move_basic_to_scene_collections(void)
 	}
 
 	const std::filesystem::path sceneCollectionPath =
-		App()->userScenesLocation / std::filesystem::u8path("obs-studio/basic/scenes");
+		App()->userScenesLocation / std::filesystem::u8path("spectrum-studio/basic/scenes");
 
 	if (std::filesystem::exists(sceneCollectionPath)) {
 		return;
@@ -1179,7 +1179,7 @@ static bool StartupOBS(const char *locale, profiler_name_store_t *store)
 {
 	char path[512];
 
-	if (GetAppConfigPath(path, sizeof(path), "obs-studio/plugin_config") <= 0)
+	if (GetAppConfigPath(path, sizeof(path), "spectrum-studio/plugin_config") <= 0)
 		return false;
 
 	return obs_startup(locale, path, store);
@@ -1790,13 +1790,13 @@ static void create_log_file(fstream &logFile)
 {
 	stringstream dst;
 
-	get_last_log(false, "obs-studio/logs", lastLogFile);
+	get_last_log(false, "spectrum-studio/logs", lastLogFile);
 #ifdef _WIN32
-	get_last_log(true, "obs-studio/crashes", lastCrashLogFile);
+	get_last_log(true, "spectrum-studio/crashes", lastCrashLogFile);
 #endif
 
 	currentLogFile = GenerateTimeDateFilename("txt");
-	dst << "obs-studio/logs/" << currentLogFile.c_str();
+	dst << "spectrum-studio/logs/" << currentLogFile.c_str();
 
 	BPtr<char> path(GetAppConfigPathPtr(dst.str().c_str()));
 
@@ -1809,7 +1809,7 @@ static void create_log_file(fstream &logFile)
 #endif
 
 	if (logFile.is_open()) {
-		delete_oldest_file(false, "obs-studio/logs");
+		delete_oldest_file(false, "spectrum-studio/logs");
 		base_set_log_handler(do_log, &logFile);
 	} else {
 		blog(LOG_ERROR, "Failed to open log file");
@@ -1849,7 +1849,7 @@ static void SaveProfilerData(const ProfilerSnapshot &snap)
 
 #define LITERAL_SIZE(x) x, (sizeof(x) - 1)
 	ostringstream dst;
-	dst.write(LITERAL_SIZE("obs-studio/profiler_data/"));
+	dst.write(LITERAL_SIZE("spectrum-studio/profiler_data/"));
 	dst.write(currentLogFile.c_str(), pos);
 	dst.write(LITERAL_SIZE(".csv.gz"));
 #undef LITERAL_SIZE
@@ -1937,7 +1937,7 @@ static int run_program(fstream &logFile, int argc, char *argv[])
 		bool created_log = false;
 
 		program.AppInit();
-		delete_oldest_file(false, "obs-studio/profiler_data");
+		delete_oldest_file(false, "spectrum-studio/profiler_data");
 
 		OBSTranslator translator;
 		program.installTranslator(&translator);
@@ -2134,7 +2134,7 @@ static void main_crash_handler(const char *format, va_list args, void * /* param
 	vsnprintf(text, MAX_CRASH_REPORT_SIZE, format, args);
 	text[MAX_CRASH_REPORT_SIZE - 1] = 0;
 
-	string crashFilePath = "obs-studio/crashes";
+	string crashFilePath = "spectrum-studio/crashes";
 
 	delete_oldest_file(true, crashFilePath.c_str());
 
@@ -2366,7 +2366,7 @@ static void check_safe_mode_sentinel(void)
 	if (disable_shutdown_check)
 		return;
 
-	BPtr sentinelPath = GetAppConfigPathPtr("obs-studio/safe_mode");
+	BPtr sentinelPath = GetAppConfigPathPtr("spectrum-studio/safe_mode");
 	if (os_file_exists(sentinelPath)) {
 		unclean_shutdown = true;
 		return;
@@ -2381,7 +2381,7 @@ static void delete_safe_mode_sentinel(void)
 #ifndef NDEBUG
 	return;
 #else
-	BPtr sentinelPath = GetAppConfigPathPtr("obs-studio/safe_mode");
+	BPtr sentinelPath = GetAppConfigPathPtr("spectrum-studio/safe_mode");
 	os_unlink(sentinelPath);
 #endif
 }

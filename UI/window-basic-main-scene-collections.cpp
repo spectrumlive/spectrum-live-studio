@@ -32,7 +32,7 @@
 
 // MARK: Constant Expressions
 
-constexpr std::string_view OBSSceneCollectionPath = "/obs-studio/basic/scenes/";
+constexpr std::string_view OBSSceneCollectionPath = "/obs-studiobasic/scenes/";
 
 // MARK: - Anonymous Namespace
 namespace {

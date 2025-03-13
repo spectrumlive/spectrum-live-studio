@@ -157,7 +157,7 @@
         NSURL *homeUrl = [fileManager homeDirectoryForCurrentUser];
         NSURL *customUrl =
             [homeUrl URLByAppendingPathComponent:
-                         @"Library/Application Support/obs-studio/plugin_config/mac-virtualcam/placeholder.png"];
+                         @"Library/Application Support/spectrum-studio/plugin_config/mac-virtualcam/placeholder.png"];
         NSString *customPlaceHolder = customUrl.path;
         if ([fileManager isReadableFileAtPath:customPlaceHolder])
             placeHolderPath = customPlaceHolder;
