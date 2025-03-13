@@ -62,7 +62,7 @@ set_target_xcode_properties(
              PRODUCT_NAME obs-mac-virtualcam
              PRODUCT_BUNDLE_IDENTIFIER com.obsproject.obs-mac-virtualcam
              CURRENT_PROJECT_VERSION ${OBS_BUILD_NUMBER}
-             MARKETING_VERSION ${OBS_VERSION_CANONICAL}
+             MARKETING_VERSION ${SPECTRUM_VERSION_CANONICAL}
              GENERATE_INFOPLIST_FILE YES
              INFOPLIST_KEY_CFBundleDisplayName obs-mac-virtualcam
              INFOPLIST_KEY_NSHumanReadableCopyright "(c) 2020-${CURRENT_YEAR} John Boiles, Patrick Heyer, Sebastian Beckmann"

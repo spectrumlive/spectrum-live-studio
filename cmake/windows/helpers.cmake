@@ -4,7 +4,7 @@ include_guard(GLOBAL)
 
 include(helpers_common)
 
-# set_target_properties_obs: Set target properties for use in obs-studio
+# set_target_properties_obs: Set target properties for use in spectrum-studio
 function(set_target_properties_obs target)
   set(options "")
   set(oneValueArgs "")
@@ -31,13 +31,13 @@ function(set_target_properties_obs target)
 
     _target_install_obs(${target} DESTINATION ${OBS_EXECUTABLE_DESTINATION})
 
-    if(target STREQUAL obs-studio)
+    if(target STREQUAL spectrum-studio)
       get_property(obs_executables GLOBAL PROPERTY _OBS_EXECUTABLES)
       get_property(obs_modules GLOBAL PROPERTY OBS_MODULES_ENABLED)
       add_dependencies(${target} ${obs_executables} ${obs_modules})
       _bundle_dependencies(${target})
       target_add_resource(${target} "${CMAKE_CURRENT_SOURCE_DIR}/../AUTHORS"
-                          "${OBS_DATA_DESTINATION}/obs-studio/authors"
+                          "${OBS_DATA_DESTINATION}/spectrum-studio/authors"
       )
     elseif(target STREQUAL obs-browser-helper)
       set_property(GLOBAL APPEND PROPERTY _OBS_EXECUTABLES ${target})
@@ -46,7 +46,7 @@ function(set_target_properties_obs target)
       set_property(GLOBAL APPEND PROPERTY _OBS_EXECUTABLES ${target})
     endif()
   elseif(target_type STREQUAL SHARED_LIBRARY)
-    set_target_properties(${target} PROPERTIES VERSION ${OBS_VERSION_MAJOR} SOVERSION ${OBS_VERSION_CANONICAL})
+    set_target_properties(${target} PROPERTIES VERSION ${SPECTRUM_VERSION_MAJOR} SOVERSION ${SPECTRUM_VERSION_CANONICAL})
 
     _target_install_obs(
       ${target}
@@ -55,7 +55,7 @@ function(set_target_properties_obs target)
         HEADER_DESTINATION "${OBS_INCLUDE_DESTINATION}"
     )
   elseif(target_type STREQUAL MODULE_LIBRARY)
-    set_target_properties(${target} PROPERTIES VERSION 0 SOVERSION ${OBS_VERSION_CANONICAL})
+    set_target_properties(${target} PROPERTIES VERSION 0 SOVERSION ${SPECTRUM_VERSION_CANONICAL})
 
     if(target STREQUAL libobs-d3d11 OR target STREQUAL libobs-opengl OR target STREQUAL libobs-winrt)
       set(target_destination "${OBS_EXECUTABLE_DESTINATION}")
@@ -307,8 +307,8 @@ function(target_install_resources target)
     get_property(obs_module_list GLOBAL PROPERTY OBS_MODULES_ENABLED)
     if(target IN_LIST obs_module_list)
       set(target_destination "${OBS_DATA_DESTINATION}/obs-plugins/${target}")
-    elseif(target STREQUAL obs-studio)
-      set(target_destination "${OBS_DATA_DESTINATION}/obs-studio")
+    elseif(target STREQUAL spectrum-studio)
+      set(target_destination "${OBS_DATA_DESTINATION}/spectrum-studio")
     else()
       set(target_destination "${OBS_DATA_DESTINATION}/${target}")
     endif()
@@ -341,8 +341,8 @@ function(target_add_resource target resource)
     set(target_destination "${ARGN}")
   elseif(${target} IN_LIST obs_module_list)
     set(target_destination "${OBS_DATA_DESTINATION}/obs-plugins/${target}")
-  elseif(target STREQUAL obs-studio)
-    set(target_destination "${OBS_DATA_DESTINATION}/obs-studio")
+  elseif(target STREQUAL spectrum-studio)
+    set(target_destination "${OBS_DATA_DESTINATION}/spectrum-studio")
   else()
     set(target_destination "${OBS_DATA_DESTINATION}/${target}")
   endif()

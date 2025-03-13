@@ -21,12 +21,12 @@ if(NOT TARGET OBS::qt-vertical-scroll-area)
 endif()
 
 target_link_libraries(
-  obs-studio
+  spectrum-studio
   PRIVATE OBS::properties-view OBS::qt-plain-text-edit OBS::qt-slider-ignorewheel OBS::qt-vertical-scroll-area
 )
 
 target_sources(
-  obs-studio
+  spectrum-studio
   PRIVATE
     absolute-slider.cpp
     absolute-slider.hpp

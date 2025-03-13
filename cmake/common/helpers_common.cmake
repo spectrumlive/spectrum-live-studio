@@ -16,7 +16,7 @@ function(message_configuration)
     "                / _ \\| '_ \\/ __|_____/ __| __| | | |/ _` | |/ _ \\ \n"
     "               | (_) | |_) \\__ \\_____\\__ \\ |_| |_| | (_| | | (_) |\n"
     "                \\___/|_.__/|___/     |___/\\__|\\__,_|\\__,_|_|\\___/ \n"
-    "\nOBS:  Application Version: ${OBS_VERSION} - Build Number: ${OBS_BUILD_NUMBER}\n"
+    "\nOBS:  Application Version: ${SPECTRUM_VERSION} - Build Number: ${OBS_BUILD_NUMBER}\n"
     "==================================================================================\n\n"
   )
 
@@ -376,7 +376,7 @@ function(target_export target)
   message(DEBUG "Generating CMake package version configuration file ${target}ConfigVersion.cmake...")
   write_basic_package_version_file(
     "${target}ConfigVersion.cmake"
-    VERSION ${OBS_VERSION_CANONICAL}
+    VERSION ${SPECTRUM_VERSION_CANONICAL}
     COMPATIBILITY SameMajorVersion
   )
 

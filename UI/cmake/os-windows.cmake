@@ -15,7 +15,7 @@ find_package(nlohmann_json 3.11 REQUIRED)
 configure_file(cmake/windows/obs.rc.in obs.rc)
 
 target_sources(
-  obs-studio
+  spectrum-studio
   PRIVATE
     cmake/windows/obs.manifest
     obs.rc
@@ -36,16 +36,16 @@ target_sources(
     win-update/updater/manifest.hpp
 )
 
-target_sources(obs-studio PRIVATE system-info-windows.cpp)
+target_sources(spectrum-studio PRIVATE system-info-windows.cpp)
 
 target_link_libraries(
-  obs-studio
+  spectrum-studio
   PRIVATE crypt32 OBS::blake2 OBS::w32-pthreads MbedTLS::mbedtls nlohmann_json::nlohmann_json Detours::Detours
 )
 
-target_compile_definitions(obs-studio PRIVATE PSAPI_VERSION=2)
+target_compile_definitions(spectrum-studio PRIVATE PSAPI_VERSION=2)
 
-target_link_options(obs-studio PRIVATE /IGNORE:4099 $<$<CONFIG:DEBUG>:/NODEFAULTLIB:MSVCRT>)
+target_link_options(spectrum-studio PRIVATE /IGNORE:4099 $<$<CONFIG:DEBUG>:/NODEFAULTLIB:MSVCRT>)
 
 add_library(obs-update-helpers INTERFACE)
 add_library(OBS::update-helpers ALIAS obs-update-helpers)
@@ -55,8 +55,8 @@ target_sources(obs-update-helpers INTERFACE win-update/win-update-helpers.cpp wi
 target_include_directories(obs-update-helpers INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/win-update")
 
 # Set commit for untagged version comparisons in the Windows updater
-if(OBS_VERSION MATCHES ".+g[a-f0-9]+.*")
-  string(REGEX REPLACE ".+g([a-f0-9]+).*$" "\\1" OBS_COMMIT ${OBS_VERSION})
+if(SPECTRUM_VERSION MATCHES ".+g[a-f0-9]+.*")
+  string(REGEX REPLACE ".+g([a-f0-9]+).*$" "\\1" OBS_COMMIT ${SPECTRUM_VERSION})
 else()
   set(OBS_COMMIT "")
 endif()
@@ -65,13 +65,13 @@ set_source_files_properties(update/win-update.cpp PROPERTIES COMPILE_DEFINITIONS
 
 add_subdirectory(win-update/updater)
 
-set_property(TARGET obs-studio APPEND PROPERTY AUTORCC_OPTIONS --format-version 1)
+set_property(TARGET spectrum-studio APPEND PROPERTY AUTORCC_OPTIONS --format-version 1)
 
-set_property(DIRECTORY ${CMAKE_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT obs-studio)
+set_property(DIRECTORY ${CMAKE_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT spectrum-studio)
 set_target_properties(
-  obs-studio
+  spectrum-studio
   PROPERTIES
     WIN32_EXECUTABLE TRUE
-    VS_DEBUGGER_COMMAND "${CMAKE_BINARY_DIR}/rundir/$<CONFIG>/bin/64bit/$<TARGET_FILE_NAME:obs-studio>"
+    VS_DEBUGGER_COMMAND "${CMAKE_BINARY_DIR}/rundir/$<CONFIG>/bin/64bit/$<TARGET_FILE_NAME:spectrum-studio>"
     VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/rundir/$<CONFIG>/bin/64bit"
 )

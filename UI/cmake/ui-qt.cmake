@@ -9,16 +9,16 @@ if(NOT TARGET OBS::qt-wrappers)
 endif()
 
 target_link_libraries(
-  obs-studio
+  spectrum-studio
   PRIVATE Qt::Widgets Qt::Svg Qt::Xml Qt::Network OBS::qt-wrappers
 )
 
 set_target_properties(
-  obs-studio
+  spectrum-studio
   PROPERTIES AUTOMOC ON AUTOUIC ON AUTORCC ON
 )
 
-set_property(TARGET obs-studio APPEND PROPERTY AUTOUIC_SEARCH_PATHS forms forms/source-toolbar)
+set_property(TARGET spectrum-studio APPEND PROPERTY AUTOUIC_SEARCH_PATHS forms forms/source-toolbar)
 
 set(
   _qt_sources
@@ -56,9 +56,10 @@ set(
   forms/source-toolbar/image-source-toolbar.ui
   forms/source-toolbar/media-controls.ui
   forms/source-toolbar/text-source-toolbar.ui
+  forms/SPTAbout.ui
 )
 
-target_sources(obs-studio PRIVATE ${_qt_sources})
+target_sources(spectrum-studio PRIVATE ${_qt_sources})
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/forms" PREFIX "UI Files" FILES ${_qt_sources})
 

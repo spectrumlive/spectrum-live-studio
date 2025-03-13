@@ -72,5 +72,5 @@ set_target_properties_obs(
   PROPERTIES FOLDER core
              VERSION 0
              PREFIX ""
-             SOVERSION "${OBS_VERSION_MAJOR}"
+             SOVERSION "${SPECTRUM_VERSION_MAJOR}"
 )

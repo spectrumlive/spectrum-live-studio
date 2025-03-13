@@ -19,7 +19,7 @@ function(set_target_xcode_properties target)
   endwhile()
 endfunction()
 
-# set_target_properties_obs: Set target properties for use in obs-studio
+# set_target_properties_obs: Set target properties for use in spectrum-studio
 function(set_target_properties_obs target)
   set(options "")
   set(oneValueArgs "")
@@ -39,11 +39,11 @@ function(set_target_properties_obs target)
 
   # Target is a GUI or CLI application
   if(target_type STREQUAL EXECUTABLE)
-    if(target STREQUAL obs-studio)
+    if(target STREQUAL spectrum-studio)
       set_target_properties(
         ${target}
         PROPERTIES
-          OUTPUT_NAME OBS
+          OUTPUT_NAME SpectrumStudio
           MACOSX_BUNDLE TRUE
           MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/cmake/macos/Info.plist.in"
           XCODE_EMBED_FRAMEWORKS_REMOVE_HEADERS_ON_COPY YES
@@ -54,11 +54,11 @@ function(set_target_properties_obs target)
 
       set_target_xcode_properties(
         ${target}
-        PROPERTIES PRODUCT_BUNDLE_IDENTIFIER com.obsproject.obs-studio
-                   PRODUCT_NAME OBS
+        PROPERTIES PRODUCT_BUNDLE_IDENTIFIER xyz.spectrumlive.spectrum-studio
+                   PRODUCT_NAME SpectrumStudio
                    ASSETCATALOG_COMPILER_APPICON_NAME AppIcon
                    CURRENT_PROJECT_VERSION ${OBS_BUILD_NUMBER}
-                   MARKETING_VERSION ${OBS_VERSION_CANONICAL}
+                   MARKETING_VERSION ${SPECTRUM_VERSION_CANONICAL}
                    GENERATE_INFOPLIST_FILE YES
                    COPY_PHASE_STRIP NO
                    CLANG_ENABLE_OBJC_ARC YES
@@ -213,7 +213,7 @@ function(set_target_properties_obs target)
       PROPERTIES
         NO_SONAME TRUE
         MACHO_COMPATIBILITY_VERSION 1.0
-        MACHO_CURRENT_VERSION ${OBS_VERSION_MAJOR}
+        MACHO_CURRENT_VERSION ${SPECTRUM_VERSION_MAJOR}
         SOVERSION 0
         VERSION 0
     )
@@ -221,7 +221,7 @@ function(set_target_properties_obs target)
     set_target_xcode_properties(
       ${target}
       PROPERTIES DYLIB_COMPATIBILITY_VERSION 1.0
-                 DYLIB_CURRENT_VERSION ${OBS_VERSION_MAJOR}
+                 DYLIB_CURRENT_VERSION ${SPECTRUM_VERSION_MAJOR}
                  PRODUCT_NAME ${target}
                  PRODUCT_BUNDLE_IDENTIFIER com.obsproject.${target}
                  SKIP_INSTALL YES
@@ -242,7 +242,7 @@ function(set_target_properties_obs target)
                    PRODUCT_NAME ${target}
                    PRODUCT_BUNDLE_IDENTIFIER com.obsproject.${target}
                    CURRENT_PROJECT_VERSION ${OBS_BUILD_NUMBER}
-                   MARKETING_VERSION ${OBS_VERSION_CANONICAL}
+                   MARKETING_VERSION ${SPECTRUM_VERSION_CANONICAL}
                    GENERATE_INFOPLIST_FILE YES
                    INFOPLIST_FILE ""
                    INFOPLIST_KEY_CFBundleDisplayName ${target}
@@ -277,7 +277,7 @@ function(set_target_properties_obs target)
         PROPERTIES PRODUCT_NAME ${target}
                    PRODUCT_BUNDLE_IDENTIFIER com.obsproject.${target}
                    CURRENT_PROJECT_VERSION ${OBS_BUILD_NUMBER}
-                   MARKETING_VERSION ${OBS_VERSION_CANONICAL}
+                   MARKETING_VERSION ${SPECTRUM_VERSION_CANONICAL}
                    GENERATE_INFOPLIST_FILE YES
                    INFOPLIST_KEY_CFBundleDisplayName ${target}
                    INFOPLIST_KEY_NSHumanReadableCopyright "(c) 2012-${CURRENT_YEAR} Lain Bailey"

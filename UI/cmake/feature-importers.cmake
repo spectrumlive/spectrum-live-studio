@@ -1,5 +1,5 @@
 target_sources(
-  obs-studio
+  spectrum-studio
   PRIVATE
     importers/classic.cpp
     importers/importers.cpp

@@ -1,5 +1,5 @@
 target_sources(
-  obs-studio
+  spectrum-studio
   PRIVATE
     window-basic-about.cpp
     window-basic-about.hpp
@@ -60,4 +60,6 @@ target_sources(
     window-remux.hpp
     window-whats-new.cpp
     window-whats-new.hpp
+    spt-window-basic-about.cpp
+    spt-window-basic-about.hpp
 )

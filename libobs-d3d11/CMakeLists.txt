@@ -43,6 +43,6 @@ set_target_properties_obs(
   libobs-d3d11
   PROPERTIES FOLDER core
              VERSION 0
-             SOVERSION ${OBS_VERSION_MAJOR}
+             SOVERSION ${SPECTRUM_VERSION_MAJOR}
              COMPILE_WARNING_AS_ERROR FALSE
 )
