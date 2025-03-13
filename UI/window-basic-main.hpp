@@ -37,6 +37,7 @@
 #include "window-missing-files.hpp"
 #include "window-projector.hpp"
 #include "window-basic-about.hpp"
+#include "spt-window-basic-about.hpp"
 #ifdef YOUTUBE_ENABLED
 #include "window-dock-youtube-app.hpp"
 #endif
@@ -195,6 +196,7 @@ class OBSBasic : public OBSMainWindow {
 			   DESIGNABLE true)
 
 	friend class OBSAbout;
+	friend class SPTAbout;
 	friend class OBSBasicPreview;
 	friend class OBSBasicStatusBar;
 	friend class OBSBasicSourceSelect;
@@ -284,6 +286,7 @@ private:
 	uint64_t lastYouTubeAppDockCreationTime = 0;
 #endif
 	QPointer<OBSAbout> about;
+	QPointer<SPTAbout> sptAbout;
 	QPointer<OBSMissingFiles> missDialog;
 	QPointer<OBSLogViewer> logView;
 

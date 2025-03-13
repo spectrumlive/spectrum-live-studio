@@ -198,11 +198,11 @@ static void AddExtraModulePaths()
 
 	char base_module_dir[512];
 #if defined(_WIN32)
-	int ret = GetProgramDataPath(base_module_dir, sizeof(base_module_dir), "obs-studio/plugins/%module%");
+	int ret = GetProgramDataPath(base_module_dir, sizeof(base_module_dir), "spectrum-studio/plugins/%module%");
 #elif defined(__APPLE__)
-	int ret = GetAppConfigPath(base_module_dir, sizeof(base_module_dir), "obs-studio/plugins/%module%.plugin");
+	int ret = GetAppConfigPath(base_module_dir, sizeof(base_module_dir), "spectrum-studio/plugins/%module%.plugin");
 #else
-	int ret = GetAppConfigPath(base_module_dir, sizeof(base_module_dir), "obs-studio/plugins/%module%");
+	int ret = GetAppConfigPath(base_module_dir, sizeof(base_module_dir), "spectrum-studio/plugins/%module%");
 #endif
 
 	if (ret <= 0)
@@ -216,13 +216,13 @@ static void AddExtraModulePaths()
 #ifndef __aarch64__
 	/* Legacy System Library Search Path */
 	char system_legacy_module_dir[PATH_MAX];
-	GetProgramDataPath(system_legacy_module_dir, sizeof(system_legacy_module_dir), "obs-studio/plugins/%module%");
+	GetProgramDataPath(system_legacy_module_dir, sizeof(system_legacy_module_dir), "spectrum-studio/plugins/%module%");
 	std::string path_system_legacy = system_legacy_module_dir;
 	obs_add_module_path((path_system_legacy + "/bin").c_str(), (path_system_legacy + "/data").c_str());
 
 	/* Legacy User Application Support Search Path */
 	char user_legacy_module_dir[PATH_MAX];
-	GetAppConfigPath(user_legacy_module_dir, sizeof(user_legacy_module_dir), "obs-studio/plugins/%module%");
+	GetAppConfigPath(user_legacy_module_dir, sizeof(user_legacy_module_dir), "spectrum-studio/plugins/%module%");
 	std::string path_user_legacy = user_legacy_module_dir;
 	obs_add_module_path((path_user_legacy + "/bin").c_str(), (path_user_legacy + "/data").c_str());
 #endif
@@ -2905,6 +2905,7 @@ OBSBasic::~OBSBasic()
 	delete transformWindow;
 	delete advAudioWindow;
 	delete about;
+	delete sptAbout;
 	delete remux;
 
 	obs_display_remove_draw_callback(ui->preview->GetDisplay(), OBSBasic::RenderMain, this);
@@ -6148,7 +6149,7 @@ void OBSBasic::UploadLog(const char *subdir, const char *file, const bool crash)
 void OBSBasic::on_actionShowLogs_triggered()
 {
 	char logDir[512];
-	if (GetAppConfigPath(logDir, sizeof(logDir), "obs-studio/logs") <= 0)
+	if (GetAppConfigPath(logDir, sizeof(logDir), "spectrum-studio/logs") <= 0)
 		return;
 
 	QUrl url = QUrl::fromLocalFile(QT_UTF8(logDir));
@@ -6157,12 +6158,12 @@ void OBSBasic::on_actionShowLogs_triggered()
 
 void OBSBasic::on_actionUploadCurrentLog_triggered()
 {
-	UploadLog("obs-studio/logs", App()->GetCurrentLog(), false);
+	UploadLog("spectrum-studio/logs", App()->GetCurrentLog(), false);
 }
 
 void OBSBasic::on_actionUploadLastLog_triggered()
 {
-	UploadLog("obs-studio/logs", App()->GetLastLog(), false);
+	UploadLog("spectrum-studio/logs", App()->GetLastLog(), false);
 }
 
 void OBSBasic::on_actionViewCurrentLog_triggered()
@@ -6179,7 +6180,7 @@ void OBSBasic::on_actionViewCurrentLog_triggered()
 void OBSBasic::on_actionShowCrashLogs_triggered()
 {
 	char logDir[512];
-	if (GetAppConfigPath(logDir, sizeof(logDir), "obs-studio/crashes") <= 0)
+	if (GetAppConfigPath(logDir, sizeof(logDir), "spectrum-studio/crashes") <= 0)
 		return;
 
 	QUrl url = QUrl::fromLocalFile(QT_UTF8(logDir));
@@ -6188,7 +6189,7 @@ void OBSBasic::on_actionShowCrashLogs_triggered()
 
 void OBSBasic::on_actionUploadLastCrashLog_triggered()
 {
-	UploadLog("obs-studio/crashes", App()->GetLastCrashLog(), true);
+	UploadLog("spectrum-studio/crashes", App()->GetLastCrashLog(), true);
 }
 
 void OBSBasic::on_actionCheckForUpdates_triggered()
@@ -7614,7 +7615,7 @@ void OBSBasic::on_actionShowWhatsNew_triggered()
 
 void OBSBasic::on_actionReleaseNotes_triggered()
 {
-	QString addr("https://github.com/obsproject/obs-studio/releases");
+	QString addr("https://github.com/obsproject/spectrum-studio/releases");
 	QUrl url(QString("%1/%2").arg(addr, obs_get_version_string()), QUrl::TolerantMode);
 	QDesktopServices::openUrl(url);
 }
@@ -8645,25 +8646,16 @@ void OBSBasic::on_actionFullscreenInterface_triggered()
 
 void OBSBasic::UpdateTitleBar()
 {
-	stringstream name;
-
-	const char *profile = config_get_string(App()->GetUserConfig(), "Basic", "Profile");
-	const char *sceneCollection = config_get_string(App()->GetUserConfig(), "Basic", "SceneCollection");
-
-	name << "OBS ";
-	if (previewProgramMode)
-		name << "Studio ";
-
-	name << App()->GetVersionString(false);
-	if (safe_mode)
-		name << " (" << Str("TitleBar.SafeMode") << ")";
-	if (App()->IsPortableMode())
-		name << " - " << Str("TitleBar.PortableMode");
-
-	name << " - " << Str("TitleBar.Profile") << ": " << profile;
-	name << " - " << Str("TitleBar.Scenes") << ": " << sceneCollection;
-
-	setWindowTitle(QT_UTF8(name.str().c_str()));
+   stringstream name;
+   
+   const char *profile = config_get_string(App()->GetUserConfig(), "Basic", "Profile");
+   const char *sceneCollection = config_get_string(App()->GetUserConfig(), "Basic", "SceneCollection");
+   
+   name << "SPECTRUM Studio";
+   name << " - " << Str("TitleBar.Profile") << ": " << profile;
+   name << " - " << Str("TitleBar.Scenes") << ": " << sceneCollection;
+   
+   setWindowTitle(QT_UTF8(name.str().c_str()));
 }
 
 int OBSBasic::GetProfilePath(char *path, size_t size, const char *file) const
@@ -8679,7 +8671,7 @@ int OBSBasic::GetProfilePath(char *path, size_t size, const char *file) const
 	if (!file)
 		file = "";
 
-	ret = GetAppConfigPath(profiles_path, 512, "obs-studio/basic/profiles");
+	ret = GetAppConfigPath(profiles_path, 512, "spectrum-studio/basic/profiles");
 	if (ret <= 0)
 		return ret;
 
@@ -9494,13 +9486,13 @@ void OBSBasic::on_stats_triggered()
 
 void OBSBasic::on_actionShowAbout_triggered()
 {
-	if (about)
-		about->close();
+	if (sptAbout)
+		sptAbout->close();
 
-	about = new OBSAbout(this);
-	about->show();
+	sptAbout = new SPTAbout(this);
+	sptAbout->show();
 
-	about->setAttribute(Qt::WA_DeleteOnClose, true);
+	sptAbout->setAttribute(Qt::WA_DeleteOnClose, true);
 }
 
 void OBSBasic::ResizeOutputSizeOfSource()
