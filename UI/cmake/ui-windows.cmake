@@ -62,4 +62,6 @@ target_sources(
     window-whats-new.hpp
     spt-window-basic-about.cpp
     spt-window-basic-about.hpp
+    spt-window-authenticate.cpp
+    spt-window-authenticate.hpp
 )
