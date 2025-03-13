@@ -43,7 +43,7 @@ OBSAbout::OBSAbout(QWidget *parent) : QDialog(parent), ui(new Ui::OBSAbout)
 	}
 
 	ui->getInvolved->setText(
-		"&nbsp;&nbsp;<a href='https://github.com/obsproject/obs-studio/blob/master/CONTRIBUTING.rst'>" +
+		"&nbsp;&nbsp;<a href='https://github.com/spectrumlive/spectrum-live-studio/blob/master/CONTRIBUTING.rst'>" +
 		QTStr("About.GetInvolved") + "</a>");
 	ui->getInvolved->setTextInteractionFlags(Qt::TextBrowserInteraction);
 	ui->getInvolved->setOpenExternalLinks(true);
