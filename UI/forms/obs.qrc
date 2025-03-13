@@ -93,4 +93,9 @@
     <file>fonts/OpenSans-Bold.ttf</file>
     <file>fonts/OpenSans-Italic.ttf</file>
   </qresource>
+  <qresource prefix="/providers">
+    <file>images/providers/img-google-profile.svg</file>
+    <file>images/providers/img-facebook-profile.svg</file>
+    <file>images/providers/img-setting-profile-blank.svg</file>
+  </qresource>
 </RCC>
