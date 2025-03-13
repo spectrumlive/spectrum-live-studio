@@ -15,9 +15,9 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-#include "OAuthManager.hpp"
+#include "spt-auth-manager.hpp"
 #include "util/config-file.h"
-#include <widgets/OBSBasic.hpp>
+#include "window-basic-main.hpp"
 #include <QUrlQuery>
 #include <QJsonDocument>
 #include <QJsonObject>

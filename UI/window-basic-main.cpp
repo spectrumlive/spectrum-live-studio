@@ -372,6 +372,10 @@ OBSBasic::OBSBasic(QWidget *parent) : OBSMainWindow(parent), undo_s(ui), ui(new 
 	/* Parenting is done there so controls will be deleted alongside controlsDock */
 	controlsDock->setWidget(controls);
 	addDockWidget(Qt::BottomDockWidgetArea, controlsDock);
+   
+   if (config_get_int(App()->GetUserConfig(), "UserInfo", "timeout") < QDateTime::currentSecsSinceEpoch()) {
+      controls->EnableLogoutButton(false);
+   }
 
 	connect(controls, &OBSBasicControls::StreamButtonClicked, this, &OBSBasic::StreamActionTriggered);
 
@@ -395,6 +399,8 @@ OBSBasic::OBSBasic(QWidget *parent) : OBSMainWindow(parent), undo_s(ui), ui(new 
 	connect(controls, &OBSBasicControls::SettingsButtonClicked, this, &OBSBasic::on_action_Settings_triggered);
 
 	connect(controls, &OBSBasicControls::ExitButtonClicked, this, &QMainWindow::close);
+   
+   connect(controls, &OBSBasicControls::LogoutButtonClicked, this, &OBSBasic::ProcessLogout);
 
 	startingDockLayout = saveState();
 
@@ -4964,6 +4970,18 @@ void OBSBasic::on_actionRemux_triggered()
 	remuxDlg = new OBSRemux(path, this);
 	remuxDlg->show();
 	remux = remuxDlg;
+}
+
+void OBSBasic::ProcessLogout()
+{
+   OAuthManager auth;
+   auth.logout();
+   auth.clearUserInfo();
+   
+   QString program = qApp->arguments()[0];
+   QStringList arguments = qApp->arguments().mid(1); // remove the 1st argument - the program name
+   QMainWindow::close();
+   QProcess::startDetached(program, arguments);
 }
 
 void OBSBasic::on_action_Settings_triggered()
@@ -10192,4 +10210,15 @@ OBSPromptResult OBSBasic::PromptForName(const OBSPromptRequest &request, const O
 	}
 
 	return result;
+}
+
+void OBSBasic::updateLogoutStatus()
+{
+   if (config_get_int(App()->GetAppConfig(), "UserInfo", "timeout") < QDateTime::currentSecsSinceEpoch()) {
+      QList<QPushButton*> buttons = controlsDock->widget()->findChildren<QPushButton*>("logoutButton");
+      if (!buttons.isEmpty()) {
+         QPushButton* logoutButton = buttons.first();
+         logoutButton->setDisabled(false);
+      }
+   }
 }

@@ -15,7 +15,7 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-#include "SPTServiceManager.hpp"
+#include "spt-service-manager.hpp"
 
 
 SPTServiceManager::SPTServiceManager(QObject *parent) : QObject(parent) {
@@ -29,7 +29,7 @@ void SPTServiceManager::sendGetRequest(const QString &url, const QString &token,
    qDebug() << "OpenSSL Build Version:" << QSslSocket::sslLibraryBuildVersionString();
    qDebug() << "OpenSSL Runtime Version:" << QSslSocket::sslLibraryVersionString();
 
-   
+
    QNetworkRequest request((QUrl(url)));
    auto config = QSslConfiguration::defaultConfiguration();
    config.setCaCertificates(QSslCertificate::fromPath(QStringLiteral(":/sslcert/rootCA.pem")));

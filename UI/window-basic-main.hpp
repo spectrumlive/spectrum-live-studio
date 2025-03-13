@@ -1021,6 +1021,8 @@ public:
 	QColor GetSelectionColor() const;
 	inline bool Closing() { return closing; }
 
+   void updateLogoutStatus();
+
 protected:
 	virtual void closeEvent(QCloseEvent *event) override;
 	virtual bool nativeEvent(const QByteArray &eventType, void *message, qintptr *result) override;
@@ -1200,6 +1202,8 @@ private slots:
 	void VirtualCamActionTriggered();
 
 	void OpenVirtualCamConfig();
+   
+   void ProcessLogout();
 
 	/* Studio Mode toggle slot */
 	void TogglePreviewProgramMode();

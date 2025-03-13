@@ -52,6 +52,8 @@ private slots:
 public:
 	OBSBasicControls(OBSBasic *main);
 	inline ~OBSBasicControls() {}
+   
+   	void EnableLogoutButton(bool enabled);
 
 signals:
 	void StreamButtonClicked();
@@ -65,6 +67,7 @@ signals:
 	void StudioModeButtonClicked();
 	void SettingsButtonClicked();
 	void ExitButtonClicked();
+   void LogoutButtonClicked();
 
 	void StartStreamMenuActionClicked();
 	void StopStreamMenuActionClicked();

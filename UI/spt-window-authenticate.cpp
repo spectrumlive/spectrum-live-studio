@@ -15,10 +15,10 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
-#include "widgets/OBSBasic.hpp"
-#include "SPTAuthenticate.hpp"
-#include "auth/OAuthManager.hpp"
-#include "auth/SPTAPIServices.hpp"
+#include "window-basic-main.hpp"
+#include "spt-window-authenticate.hpp"
+#include "auth/spt-auth-manager.hpp"
+#include "auth/spt-api-services.hpp"
 #include <QWidget>
 #include <QDesktopServices>
 #include <QUrl>

@@ -43,6 +43,9 @@ OBSBasicControls::OBSBasicControls(OBSBasic *main) : QFrame(nullptr), ui(new Ui:
 	connect(
 		ui->settingsButton, &QPushButton::clicked, this, [this]() { emit this->SettingsButtonClicked(); },
 		Qt::DirectConnection);
+   	connect(
+     		ui->logoutButton, &QPushButton::clicked, this, [this]() { emit this->LogoutButtonClicked(); },
+     		Qt::DirectConnection);
 	connect(
 		ui->exitButton, &QPushButton::clicked, this, [this]() { emit this->ExitButtonClicked(); },
 		Qt::DirectConnection);
@@ -281,4 +284,9 @@ void OBSBasicControls::EnableVirtualCamButtons()
 {
 	ui->virtualCamButton->setVisible(true);
 	ui->virtualCamConfigButton->setVisible(true);
+}
+
+void OBSBasicControls::EnableLogoutButton(bool enabled)
+{
+   ui->logoutButton->setDisabled(!enabled);
 }

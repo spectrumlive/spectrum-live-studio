@@ -67,6 +67,10 @@ target_sources(
     source-label.hpp
     source-tree.cpp
     source-tree.hpp
+    spt-complex-header-icon.cpp
+    spt-complex-header-icon.hpp
+    spt-setting-account-view.cpp
+    spt-setting-account-view.hpp
     undo-stack-obs.cpp
     undo-stack-obs.hpp
     url-push-button.cpp

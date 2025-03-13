@@ -112,8 +112,10 @@ target_sources(
     auth/spt-auth-manager.hpp
     auth/spt-api-services.cpp
     auth/spt-api-services.hpp
-    auth/spt-server-manager.cpp
-    auth/spt-server-manager.hpp
+    auth/spt-service-manager.cpp
+    auth/spt-service-manager.hpp
+    auth/spt-file-downloader.cpp
+    auth/spt-file-downloader.hpp
 )
 
 if(OS_WINDOWS)

@@ -17,28 +17,39 @@
 
 #pragma once
 
-#include "ui_SPTAuthenticate.h"
-#include "auth/spt-auth-manager.hpp"
-#include "auth/spt-service-manager.hpp"
 #include <QWidget>
-#include <QMainWindow>
-#include <QNetworkAccessManager>
+#include <QMetaEnum>
+#include "auth/spt-file-downloader.hpp"
 
-class SPTAuthenticate: public QWidget {
-    Q_OBJECT
+namespace Ui {
+   class SPTSettingAccountView;
+}
 
+class SPTSettingAccountView: public QWidget {
+	Q_OBJECT
 public:
-   explicit SPTAuthenticate(QWidget *parent = nullptr);
-   ~SPTAuthenticate();
-   std::unique_ptr<Ui::SPTAuthenticate> ui;
-   void setMainWindow(QMainWindow* mainWindow) { this->mpMainWindow = mainWindow; }
-   void clearUserInfo() { this->mpAuthManager->clearUserInfo(); }
-   
+   enum EnumProvider {
+      GOOGLE,
+      APPLE,
+      FACEBOOK
+   };
+   Q_ENUM(EnumProvider)
+
+   explicit SPTSettingAccountView(QWidget *parent = nullptr);
+	~SPTSettingAccountView() override;
+	void initUi();
+	void setEnable(bool enable);
+	
 protected:
-   void initUi();
+   QString getProviderImage(const QString &provider) const;
    
+private slots:
+   void onManagerFinished(QNetworkReply *reply);
+
 private:
-   OAuthManager *mpAuthManager;
-   SPTServiceManager mSerivceManager;
-   QMainWindow *mpMainWindow;
+	Ui::SPTSettingAccountView *ui;
+   SPTFileDownloader *m_pImgCtrl;
+   QMetaObject mProviderMetaObject;
+   QMetaEnum mProviderMetaEnum;
+   QNetworkAccessManager manager;
 };

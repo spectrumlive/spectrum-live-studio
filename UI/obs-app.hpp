@@ -42,6 +42,7 @@
 
 #include "window-main.hpp"
 #include "obs-app-theming.hpp"
+#include "spt-window-authenticate.hpp"
 
 std::string CurrentTimeString();
 std::string CurrentDateTimeString();
@@ -92,6 +93,7 @@ private:
 	ConfigFile userConfig;
 	TextLookup textLookup;
 	QPointer<OBSMainWindow> mainWindow;
+   QPointer<SPTAuthenticate> authWindow;
 	profiler_name_store_t *profilerNameStore = nullptr;
 	std::vector<UpdateBranch> updateBranches;
 	bool branches_loaded = false;
