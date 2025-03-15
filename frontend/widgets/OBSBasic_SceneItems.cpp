@@ -29,6 +29,12 @@
 
 #include <qt-wrappers.hpp>
 
+#include <QString>
+#include <QJsonDocument>
+#include <QPixmap>
+#include <QIcon>
+#include <QPainter>
+
 #include <QWidgetAction>
 
 #include <sstream>
@@ -777,6 +783,7 @@ QMenu *OBSBasic::CreateAddSourcePopupMenu()
 			icon = GetSourceIcon(type);
 
 		popupItem->setIcon(icon);
+      popupItem->setIconVisibleInMenu(true);
 
 		QAction *after = getActionAfter(popup, qname);
 		popup->insertAction(after, popupItem);

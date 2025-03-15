@@ -53,6 +53,8 @@ QIcon OBSBasic::GetSourceIcon(const char *id) const
 		return GetDefaultIcon();
 	case OBS_ICON_TYPE_PROCESS_AUDIO_OUTPUT:
 		return GetAudioProcessOutputIcon();
+	case SPT_ICON_TYPE_NOTIFICATION:
+		return GetNotificationIcon();
 	default:
 		return GetDefaultIcon();
 	}
@@ -138,6 +140,11 @@ void OBSBasic::SetAudioProcessOutputIcon(const QIcon &icon)
 	audioProcessOutputIcon = icon;
 }
 
+void OBSBasic::SetNotificationIcon(const QIcon &icon)
+{
+	notificationIcon = icon;
+}
+
 QIcon OBSBasic::GetImageIcon() const
 {
 	return imageIcon;
@@ -216,4 +223,9 @@ QIcon OBSBasic::GetDefaultIcon() const
 QIcon OBSBasic::GetAudioProcessOutputIcon() const
 {
 	return audioProcessOutputIcon;
+}
+
+QIcon OBSBasic::GetNotificationIcon() const
+{
+	return notificationIcon;
 }
