@@ -19,7 +19,7 @@ function(set_target_xcode_properties target)
   endwhile()
 endfunction()
 
-# set_target_properties_obs: Set target properties for use in obs-studio
+# set_target_properties_obs: Set target properties for use in spectrum-studio
 function(set_target_properties_obs target)
   set(options "")
   set(oneValueArgs "")
@@ -39,7 +39,7 @@ function(set_target_properties_obs target)
 
   # Target is a GUI or CLI application
   if(target_type STREQUAL EXECUTABLE)
-    if(target STREQUAL obs-studio)
+    if(target STREQUAL spectrum-studio)
       set_target_properties(
         ${target}
         PROPERTIES

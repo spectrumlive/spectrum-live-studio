@@ -5,10 +5,10 @@ if(NOT TARGET OBS::qt-vertical-scroll-area)
   )
 endif()
 
-target_link_libraries(obs-studio PRIVATE OBS::qt-vertical-scroll-area)
+target_link_libraries(spectrum-studio PRIVATE OBS::qt-vertical-scroll-area)
 
 target_sources(
-  obs-studio
+  spectrum-studio
   PRIVATE
     widgets/ColorSelect.cpp
     widgets/ColorSelect.hpp

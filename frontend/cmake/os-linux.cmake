@@ -1,14 +1,14 @@
-target_sources(obs-studio PRIVATE utility/platform-x11.cpp utility/system-info-posix.cpp)
+target_sources(spectrum-studio PRIVATE utility/platform-x11.cpp utility/system-info-posix.cpp)
 target_compile_definitions(
-  obs-studio
+  spectrum-studio
   PRIVATE OBS_INSTALL_PREFIX="${OBS_INSTALL_PREFIX}" $<$<BOOL:${ENABLE_PORTABLE_CONFIG}>:ENABLE_PORTABLE_CONFIG>
 )
-target_link_libraries(obs-studio PRIVATE Qt::GuiPrivate Qt::DBus)
+target_link_libraries(spectrum-studio PRIVATE Qt::GuiPrivate Qt::DBus)
 
 if(TARGET OBS::python)
   find_package(Python REQUIRED COMPONENTS Interpreter Development)
-  target_link_libraries(obs-studio PRIVATE Python::Python)
-  target_link_options(obs-studio PRIVATE LINKER:-no-as-needed)
+  target_link_libraries(spectrum-studio PRIVATE Python::Python)
+  target_link_options(spectrum-studio PRIVATE LINKER:-no-as-needed)
 endif()
 
 if(NOT DEFINED APPDATA_RELEASE_DATE)

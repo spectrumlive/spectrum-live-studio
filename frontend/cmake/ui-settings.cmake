@@ -1,5 +1,5 @@
 target_sources(
-  obs-studio
+  spectrum-studio
   PRIVATE
     settings/OBSBasicSettings_A11y.cpp
     settings/OBSBasicSettings_Appearance.cpp

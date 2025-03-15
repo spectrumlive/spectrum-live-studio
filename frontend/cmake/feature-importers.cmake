@@ -1,5 +1,5 @@
 target_sources(
-  obs-studio
+  spectrum-studio
   PRIVATE
     importer/ImporterEntryPathItemDelegate.cpp
     importer/ImporterEntryPathItemDelegate.hpp
