@@ -256,6 +256,7 @@ OBSBasic {
     qproperty-sceneIcon: url(theme:Light/sources/scene.svg);
     qproperty-defaultIcon: url(theme:Light/sources/default.svg);
     qproperty-audioProcessOutputIcon: url(theme:Light/sources/windowaudio.svg);
+    qproperty-notificationIcon: url(theme:Light/sources/notification.svg);
 }
 
 .icon-save {

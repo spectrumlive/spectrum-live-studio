@@ -242,6 +242,7 @@ OBSBasic {
     qproperty-sceneIcon: url(:res/images/sources/scene.svg);
     qproperty-defaultIcon: url(:res/images/sources/default.svg);
     qproperty-audioProcessOutputIcon: url(:res/images/sources/windowaudio.svg);
+    qproperty-notificationIcon: url(:res/images/sources/notification.svg);
 }
 
 /* Scene Tree */
