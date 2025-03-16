@@ -264,6 +264,10 @@ OBSBasic::OBSBasic(QWidget *parent) : OBSMainWindow(parent), undo_s(ui), ui(new 
 	controlsDock->setWidget(controls);
 	addDockWidget(Qt::BottomDockWidgetArea, controlsDock);
 
+	if (config_get_int(App()->GetUserConfig(), "UserInfo", "timeout") < QDateTime::currentSecsSinceEpoch()) {
+		controls->EnableLogoutButton(false);
+	}
+
 	connect(controls, &OBSBasicControls::StreamButtonClicked, this, &OBSBasic::StreamActionTriggered);
 
 	connect(controls, &OBSBasicControls::StartStreamMenuActionClicked, this, &OBSBasic::StartStreaming);
@@ -286,6 +290,8 @@ OBSBasic::OBSBasic(QWidget *parent) : OBSMainWindow(parent), undo_s(ui), ui(new 
 	connect(controls, &OBSBasicControls::SettingsButtonClicked, this, &OBSBasic::on_action_Settings_triggered);
 
 	connect(controls, &OBSBasicControls::ExitButtonClicked, this, &QMainWindow::close);
+
+	connect(controls, &OBSBasicControls::LogoutButtonClicked, this, &OBSBasic::ProcessLogout);
 
 	startingDockLayout = saveState();
 

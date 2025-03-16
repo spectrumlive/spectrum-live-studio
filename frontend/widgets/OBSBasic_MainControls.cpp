@@ -180,6 +180,18 @@ void OBSBasic::on_actionRemux_triggered()
 	remux = remuxDlg;
 }
 
+void OBSBasic::ProcessLogout()
+{
+	OAuthManager auth;
+	auth.logout();
+	auth.clearUserInfo();
+
+	QString program = qApp->arguments()[0];
+	QStringList arguments = qApp->arguments().mid(1); // remove the 1st argument - the program name
+	QMainWindow::close();
+	QProcess::startDetached(program, arguments);
+}
+
 void OBSBasic::on_action_Settings_triggered()
 {
 	static bool settings_already_executing = false;
