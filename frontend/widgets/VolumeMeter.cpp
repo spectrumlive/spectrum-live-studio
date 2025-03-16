@@ -503,7 +503,7 @@ inline void VolumeMeter::doLayout()
 
 	if (displayNrAudioChannels) {
 		int meterSize = std::floor(22 / displayNrAudioChannels);
-		setMeterThickness(std::clamp(meterSize, 3, 7));
+		setMeterThickness(std::clamp(meterSize, 1, 2));
 	}
 	recalculateLayout = false;
 
