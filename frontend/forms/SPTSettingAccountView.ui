@@ -188,7 +188,7 @@
   <customwidget>
    <class>SPTComplexHeaderIcon</class>
    <extends>QLabel</extends>
-   <header>components/spt-complex-header-icon.hpp</header>
+   <header>components/SPTComplexHeaderIcon.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>

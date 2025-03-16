@@ -68,6 +68,12 @@ target_sources(
     components/SourceTreeItem.hpp
     components/SourceTreeModel.cpp
     components/SourceTreeModel.hpp
+    components/SPTComplexHeaderIcon.cpp
+    components/SPTComplexHeaderIcon.hpp
+    components/SPTFileDownloader.cpp
+    components/SPTFileDownloader.hpp
+    components/SPTSettingAccountView.cpp
+    components/SPTSettingAccountView.hpp
     components/TextSourceToolbar.cpp
     components/TextSourceToolbar.hpp
     components/UIValidation.cpp
