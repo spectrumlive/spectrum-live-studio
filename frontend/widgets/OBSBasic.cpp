@@ -34,6 +34,7 @@
 #include <dialogs/OBSBasicInteraction.hpp>
 #include <dialogs/OBSBasicProperties.hpp>
 #include <dialogs/OBSBasicTransform.hpp>
+#include <dialogs/SPTAbout.hpp>
 #include <settings/OBSBasicSettings.hpp>
 #include <utility/QuickTransition.hpp>
 #include <utility/SceneRenameDelegate.hpp>
@@ -1353,6 +1354,7 @@ OBSBasic::~OBSBasic()
 	delete transformWindow;
 	delete advAudioWindow;
 	delete about;
+	delete spectrumAbout;
 	delete remux;
 
 	obs_display_remove_draw_callback(ui->preview->GetDisplay(), OBSBasic::RenderMain, this);

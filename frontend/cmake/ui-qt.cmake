@@ -55,4 +55,5 @@ target_sources(
     forms/source-toolbar/media-controls.ui
     forms/source-toolbar/text-source-toolbar.ui
     forms/StatusBarWidget.ui
+    forms/SPTAbout.ui
 )

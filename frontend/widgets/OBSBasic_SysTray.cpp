@@ -24,7 +24,7 @@ extern bool opt_minimize_tray;
 void OBSBasic::SystemTrayInit()
 {
 #ifdef __APPLE__
-	QIcon trayIconFile = QIcon(":/res/images/obs_macos.svg");
+	QIcon trayIconFile = QIcon(":/res/images/spt_macos.svg");
 	trayIconFile.setIsMask(true);
 #else
 	QIcon trayIconFile = QIcon(":/res/images/obs.png");
