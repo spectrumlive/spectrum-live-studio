@@ -30,7 +30,6 @@
 !CONTRIBUTING.rst
 !COPYING
 !INSTALL
-!README.rst
 
 # Exclude lock files
 *.lock.json
