@@ -56,4 +56,7 @@ target_sources(
     forms/source-toolbar/text-source-toolbar.ui
     forms/StatusBarWidget.ui
     forms/SPTAbout.ui
+    forms/SPTAuthenticate.ui
+    forms/SPTComplexHeaderIcon.ui
+    forms/SPTSettingAccountView.ui
 )

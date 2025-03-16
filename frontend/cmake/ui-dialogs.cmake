@@ -39,4 +39,6 @@ target_sources(
     dialogs/OBSWhatsNew.hpp
     dialogs/SPTAbout.cpp
     dialogs/SPTAbout.hpp
+    dialogs/SPTAuthenticate.cpp
+    dialogs/SPTAuthenticate.hpp
 )

@@ -19,6 +19,7 @@
 
 #include <utility/OBSTheme.hpp>
 #include <widgets/OBSMainWindow.hpp>
+#include <dialogs/SPTAuthenticate.hpp>
 
 #include <obs-frontend-api.h>
 #include <util/platform.h>
@@ -59,6 +60,7 @@ private:
 	ConfigFile userConfig;
 	TextLookup textLookup;
 	QPointer<OBSMainWindow> mainWindow;
+   QPointer<SPTAuthenticate> authWindow;
 	profiler_name_store_t *profilerNameStore = nullptr;
 	std::vector<UpdateBranch> updateBranches;
 	bool branches_loaded = false;
