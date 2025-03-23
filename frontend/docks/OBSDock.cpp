@@ -7,6 +7,10 @@
 
 #include "moc_OBSDock.cpp"
 
+OBSDock::OBSDock(QWidget *parent) : QDockWidget(parent) {
+   QObject::connect(this, &QDockWidget::topLevelChanged, this, &OBSDock::onTopLevelChanged);
+}
+
 void OBSDock::closeEvent(QCloseEvent *event)
 {
 	auto msgBox = []() {
@@ -38,9 +42,28 @@ void OBSDock::closeEvent(QCloseEvent *event)
 		QEvent widgetEvent(QEvent::Type(QEvent::User + QEvent::Close));
 		qApp->sendEvent(widget(), &widgetEvent);
 	}
+   
 }
 
 void OBSDock::showEvent(QShowEvent *event)
 {
 	QDockWidget::showEvent(event);
 }
+
+void OBSDock::onTopLevelChanged(bool floating)
+{
+   if (floating) {
+         // Manually set custom title bar in floating mode
+      setTitleBarWidget(nullptr);  // Remove first to avoid layout issues
+      setTitleBarWidget(dockTitle);
+   } else {
+      setTitleBarWidget(dockTitle);
+   }
+}
+
+void OBSDock::setWindowTitle(const QString &title)
+{   
+   if (dockTitle)
+      dockTitle->setTitle(title);
+}
+

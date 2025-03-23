@@ -258,6 +258,7 @@ OBSBasic::OBSBasic(QWidget *parent) : OBSMainWindow(parent), undo_s(ui), ui(new 
 	/* Add controls dock */
 	OBSBasicControls *controls = new OBSBasicControls(this);
 	controlsDock = new OBSDock(this);
+   controlsDock->initTitle();
 	controlsDock->setObjectName(QString::fromUtf8("controlsDock"));
 	controlsDock->setWindowTitle(QTStr("Basic.Main.Controls"));
 	/* Parenting is done there so controls will be deleted alongside controlsDock */
@@ -327,6 +328,16 @@ OBSBasic::OBSBasic(QWidget *parent) : OBSMainWindow(parent), undo_s(ui), ui(new 
 		ui->actionSceneListMode->setChecked(true);
 
 	ui->scenes->setItemDelegate(new SceneRenameDelegate(ui->scenes));
+   
+   // update dock widget
+   ui->scenesDock->initTitle();
+   ui->scenesDock->setWindowTitle(QTStr("Basic.Main.Scenes"));
+   ui->sourcesDock->initTitle();
+   ui->sourcesDock->setWindowTitle(QTStr("Basic.Main.Sources"));
+   ui->mixerDock->initTitle();
+   ui->mixerDock->setWindowTitle(QTStr("Mixer"));
+   ui->transitionsDock->initTitle();
+   ui->transitionsDock->setWindowTitle(QTStr("Basic.SceneTransitions"));
 
 	auto displayResize = [this]() {
 		struct obs_video_info ovi;

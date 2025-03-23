@@ -433,7 +433,7 @@ public slots:
 private:
 	QList<QPointer<QDockWidget>> oldExtraDocks;
 	QStringList oldExtraDockNames;
-	QPointer<QDockWidget> statsDock;
+	QPointer<OBSDock> statsDock;
 	QByteArray startingDockLayout;
 	QStringList extraDockNames;
 	QList<std::shared_ptr<QDockWidget>> extraDocks;

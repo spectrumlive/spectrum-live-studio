@@ -74,6 +74,8 @@ target_sources(
     components/SPTFileDownloader.hpp
     components/SPTSettingAccountView.cpp
     components/SPTSettingAccountView.hpp
+    components/SPTDockTitle.cpp
+    components/SPTDockTitle.hpp
     components/TextSourceToolbar.cpp
     components/TextSourceToolbar.hpp
     components/UIValidation.cpp
