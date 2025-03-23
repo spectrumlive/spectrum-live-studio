@@ -62,7 +62,8 @@ void OBSDock::onTopLevelChanged(bool floating)
 }
 
 void OBSDock::setWindowTitle(const QString &title)
-{   
+{
+   QDockWidget::setWindowTitle(title);
    if (dockTitle)
       dockTitle->setTitle(title);
 }
