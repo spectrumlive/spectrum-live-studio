@@ -35,9 +35,19 @@ OBSBasicStatusBar::OBSBasicStatusBar(QWidget *parent)
 	statusWidget->ui->delayFrame->hide();
 	statusWidget->ui->issuesFrame->hide();
 	statusWidget->ui->kbps->hide();
+   
+   statusWidget->ui->liveButton->setStyleSheet(QString("QPushButton { background-color: yellow; color: black; }"));
+   statusWidget->ui->recordButton->setStyleSheet(QString("QPushButton { background-color: red; color: white; }"));
+   
+   connect(statusWidget->ui->recordButton, &QPushButton::clicked, this, [this]() {
+      emit this->RecordButtonClicked();
+   }, Qt::DirectConnection);
+   connect(statusWidget->ui->liveButton, &QPushButton::clicked, this, [this]() {
+      emit this->StreamButtonClicked();
+   }, Qt::DirectConnection);
 
 	addPermanentWidget(statusWidget, 1);
-	setMinimumHeight(statusWidget->height());
+   setMinimumHeight(statusWidget->height()+2);
 
 	UpdateIcons();
 	connect(App(), &OBSApp::StyleChanged, this, &OBSBasicStatusBar::UpdateIcons);
@@ -467,6 +477,7 @@ void OBSBasicStatusBar::UpdateStatusBar()
 
 void OBSBasicStatusBar::StreamDelayStarting(int sec)
 {
+   statusWidget->ui->liveButton->setText("Starting");
 	OBSBasic *main = qobject_cast<OBSBasic *>(parent());
 	if (!main || !main->outputHandler)
 		return;
@@ -481,12 +492,14 @@ void OBSBasicStatusBar::StreamDelayStarting(int sec)
 
 void OBSBasicStatusBar::StreamDelayStopping(int sec)
 {
+   statusWidget->ui->liveButton->setText("Stopping");
 	delaySecTotal = delaySecStopping = sec;
 	UpdateDelayMsg();
 }
 
 void OBSBasicStatusBar::StreamStarted(obs_output_t *output)
 {
+   statusWidget->ui->liveButton->setText("FINISH");
 	streamOutput = OBSGetWeakRef(output);
 
 	streamSigs.emplace_back(obs_output_get_signal_handler(output), "reconnect", OBSOutputReconnect, this);
@@ -501,6 +514,7 @@ void OBSBasicStatusBar::StreamStarted(obs_output_t *output)
 
 void OBSBasicStatusBar::StreamStopped()
 {
+   statusWidget->ui->liveButton->setText("LIVE");
 	if (streamOutput) {
 		streamSigs.clear();
 
@@ -513,18 +527,21 @@ void OBSBasicStatusBar::StreamStopped()
 
 void OBSBasicStatusBar::RecordingStarted(obs_output_t *output)
 {
+   statusWidget->ui->recordButton->setText("Stop Rec");
 	recordOutput = OBSGetWeakRef(output);
 	Activate();
 }
 
 void OBSBasicStatusBar::RecordingStopped()
 {
+   statusWidget->ui->recordButton->setText("RECORD");
 	recordOutput = nullptr;
 	Deactivate();
 }
 
 void OBSBasicStatusBar::RecordingPaused()
 {
+   statusWidget->ui->recordButton->setText("PAUSED");
 	if (recordOutput) {
 		statusWidget->ui->recordIcon->setPixmap(recordingPausePixmap);
 		streamPauseIconToggle = true;
@@ -535,6 +552,7 @@ void OBSBasicStatusBar::RecordingPaused()
 
 void OBSBasicStatusBar::RecordingUnpaused()
 {
+   statusWidget->ui->recordButton->setText("Stop Rec");
 	if (recordOutput) {
 		statusWidget->ui->recordIcon->setPixmap(recordingActivePixmap);
 	}

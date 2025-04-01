@@ -99,4 +99,9 @@
     <file>images/providers/img-facebook-profile.svg</file>
     <file>images/providers/img-setting-profile-blank.svg</file>
   </qresource>
+  <qresource prefix="/sidebar">
+    <file>images/sidebar/img-profile.svg</file>
+    <file>images/sidebar/img-studio-mode.svg</file>
+    <file>images/sidebar/img-setting.svg</file>
+  </qresource>
 </RCC>

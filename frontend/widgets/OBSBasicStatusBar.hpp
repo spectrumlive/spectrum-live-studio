@@ -90,6 +90,10 @@ private slots:
 	void UpdateStatusBar();
 	void UpdateCurrentFPS();
 	void UpdateIcons();
+   
+signals:
+   void RecordButtonClicked();
+   void StreamButtonClicked();
 
 public:
 	OBSBasicStatusBar(QWidget *parent);
@@ -98,10 +102,10 @@ public:
 	void StreamDelayStopping(int sec);
 	void StreamStarted(obs_output_t *output);
 	void StreamStopped();
-	void RecordingStarted(obs_output_t *output);
-	void RecordingStopped();
-	void RecordingPaused();
-	void RecordingUnpaused();
+	void RecordingStarted(obs_output_t *output); //ok
+	void RecordingStopped(); //ok
+	void RecordingPaused(); //ok
+	void RecordingUnpaused(); //ok
 
 	void ReconnectClear();
 };

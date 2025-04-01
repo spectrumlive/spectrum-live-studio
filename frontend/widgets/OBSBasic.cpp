@@ -258,12 +258,12 @@ OBSBasic::OBSBasic(QWidget *parent) : OBSMainWindow(parent), undo_s(ui), ui(new 
 	/* Add controls dock */
 	OBSBasicControls *controls = new OBSBasicControls(this);
 	controlsDock = new OBSDock(this);
-   controlsDock->initTitle();
+   	controlsDock->initTitle();
 	controlsDock->setObjectName(QString::fromUtf8("controlsDock"));
 	controlsDock->setWindowTitle(QTStr("Basic.Main.Controls"));
 	/* Parenting is done there so controls will be deleted alongside controlsDock */
 	controlsDock->setWidget(controls);
-	addDockWidget(Qt::BottomDockWidgetArea, controlsDock);
+//	addDockWidget(Qt::BottomDockWidgetArea, controlsDock);
 
 	if (config_get_int(App()->GetUserConfig(), "UserInfo", "timeout") < QDateTime::currentSecsSinceEpoch()) {
 		controls->EnableLogoutButton(false);
@@ -293,7 +293,15 @@ OBSBasic::OBSBasic(QWidget *parent) : OBSMainWindow(parent), undo_s(ui), ui(new 
 	connect(controls, &OBSBasicControls::ExitButtonClicked, this, &QMainWindow::close);
 
 	connect(controls, &OBSBasicControls::LogoutButtonClicked, this, &OBSBasic::ProcessLogout);
+   
+	connect(ui->statusbar, &OBSBasicStatusBar::RecordButtonClicked, this, &OBSBasic::RecordActionTriggered);
+   
+   connect(ui->statusbar, &OBSBasicStatusBar::StreamButtonClicked, this, &OBSBasic::StreamActionTriggered);
 
+   connect(ui->settingButton, &QToolButton::clicked, this, &OBSBasic::on_action_Settings_triggered);
+   
+   connect(ui->studioModeButton, &QToolButton::clicked, this, &OBSBasic::TogglePreviewProgramMode);
+   
 	startingDockLayout = saveState();
 
 	statsDock = new OBSDock();
@@ -451,7 +459,7 @@ OBSBasic::OBSBasic(QWidget *parent) : OBSMainWindow(parent), undo_s(ui), ui(new 
 	SETUP_DOCK(ui->sourcesDock);
 	SETUP_DOCK(ui->mixerDock);
 	SETUP_DOCK(ui->transitionsDock);
-	SETUP_DOCK(controlsDock);
+//	SETUP_DOCK(controlsDock);
 	SETUP_DOCK(statsDock);
 #undef SETUP_DOCK
 
@@ -1905,16 +1913,7 @@ void OBSBasic::UpdateTitleBar()
 	const char *profile = config_get_string(App()->GetUserConfig(), "Basic", "Profile");
 	const char *sceneCollection = config_get_string(App()->GetUserConfig(), "Basic", "SceneCollection");
 
-	name << "OBS ";
-	if (previewProgramMode)
-		name << "Studio ";
-
-	name << App()->GetVersionString(false);
-	if (safe_mode)
-		name << " (" << Str("TitleBar.SafeMode") << ")";
-	if (App()->IsPortableMode())
-		name << " - " << Str("TitleBar.PortableMode");
-
+	name << "SPECTRUM Live Studio";
 	name << " - " << Str("TitleBar.Profile") << ": " << profile;
 	name << " - " << Str("TitleBar.Scenes") << ": " << sceneCollection;
 
